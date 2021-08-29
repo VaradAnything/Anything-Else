@@ -1,0 +1,108 @@
+<!-- <ion-header>
+</ion-header>
+
+
+<ion-content padding>
+	<ion-slides pager="true">
+	  	<ion-slide>
+	  		<div>
+	  			<img src="assets/icon/slide1.svg" />
+	  		</div>
+			<div class="slider_content_div">
+				<p class="p1">Lorem Ipsum Dolor Sit Amet</p>
+				<p class="p2">Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+				<p class="p3" (click)="openPage()">Skip</p>
+			</div>
+	  	</ion-slide>
+	 
+	  	<ion-slide>
+	    	<img src="assets/icon/slide2.svg" />
+	    	<div class="slider_content_div">
+				<p class="p1">Lorem Ipsum Dolor Sit Amet</p>
+				<p class="p2">Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+				<p class="p3" (click)="openPage()">Skip</p>
+			</div>
+	  	</ion-slide>
+	 
+	  	<ion-slide>
+	    	<img src="assets/icon/slide3.svg" />
+	    	<div class="slider_content_div">
+				<p class="p1">Lorem Ipsum Dolor Sit Amet</p>
+				<p class="p2">Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+				<p class="p3" (click)="openPage()">Skip</p>
+			</div>
+	  	</ion-slide>
+
+	  	<ion-slide>
+	    	<img src="assets/icon/slide4.svg" />
+	    	<div class="slider_content_div">
+				<p class="p1">Lorem Ipsum Dolor Sit Amet</p>
+				<p class="p2">Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+				<p class="p3" (click)="openPage()">Skip</p>
+			</div>
+	  	</ion-slide>
+	 
+	  	<ion-slide>
+	    	<img src="assets/icon/slide5.svg" />
+	    	<div class="slider_content_div">
+				<p class="p1">Lorem Ipsum Dolor Sit Amet</p>
+				<p class="p2">Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+
+				<button ion-button color="dark" round medium (click)="openPage()" class="get_started_button">
+		      		<span class="text_gradient">Get Started Using Arythe App</span>
+		      	</button>
+			</div>
+	  	</ion-slide>
+	</ion-slides>
+</ion-content> -->
+
+<ion-header no-border>
+  	<ion-navbar>
+    	<!-- <ion-buttons end *ngIf="showSkip">
+      		<button ion-button (click)="startApp()" style="color:#000 !important;;">Skip</button>
+    	</ion-buttons> -->
+  	</ion-navbar>
+</ion-header>
+
+<ion-content no-bounce>
+  <ion-slides #slides (ionSlideWillChange)="onSlideChangeStart($event)" pager>
+    <ion-slide>
+      	<img src="assets/icon/slide1.svg" class="slide-image"/>
+      	<h2 class="slide-title">
+        	Welcome to <b>Anythingelse</b>
+      	</h2>
+      	<p>
+        	Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet
+      	</p>
+    </ion-slide>
+
+    <ion-slide>
+      	<img src="assets/icon/slide2.svg" class="slide-image"/>
+      	<h2 class="slide-title" >Lorem Ipsum</h2>
+      	<p>Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+    </ion-slide>
+
+    <ion-slide>
+      	<img src="assets/icon/slide3.svg" class="slide-image"/>
+      	<h2 class="slide-title">Lorem Ipsum</h2>
+      	<p>Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+    </ion-slide>
+
+    <ion-slide>
+      	<img src="assets/icon/slide4.svg" class="slide-image"/>
+      	<h2 class="slide-title">Lorem Ipsum</h2>
+      	<p>Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+    </ion-slide>
+
+    <ion-slide>
+      	<img src="assets/icon/slide5.svg" class="slide-image"/>
+      	<h3 class="slide-title">Ready to Shopping?</h3>
+      	<p>
+        	Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet
+      	</p>
+      	<button ion-button icon-end clear (click)="startApp()" class="get_started_button">
+        	<span class="text_gradient">Get Started Using Anythingelse App</span>
+      	</button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

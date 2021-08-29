@@ -1,0 +1,215 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>View Catalogue</ion-title>
+    	<ion-buttons end style="margin-right: 10px;">
+    		<button ion-button icon-only (click)="myCart()">
+        		<ion-icon name="tab_3_white"></ion-icon>
+        		<ion-badge class="cart-badge" color="secondary" style="background-color: #86c224 !important;" *ngIf="total_items_in_cart != 0">{{ total_items_in_cart }}</ion-badge>
+      		</button>
+    		<button ion-button icon-only (click)="sortBy()" *ngIf="item_count == 1 && catalogue_data_array != ''">
+	        	<ion-icon name="sort_by_icon" style="font-size:1.7em;"></ion-icon>
+	      	</button>
+	      	<button ion-button icon-only (click)="filter()" *ngIf="item_count == 1 || catalogue_data_array != ''">
+	        	<ion-icon name="filter_icon" style="font-size:1.7em;"></ion-icon>
+	      	</button>
+	    </ion-buttons>
+  	</ion-navbar>
+  	<ion-grid *ngIf="catalogue_data_array != '' || catalogue_data_array1 != ''" style="background-color: #fff;padding:0px !important;">
+        <ion-row>
+            <ion-col style="max-width: 80%;padding:0px !important;"><ion-searchbar [(ngModel)]="product_search" placeholder="what are you looking for?" style="margin-top: 3px !important;" ></ion-searchbar></ion-col>
+            <!--<ion-col style="max-width: 10%;font-size:1.8em;padding:0px !important;text-align: center;background-color: #fff;" (click)="getPermission()"><ion-icon style="font-size:1em;color:#000;vertical-align: sub;" name="mic_icon"></ion-icon></ion-col>-->
+            <ion-col style="max-width: 10%;font-size:1.8em;padding:0px !important;text-align: center;background-color: #fff;" (click)="goToSearch()"><ion-icon style="font-size:1em;color:#629b0f;vertical-align: sub;" name="search_icon"></ion-icon></ion-col>
+            <ion-col style="max-width: 10%;font-size:1.8em;padding:0px !important;text-align: center;background-color: #fff;" (click)="resetSearch()"><ion-icon style="font-size:1em;color:#629b0f;vertical-align: sub;" name="refresh_icon"></ion-icon></ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-header>
+
+
+<ion-content>
+	<!--
+	<ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher>-->
+
+  	<div *ngIf="item_count == 0" class="error_handling_div">
+		<img src="assets/icon/error.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">Some Error Occurred</p>
+			<p class="error_p2">Click below to try again</p>
+
+			<button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">Try Again</span>
+	      	</button>
+		</div>
+	</div>
+
+	<div *ngIf="item_count == 1 && catalogue_data_array == ''" class="error_handling_div">
+		<img src="assets/icon/no_search.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">No product found</p>
+			<p class="error_p2">Please search for other products</p>
+
+			<button ion-button color="dark" round medium (click)="home()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">Continue Shopping</span>
+	      	</button>
+		</div>
+	</div>
+	<div class="content-wrapper" *ngIf="item_count == 1 && catalogue_data_array != ''">
+      	<div class="card9-container" *ngFor="let catalogue_data of catalogue_data_array;let i = index;">
+      		<div style="float:left;width:50%;min-height: 10px;">
+		        <!-- <img src="assets/icon/discount.png" style="max-width:75%;padding: 5px;" *ngIf="catalogue_data.discount_percent != '0'">
+		        <div style="position: absolute;top:5px;top: 9.3px;left: 25px;color: #fff;font-size: 12px;font-weight: 600;"  *ngIf="catalogue_data.discount_percent != '0'">{{ catalogue_data.discount_percent }} %</div> -->
+		        <div class="text_gradient" style="margin-left: 6px;margin-top: 6px;font-size: 15px;font-weight: 600;"  *ngIf="catalogue_data.discount_percent != '0'">{{ catalogue_data.discount_percent }}% OFF</div>
+		    </div>
+		    <div style="float:left;width:50%;">
+		        <span class="price-love" style="padding: 8px;float:right;" (click)="updateWishlist(i,catalogue_data.product_seo_url,catalogue_data.product_variant_seo_url,catalogue_data.is_wishlisted,1)">
+		          	<ion-icon name="heart-outline" *ngIf="catalogue_data.is_wishlisted == 0" style="color: #000 !important;"></ion-icon>
+		          	<ion-icon name="heart" *ngIf="catalogue_data.is_wishlisted == 1" style="color: #86c224  !important;"></ion-icon>
+		        </span>
+		    </div>
+		    <div style="clear:both;"></div>
+	        <div class="pic-box">
+	        	<div (click)="openProductDetails(catalogue_data.product_variant_seo_url,i) ">
+		          	<img [src]="catalogue_data.photo1_size_medium" style="padding: 0px 0px;display:block;margin: 0 auto !important;" [ngClass]="cssClass1">
+
+		          	<!-- <img [src]="catalogue_data.photo1_size_medium" style="padding: 0px 0px;display:block;margin: 0 auto !important;" (load)="catalogue_data.is_loaded = true" [hidden]="!catalogue_data.is_loaded" onError="this.src='../assets/icon/no_image_1.jpg';"/>
+  					<img src="../assets/icon/no_image_1.jpg" style="padding: 0px 0px;display:block;margin: 0 auto !important;" [hidden]="catalogue_data.is_loaded"> -->
+
+		          	<!-- <img src="assets/icon/bg_image2.png" style="padding: 0px 0px;display:block;margin: 0 auto !important;" [ngClass]="cssClass1" *ngIf="is_show_default_image == 1"> -->
+		          	<div class="title label_bold">
+		            	<p style="font-size: 13px !important;font-weight: 500 !important;">{{ catalogue_data.product_name }}</p>
+		            	<ion-grid *ngIf="catalogue_data.variant_data[0].variant_one != ''" style="padding: 0px !important;margin-top: -15px !important;">
+							<ion-row style="margin-left: -10px;margin-right: -7px;">
+								<ion-col style="max-width: 100%;padding: 0px !important;">
+									<ion-list class="clear-list" style="margin-top:-10px;margin: -1px 0 6px !important;">
+									    <ion-item style="color: #000;background-color: transparent;padding-left: 11px !important;">
+									      	<ion-select interface="popover">
+									      		<ion-option style="font-size: 1.2rem !important; font-weight: 500 !important;" value="{{ variant_details.id }}" (ionSelect)="onChangeVariant(variant_details.product_variant_seo_url,variant_details.variant_image_1,variant_details.product_mrp,variant_details.product_price,variant_details.discount_per,variant_details.is_wishlisted,i,i1)" *ngFor="let variant_details of catalogue_data.variant_data;let i1 = index;" [selected]="i1 == 0"><span>{{ variant_details.variant_one }}</span><span *ngIf="variant_details.variant_two != ''"> - </span><span *ngIf="variant_details.variant_two != ''">{{ variant_details.variant_two }}</span></ion-option>
+										  	</ion-select>
+									    </ion-item>
+									</ion-list>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+						<ion-grid *ngIf="catalogue_data.variant_data[0].variant_one == ''" style="padding: 0px !important;margin-top: -15px !important;">
+							<ion-row style="margin-left: -10px;margin-right: -7px;">
+								<ion-col style="max-width: 100%;padding: 0px !important;">
+									<ion-list class="clear-list" style="margin-top:-10px;margin: -1px 0 6px !important;">
+									    <ion-item style="color: #000;background-color: transparent;padding-left: 11px !important;">
+									      	<ion-select interface="popover">
+									      		<ion-option style="font-size: 1.2rem !important; font-weight: 500 !important;" [selected]="true" value="No more Variant"><span>No more Variant</span></ion-option>
+										  	</ion-select>
+									    </ion-item>
+									</ion-list>
+								</ion-col>
+							</ion-row>
+						</ion-grid>
+		          	</div>
+		          	<div>
+		            	<div class="price-box" style="margin-top: -15px;" *ngIf="catalogue_data.product_price < catalogue_data.product_mrp">
+		              		<div class="sale-price"><span class="text_gradient" style="font-weight: 500;">{{catalogue_data.product_price  | currency:'INR':true:'1.1-1' }}</span><span class="old-price" style="padding-left:5px;">{{ catalogue_data.product_mrp | currency:'INR':true:'1.1-1' }}</span></div>
+		            	</div>
+		            	<div class="price-box" style="margin-top: -15px;" *ngIf="catalogue_data.product_price >= catalogue_data.product_mrp">
+		              		<div class="sale-price"><span class="text_gradient" style="font-weight: 500;">{{catalogue_data.product_price | currency:'INR':true:'1.1-1' }}</span></div>
+		            	</div>
+		          	</div>
+		        </div>
+				<!-- <button ion-button color="dark" outline block class="submit_button" (click)="addToCartWithoutLogin()" style="font-size: 12px;margin: 0 auto;margin-top:7px;margin-bottom: 10px;" *ngIf="login_type == 0">
+	        		<ion-icon name="tab_3" style="padding-right:15px;"></ion-icon> Add To Cart
+	        	</button> -->
+	        	<button ion-button color="dark" outline block class="submit_button" (click)="addToCart(i,catalogue_data.photo1_size_medium,catalogue_data.product_min_qty,catalogue_data.product_max_qty)" style="font-size: 12px;margin: 0 auto;margin-top:7px;margin-bottom: 10px;">
+	        		<ion-icon name="tab_3" style="padding-right:15px;"></ion-icon> Add To Cart
+	        	</button>
+	        </div>
+      	</div>
+      	<div style="margin-top:5vh;text-align:center;color:#808080;font-size:20px;" *ngIf="is_more_data == 0"><p style="margin-bottom: 0px;"><ion-icon name="thumbs-down"></ion-icon></p></div>
+      	<div style="margin-top:0vh;text-align:center;color:#808080;font-size:15px;" *ngIf="is_more_data == 0"><p style="margin-top: 0px;">No More Product Found</p></div>
+    </div>
+    <br>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" *ngIf="stop == 0">
+   		<ion-infinite-scroll-content></ion-infinite-scroll-content>
+ 	</ion-infinite-scroll>
+</ion-content>
+
+
+<!--
+	getCatalogue(filter_expression)
+  	{
+  		var mobile_access_token = JSON.parse(localStorage.getItem('mobile_access_token'));
+  		this.loadingModal = this.loadingCtrl.create(
+	    {
+	      	spinner:'hide',
+	      	content: '<img src="assets/icon/loader.gif">',
+      		//dismissOnPageChange: true,
+                enableBackdropDismiss: true
+	    });
+	    this.loadingModal.present();
+	    this.moduleService.view_catalogue_data(this.cat_id,this.sub_cat_id,this.sub_sub_cat_id,this.filter_expression,this.q,this.sort_by,this.page,mobile_access_token).then((db_result: any) => 
+	    {
+	      	this.db_result = db_result;
+	      	if(db_result.status_code == 200)
+	      	{ 
+	        	//this.catalogue_data_array = db_result.data.product;
+	        	if(this.page == 1)
+		        {
+		          this.old_filter = db_result.data.filter_list;
+		        }
+		        if(db_result.data.filter_list == '')
+		        {
+		          this.is_filter_show = 0;
+		          this.filter_data_array = this.old_filter;
+		        }
+		        else
+		        {
+		          this.is_filter_show = 1;
+		          this.filter_data_array = db_result.data.filter;
+		        }
+
+		        this.is_more_data = db_result.is_more_data;
+
+		        if(db_result.data.product != '')
+		        {
+		          	if(this.catalogue_data_array != '')
+		          	{
+			            //this.catalogue_data_array = this.catalogue_data_array.concat(db_result.data.product);
+			            this.catalogue_data_array = db_result.data.product;
+		          	}
+		          	else
+		          	{
+			            this.catalogue_data_array = db_result.data.product;
+		          	}
+		          	this.stop = 0;
+		        }
+		        else
+		        {
+		          	this.stop = 1;
+		        }
+
+	        	this.price_min_value = db_result.data.price.min_value;
+	        	this.price_max_value = db_result.data.price.max_value;
+	        	this.item_count = 1;
+	      	}
+	      	else
+	      	{
+	        	this.catalogue_data_array = '';
+	        	this.filter_data_array = '';
+	        	this.price_min_value = 0;
+	        	this.price_max_value = 0;
+	        	this.item_count = 0;
+	        	let toast = this.toastCtrl.create
+	        	({
+	            	message: db_result.message,
+	            	duration: 3000,
+	            	position: 'top',
+	        	});
+	        	toast.present();
+	      	}
+	      	this.loadingModal.dismiss();
+	    },(reson) => 
+	    {
+	      	this.loadingModal.dismiss();
+	    });
+  	}
+-->

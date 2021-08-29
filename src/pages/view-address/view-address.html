@@ -1,0 +1,77 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>View Address</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher> -->
+
+  	
+
+	<div *ngIf="item_count == 0" class="error_handling_div">
+        <img src="assets/icon/error.svg" class="error_handling_image">
+
+        <div>
+            <p class="error_p1">Some Error Occurred</p>
+            <p class="error_p2">Click below to try again</p>
+
+            <button ion-button color="dark" round medium (click)="ionViewWillEnter()" class="text_gradient four_side_border_gradient error_submit_button">
+                  <span class="text_gradient">Try Again</span>
+            </button>
+        </div>
+    </div>
+
+
+	<div *ngIf="item_count == 1 && address_data_array == ''" class="error_handling_div">
+		<img src="assets/icon/account_4_1.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">You have no address</p>
+			<p class="error_p2">Click below to add address</p>
+
+			<button ion-button color="dark" round medium (click)="addAddress()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">Add Address</span>
+	      	</button>
+		</div>
+	</div>
+
+ 	<div class="content-wrapper" *ngIf="item_count == 1 && address_data_array != ''">
+    	<div class="address-container">
+  			<ion-card *ngFor="let address_data of address_data_array" style="margin-bottom: 10px !important;">
+  				<ion-card-content>
+  					<ion-list class="address-list">
+			        	<ion-item-sliding>
+			          		<ion-item class="address-list-item label_bold">
+			            		<ion-grid>
+			            			<ion-row>
+			            				<ion-col style="max-width:88%;">
+			            					<span class="text_gradient">{{ address_data.first_name }} {{ address_data.last_name }}</span>
+			            				</ion-col>
+			            				<ion-col style="max-width:12%;" (click)="editAddress(address_data.id)">
+			            					<span>Edit</span>
+			            				</ion-col>
+			            			</ion-row>
+			            		</ion-grid>
+			            		<div class="detail label_bold address_div" style="margin-top: 8px;">{{ address_data.address1 }},</div>
+			            		<div class="detail label_bold address_div" *ngIf="address_data.address2 != ''">{{ address_data.address2 }},</div>
+			            		<div class="detail label_bold country_div">{{ address_data.city_name }}, {{ address_data.state_name }}, {{ address_data.country_name }} {{ address_data.pincode }}</div>
+			            		<div class="detail label_bold country_div">Mobile No:- {{ address_data.mobile }}</div>
+			            	</ion-item>
+			          		<ion-item-options>
+			            		<button color="danger" id="slide_btn" (click)="deleteAddress(address_data.id)"> <ion-icon name="trash" style="padding-right: 2px;"></ion-icon> Delete</button>
+			          		</ion-item-options>
+			        	</ion-item-sliding>
+			      	</ion-list>
+			    </ion-card-content>
+        	</ion-card> 		
+    	</div>
+  	</div>
+
+  	<ion-fab right bottom (click)="addAddress()" *ngIf="item_count == 1 && address_data_array != ''">
+    	<button ion-fab color="light"><ion-icon name="add"></ion-icon></button>
+  	</ion-fab>
+</ion-content>

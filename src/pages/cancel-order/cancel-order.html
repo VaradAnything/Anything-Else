@@ -1,0 +1,97 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Cancel Order</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content style="background-color: #fff !important;">
+	<div class="error_handling_div" *ngIf="form_show == 0">
+        <img src="assets/icon/cancel_order.svg" class="error_handling_image">
+
+        <div>
+            <p class="error_p1">We got your request for cancel order</p>
+            <p class="error_p2">Thank you for shopping with us</p>
+
+            <button ion-button color="dark" round medium (click)="shopping()" class="text_gradient four_side_border_gradient error_submit_button">
+                <span class="text_gradient">Continue Shopping</span>
+            </button>
+        </div>
+    </div>
+	<div *ngIf="form_show == 1" style="padding-left:12px;padding-right:12px;">
+		<img src="assets/icon/account_1_1.svg" style="margin:0 auto;display:block;max-width:25%;">
+		<div style="text-align:center;">
+			<span class="text_gradient" style="font-size: 22px;font-weight: 500;">#{{ order_id }}</span><span [ngStyle]="{'color':order_status_color}" style="font-size: 13px;padding-left:8px;">( {{ order_status }} )</span>
+		</div>
+		<div style="text-align:center;margin-bottom:10px;">
+			<span style="font-size: 13px;">{{ order_date }}</span>
+		</div>
+
+		<div style="text-align:center;margin-bottom:10px;" *ngIf="total_wallet_amount != 0">
+			<span style="font-size: 13px;color:#ed6663;">Wallet Amount: {{ total_wallet_amount | currency:'INR':true:'1.1-1' }}</span>
+		</div>
+
+		<div style="text-align:center;margin-bottom:10px;" *ngIf="total_wallet_amount == 0">
+			<span style="font-size: 13px;color:#ed6663;">Wallet Amount: {{ total_wallet_amount | currency:'INR':true:'1.1-1' }}</span>
+		</div>
+
+		<ion-list radio-group id="radio_list_id" no-lines>
+			<!-- <ion-item>
+		    	<ion-label>Recipient not available at the estimated time/day of delivery</ion-label>
+		    	<ion-radio (ionSelect)="reasonType(1)" checked="true"></ion-radio>
+		  	</ion-item>
+		  	 <ion-item>
+			    <ion-label>Product is taking too long to be delivered</ion-label>
+			    <ion-radio (ionSelect)="reasonType(2)"></ion-radio>
+			</ion-item>
+			<ion-item>
+		    	<ion-label>Customer changes his mind and opts for another brand instead</ion-label>
+		    	<ion-radio (ionSelect)="reasonType(3)"></ion-radio>
+		  	</ion-item>
+		  	<ion-item>
+		    	<ion-label>Other Reason</ion-label>
+		    	<ion-radio (ionSelect)="reasonType(0)"></ion-radio>
+		  	</ion-item> -->
+		  	<ion-item>
+		    	<ion-label>Recipient not available at day of delivery</ion-label>
+		    	<ion-radio (ionSelect)="reasonType('Recipient not available at day of delivery')" checked="true"></ion-radio>
+		  	</ion-item>
+		  	 <ion-item>
+			    <ion-label>Delivered But Lost</ion-label>
+			    <ion-radio (ionSelect)="reasonType('Delivered But Lost')"></ion-radio>
+			</ion-item>
+			<ion-item>
+		    	<ion-label>Customer changes his mind</ion-label>
+		    	<ion-radio (ionSelect)="reasonType('Customer changes his mind')"></ion-radio>
+		  	</ion-item>
+		  	<ion-item>
+		    	<ion-label>Other Reason</ion-label>
+		    	<ion-radio (ionSelect)="reasonType('Other Reason')"></ion-radio>
+		  	</ion-item>
+		</ion-list>
+
+		<form [formGroup]="moduleForm" style="margin-top:5vh;">
+		    <ion-list class="clear-list">
+		    	<ion-item>
+		        	<!-- <ion-icon class="input-icon" name="comment_icon" item-left></ion-icon> -->
+		        	<ion-textarea formControlName="cancel_order_reason" type="text" [class.invalid]="!moduleForm.controls.cancel_order_reason.valid && (moduleForm.controls.cancel_order_reason.dirty || submitAttempt)" placeholder="Enter Cancel Order Reason" rows="5"></ion-textarea>
+		      	</ion-item>
+
+		      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.cancel_order_reason.valid  && (moduleForm.controls.cancel_order_reason.dirty || submitAttempt)">
+		        	<p>Please enter cancel order reason</p>
+		      	</ion-item>
+
+		      	<!-- <button ion-button color="dark" outline round block (click)="cancelOrder()" style="margin: 0 auto;margin-top: 25px;">
+		      		Submit
+		      	</button> -->
+		    </ion-list>
+	  	</form>
+  	</div>
+</ion-content>
+<ion-footer style="bottom:0px !important;" *ngIf="form_show == 1">
+  	<div class="footer">
+    	<div class="button-left">
+      		<button ion-button full clear (click)="cancelOrder()"><span class="text_gradient" style="font-weight: 600;">Cancel Now</span><ion-icon name="arrow_forward_icon" style="padding: 0px 10px;"></ion-icon></button>
+    	</div>
+  	</div>
+</ion-footer>

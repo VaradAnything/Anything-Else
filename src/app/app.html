@@ -1,0 +1,42 @@
+<ion-menu [content]="content">
+    <ion-content class="menu" style="padding-top: 0vh;">
+        <ion-list class="menu-list" style="padding-top: 0vh;">
+            <div class="profile profile_img" style="background-image:url('assets/icon/side_menu_bg.jpg');background-size: 100% 100%;min-height: 35vh;">
+                <img src="assets/icon/user_2.svg" style="padding-left: 12px;margin-top: 0vh;" *ngIf="login_type != 0">
+                <div *ngIf="login_type != 0" class="welcome_div">Welcome, <span> {{ user_name }}</span>
+                </div>
+
+                <img src="assets/icon/user_2.svg" style="padding-left: 12px;margin-top: 0vh;" *ngIf="login_type == 0">
+                <div *ngIf="login_type == 0" class="welcome_div">Welcome, <span> Guest User</span>
+                </div>
+                <div (click)="goToSignin()" *ngIf="login_type == 0" style="margin-top: 8px;text-transform:capitalize;font-size: 13px;font-weight:400;font-family:'roboto';color:#fff;padding-left: 17px;">
+                    Login Here
+                </div>
+                <hr (click)="goToSignin()" *ngIf="login_type == 0" style="margin-left: 72px;background-color: #fff;width: 13px;float: left;margin-top:1px;">
+            </div>
+            <div style="margin-top: 5vh;">
+                <button ion-item (click)="goToPage(1)">
+                    <img src="assets/icon/home.svg" class="side_menu_img"><span class="side_menu_text text_grdient">Home</span>
+                </button>
+                <button ion-item (click)="goToPage(2)">
+                    <img src="assets/icon/category.svg" class="side_menu_img"><span class="side_menu_text text_grdient">Categories</span>
+                </button>
+                <button ion-item (click)="goToPage(3)">
+                    <img src="assets/icon/cart.svg" class="side_menu_img"><span class="side_menu_text text_grdient">My Cart</span>
+                </button>
+                <button ion-item (click)="goToPage(4)">
+                    <img src="assets/icon/account_5.svg" class="side_menu_img"><span class="side_menu_text text_grdient">Account</span>
+                </button>
+                <button ion-item (click)="whatsappShare()">
+                    <img src="assets/icon/share.svg" class="side_menu_img"><span class="side_menu_text text_grdient">Share App</span>
+                </button>
+                <button ion-item (click)="goToPage(5)" *ngIf="login_type > 0">
+                    <img src="assets/icon/logout.svg" class="side_menu_img"><span class="side_menu_text text_grdient">Logout</span>
+                </button>
+            </div>
+        </ion-list>
+    </ion-content>
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+

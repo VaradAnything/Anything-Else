@@ -1,0 +1,110 @@
+<!--
+  Generated template for the FilterCategoriesPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  	<ion-navbar>
+	    <ion-toolbar>
+		    <!-- <ion-buttons start>
+		    	<button ion-button icon-only (click)="saveAddress()" class="label_bold" style="color:#ed6663 !important;">
+		    		Save
+		      	</button>
+		    </ion-buttons> -->
+		    <ion-title style="margin-left: 10px;">Filter by</ion-title>
+		    <ion-buttons end style="margin-right: 10px;">
+		      	<button ion-button icon-only color="royal" (click)="closeModal()">
+		   	 		<ion-icon name="close"></ion-icon>
+		      	</button>
+		    </ion-buttons>
+	  	</ion-toolbar>
+  	</ion-navbar> 
+</ion-header>
+
+
+<ion-content class="page-filter-categories pane no-scroll">
+	<div class="filter-container">
+		<div class="content">
+	      	<div class="vertical-tabs">
+		      	<ion-scroll class="tabs-left" scrollY="true">
+		        	<div class="tabs-left" style="background-color: #f4f4f4 !important;">
+		          		<div *ngFor="let filter_data of filter_data_array;let i = index" class="tab-left-item">
+		            		<button ion-button clear (click)="chooseTab(i,filter_data.expand,filter_data.title,filter_data.filter_data)" *ngIf="filter_data.expand == 1" style="border-left: 3px solid #3bac44;background-color: #ffffff;">
+		            			<span style="width: 31vw;" class="label_bold">{{filter_data.title}}</span>
+		            		</button>
+		            		<button ion-button clear (click)="chooseTab(i,filter_data.expand,filter_data.title,filter_data.filter_data)" *ngIf="filter_data.expand == 0">
+		            			<span class="label_bold">{{filter_data.title}}</span>
+		            		</button>
+		          		</div>
+		          		<div class="tab-left-item">
+		            		<button ion-button clear (click)="choosePriceTab(0)" *ngIf="price_data_expand == 1" style="border-left: 3px solid #3bac44;background-color: #ffffff;">
+		            			<span style="width: 31vw;" class="label_bold">Price</span>
+		            		</button>
+		            		<button ion-button clear (click)="choosePriceTab(1)" *ngIf="price_data_expand == 0">
+		            			<span class="label_bold">Price</span>
+		            		</button>
+		          		</div>
+		        	</div>
+		    	</ion-scroll>
+		        <ion-scroll class="tabs-right" scrollY="true">
+		        	<div *ngIf="price_data_expand == 0">
+			          	<div class="tab-right-item" *ngFor="let filter_value of sub_filter_data;let i = index">
+			            	<button class="button-square" ion-button clear *ngIf="filter_value.check == 0" (click)="getCheck(filter_value.title,i,filter_value.check)">
+			              		<ion-icon class="tab-icon-square" name="square-outline" *ngIf="filter_title != 'Discount'"></ion-icon><ion-icon class="tab-icon-square" name="radio-button-off" *ngIf="filter_title == 'Discount'"></ion-icon>{{filter_value.title}}
+			            	</button>
+			            	<button class="button-checkmark" ion-button clear *ngIf="filter_value.check == 1" (click)="getCheck(filter_value.title,i,filter_value.check)">
+			              		<ion-icon class="tab-icon-checkmark" name="checkmark" *ngIf="filter_title != 'Discount'"></ion-icon><ion-icon class="tab-icon-checkmark" name="radio-button-on" *ngIf="filter_title == 'Discount'"></ion-icon>{{filter_value.title}}
+			            	</button>
+			          	</div>
+		          	</div> 
+		          	<div *ngIf="price_data_expand == 1"> 
+	              		<ion-list> 
+	              			<ion-grid>
+	              				<ion-row>
+	              					<ion-col style="max-width:50%;text-align:center;">
+	              						<span style="text-decoration:underline;color: #629b0f;">
+	              							{{ price_min_value | currency:'INR':true:'1.1-1' }}
+	              						</span>
+	              					</ion-col>
+	              					<ion-col style="max-width:50%;text-align:center;">
+	              						<span style="text-decoration:underline;color: #629b0f;">
+	              							{{ price_max_value | currency:'INR':true:'1.1-1' }}
+	              						</span>
+	              					</ion-col>
+	              				</ion-row>
+	              				<ion-row style="margin-top: -1vh;">
+	              					<ion-col style="max-width:50%;text-align:center;">
+	              						<span style="">
+	              							min price
+	              						</span>
+	              					</ion-col>
+	              					<ion-col style="max-width:50%;text-align:center;">
+	              						<span style="">
+	              							max price
+	              						</span>
+	              					</ion-col>
+	              				</ion-row>
+	              			</ion-grid>
+	              			<ion-item>
+						      	<ion-range dualKnobs="true" pin="true" min="{{ price_1 }}" max="{{ price_2 }}" step="1" [(ngModel)]="price_filter_data" color="dark" (ionChange)="getPrice()">
+						        	<ion-icon range-left small name="brush"></ion-icon>
+						        	<ion-icon range-right name="brush"></ion-icon>
+						      	</ion-range>
+						    </ion-item>
+						    <!-- <div [innerHTML]=newItem></div> -->
+	              		</ion-list>
+		          	</div>
+		        </ion-scroll>
+  			</div>
+	    </div>
+	    <div class="footer">
+	      	<div class="button-left background_gradient">
+	        	<button ion-button full clear (click)="clearAll()"><ion-icon name="refresh" style="padding: 0px 10px;"></ion-icon><span  class="label_bold">Clear all</span></button>
+	      	</div>
+	      	<div class="button-right three_side_border_gradient ">
+	        	<button ion-button full clear (click)="applyFilter()" class="text_gradient"><ion-icon name="arrow_forward_icon" style="padding: 0px 10px;"></ion-icon><span class="label_bold text_gradient">Apply filter</span></button>
+	      	</div>
+	    </div>
+    </div>
+</ion-content>

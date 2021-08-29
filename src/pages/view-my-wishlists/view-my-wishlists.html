@@ -1,0 +1,98 @@
+<!-- <ion-header>
+  	<ion-navbar>
+    	<ion-title>View Wishlists</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<b>View Wishlists</b>
+	<ion-list>
+		<ion-item *ngFor="let wishlists_data of wishlists_data_array">
+			{{ wishlists_data.product_name }}
+		</ion-item>
+	</ion-list>
+
+	<b>Add To Wishlists</b>
+	<p (click)="updateWishlist('reeva-fashion-jewellery-alloy-jewel-set-gold','reeva-fashion-jewellery-alloy-jewel-set-gold',1)">reeva-fashion-jewellery-alloy-jewel-set-gold</p>
+
+	<b>Remove From Wishlists</b>
+	<p (click)="updateWishlist('reeva-fashion-jewellery-alloy-jewel-set-gold','reeva-fashion-jewellery-alloy-jewel-set-gold',0)">reeva-fashion-jewellery-alloy-jewel-set-gold</p>
+</ion-content> -->
+
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>My Wishlist</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher> -->
+  	
+  	<div *ngIf="item_count == 0" class="error_handling_div">
+	  	<img src="assets/icon/error.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">Some Error Occurred</p>
+			<p class="error_p2">Click below to try again</p>
+
+			<button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">Try Again</span>
+	      	</button>
+		</div>
+	</div>
+	<div *ngIf="item_count == 1 && wishlists_data_array == ''" class="error_handling_div">
+		<img src="assets/icon/account_3_1.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">You have no product in wishlist</p>
+			<p class="error_p2">Click below to add product in wishlist</p>
+
+			<button ion-button color="dark" round medium (click)="viewCategories()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">View Product</span>
+	      	</button>
+		</div>
+	</div>
+  	<!-- <p class="marquee" style="color: #ed6663;" *ngIf="item_count == 1">Swipe left on product to delete it from My Wishlists</p> -->
+  	<div class="content-wrapper" *ngIf="item_count == 1 && wishlists_data_array != ''">
+      	<div class="wishlist">
+		  	<ion-list class="cart-list">
+	          	<ion-item-sliding  *ngFor="let wishlists_data of wishlists_data_array; let i = index;">
+		            <ion-item class="cart-list-item" [class.odd]="i%2!==0">
+		              	<ion-thumbnail item-left>
+		                	<img [src]="wishlists_data.photo1">
+		              	</ion-thumbnail>
+		              	<!-- <h2 class="label_bold" (click)="openProductDetails(wishlists_data.product_variant_seo_url)" style="margin-top:0px !important;"> -->
+		              	<p class="label_bold" (click)="openProductDetails(wishlists_data.product_variant_seo_url)" style="font-weight: 500;color:#333333;margin-top:0px !important;">{{wishlists_data.product_name}}</p>
+					    <div class="price-wrapper">
+				            <!-- <div class="price label_bold" style="font-weight: 300;"><span id="product_price"  class="label_bold" style="font-weight: 400;">{{ wishlists_data.product_price  | currency:'INR':true:'1.1-1' }}</span></div> -->
+				            <span class="text_gradient sale-price">{{wishlists_data.product_price  | currency:'INR':true:'1.1-1' }}</span> <span class="old-price" style="margin-left:5px;" *ngIf="wishlists_data.product_mrp > wishlists_data.product_price">{{wishlists_data.product_mrp  | currency:'INR':true:'1.1-1' }}</span>
+				        </div>
+	              		<div item-right class="right-bag label_bold" *ngIf="wishlists_data.product_qty == 0" style="width:90px;">
+	                		<div class="available label_bold" style="color:#dc2c2c;font-size: 13px;">Out Of Stock</div>
+	              		</div>
+	              		<div item-right class="right-bag label_bold" *ngIf="wishlists_data.product_qty != 0" style="width:90px;">
+	                		<div class="available label_bold" style="color:#008000;font-size: 13px;">In Stock</div>
+	              		</div>
+
+		              	<div (click)="addToCart(wishlists_data.product_seo_url,wishlists_data.product_variant_seo_url,wishlists_data.product_min_qty)">
+		              		<!-- <button class="add-button label_bold" round small ion-button clear style="color: #ed6663;background-color: #fff;border: 1px solid #ed6663;margin-top: 1vh;    border-radius: 3px !important;"><span style="padding-top: 2px;">Add To Cart</span><ion-icon name="cart" style="padding-left:5px;font-size: 1.6em;"></ion-icon></button> -->
+
+		              		<button class="add-button label_bold" round small ion-button clear style="border: 1px solid #3d3d3d;margin-top: 1vh;border-radius: 3px !important;">
+				        		<ion-icon name="tab_3" style="padding-right:5px;"></ion-icon> <span style="color:#3d3d3d;font-size: 11px;">Add To Cart</span>
+				        	</button>
+
+		              	</div>
+		            </ion-item>
+	            	<ion-item-options>
+			            <button color="danger" id="slide_btn" (click)="updateWishlist(wishlists_data.product_seo_url,wishlists_data.product_variant_seo_url,0)"> <ion-icon name="trash" style="padding-right: 2px;"></ion-icon>Delete</button>
+			        </ion-item-options>
+	          	</ion-item-sliding>
+		    </ion-list>
+		</div>
+	</div>
+</ion-content>
+

@@ -1,0 +1,49 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title style="margin-left: 10px;">Country</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="closeModal('','',0)">
+                <ion-icon name="close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher> -->
+    
+    <div *ngIf="item_count == 0" class="error_handling_div">
+    	<img src="assets/icon/error.svg" class="error_handling_image">
+        <div>
+            <p class="error_p1">Some Error Occurred</p>
+            <p class="error_p2">Click below to try again</p>
+
+            <button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+                  <span class="text_gradient">Try Again</span>
+            </button>
+        </div>
+    </div>
+    <div *ngIf="item_count == 1 && country_data_array == ''" class="error_handling_div">
+        <img src="assets/icon/account_4_1.svg" class="error_handling_image">
+        <div>
+            <p class="error_p1">No Country Found</p>
+            <p class="error_p2">Click below to try again</p>
+
+            <button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+                  <span class="text_gradient">Try Again</span>
+            </button>
+        </div>
+    </div>
+   <!--  <ion-searchbar *ngIf="item_count != 0" [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar> -->
+   <div *ngIf="item_count == 1 && country_data_array != ''">
+        <ion-searchbar *ngIf="item_count != 0" (ionInput)="filterItems($event)"></ion-searchbar>
+    	<ion-list>
+    		<ion-item  *ngFor="let country_data of country_data_array" (click)="closeModal(country_data.id,country_data.country_name,1)">
+    			<span>{{ country_data.country_name }}</span>
+    		</ion-item>
+    	</ion-list>
+    </div>
+</ion-content>

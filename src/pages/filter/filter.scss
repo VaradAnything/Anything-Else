@@ -1,0 +1,233 @@
+page-filter 
+{
+    .scroll-content 
+    {
+        //padding: 12px !important;
+    }
+    
+	.pane 
+    {
+        height: 100vh;
+        //background: rgba(0, 0, 0, 0.620);
+        background: #fff;
+    }
+
+    .filter-container 
+    {
+        position: fixed;
+        width: 100vw;
+        bottom: 0;
+        height: 90vh;
+        background-color: color($colors, pearl);
+        .header 
+        {
+            padding-top: 10px !important;
+            width: 100vw;
+            height: 42px;
+            border-bottom: 1px solid color($colors, lightdark);
+            .title 
+            {
+                width: 85vw;
+                display: inline-block;
+                margin-left: 5vw;
+                font-size: 1.68rem;
+            }
+            .close 
+            {
+                display: inline-block;
+                text-align: right;
+                button 
+                {
+                    padding: 0 0 0 0;
+                    margin: 0 0 0 0;
+                    margin-top: -2vh;
+                    font-size: 1.18rem;
+                    font-weight: 100;
+                    color: color($colors, dark);
+                    ion-icon 
+                    {
+                        margin: 0 0 0 0;
+                        padding: 0 0 0 0;
+                    }
+                }
+            }
+        }
+        .content 
+        {
+            .vertical-tabs 
+            {
+                width: 100vw;
+                display: inline-block;
+                height: calc(92vh - 0px - 42px);
+                .tabs-left 
+                {
+                    height: calc(92vh - 0px - 42px);
+                    width: 32vw;
+                    z-index: 000;
+                    display: inline-block;
+                    background-color: color($colors, light);
+                    .tab-left-item 
+                    {
+                        padding-top: 2px;
+                        //padding-left: 10px;
+                        height: 42px;
+                        border-left: 3px solid color($colors, light);
+                        button 
+                        {
+                            margin: 0 0 0 0;
+                            padding: 0 0 0 0;
+                            text-transform: none;
+                            font-weight: 400;
+                            color: color($colors, dark);
+                            height: 4rem;
+                        }
+                    }
+                    .tab-left-item.active 
+                    {
+                        border-left: 3px solid color($colors, secondary);
+                        background-color: color($colors, pearl);
+                    }
+                }
+                .tabs-right 
+                {
+                    height: calc(92vh - 0px - 42px);
+                    width: 68vw;
+                    position: fixed;
+                    right: 0;
+                    display: inline-block;
+                    .tab-right-item 
+                    {
+                        height: 42px;
+                        margin-left: 1vw;
+                        width: 100%;
+                        display: inline-block;
+                        border-bottom: 1px solid color($colors, light);
+                        button 
+                        {
+                            //font-size: 1.5rem;
+                            font-size: 11px;
+                            .tab-icon-checkmark 
+                            {
+                                font-size: 2.3rem !important;
+                            }
+                            .tab-icon-square 
+                            {
+                                font-size: 1.25rem;
+                            }
+                        }
+                        .button-square 
+                        {
+                            color: color($colors, dark);
+                            margin-left: -2vh !important;
+                        }
+                        .button-checkmark 
+                        {
+                            color: color($colors, secondary);
+                            color: #80d34c;
+                        }
+                        ion-icon::before 
+                        {
+                            margin-left: 5vw;
+                            margin-right: 5vw;
+                        }
+                    }
+                }
+            }
+        }
+
+        .filter-container .content .vertical-tabs .tabs-right .tab-right-item .button-checkmark 
+        {
+            margin-left: -2vh !important;
+        }
+
+        .footer 
+        {
+            position: fixed;
+            width: 100vw;
+            bottom: 0;
+            height: 42px;
+            .button-left 
+            {
+                display: inline-block;
+                //background-color: #80d34c;
+                //background: linear-gradient(to left, #3bac44 -2%, #3bac44 117%) !important;
+                button 
+                {
+                    height: 42px;
+                    color: color($colors, pearl);
+                    font-size: 1.5rem;
+                    width: 32vw;
+                    margin: 0 0 0 0;
+                    padding: 0 0 0 0;
+                }
+            }
+            .button-right 
+            {
+                text-align: right;
+                width: 68vw;
+                display: inline-block;
+                position: fixed;
+                right: 0;
+                //background-color: #80d34c;
+                background-color: #fff;
+                button 
+                {
+                    height: 42px;
+                    //color: color($colors, pearl);
+                    font-size: 1.5rem;
+                    font-weight: 600;
+                    margin: 0 0 0 0;
+                }
+            }
+        }
+    }
+
+    .label_bold
+    {
+        letter-spacing: 1px;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    ion-icon
+    {
+        font-size: 18px;
+    }
+
+    .toolbar-title-ios, .toolbar-title-md, .toolbar-title-wp  
+    {
+        padding: 0 12px;
+        font-size: 2rem;
+        font-weight: 500;
+        color: #fff;
+        letter-spacing: 1px;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    .range-ios,.range-md,.range-wp
+    {
+        margin-top: 40px !important;
+        padding: 0px !important;
+    }
+
+    .ion-ios-arrow_forward_icon,.ion-md-arrow_forward_icon,.ion-wp-arrow_forward_icon
+    {
+        content: url(../assets/icon/arrow-forward.svg);
+        padding: 2px 0px 3px;
+        width: 40px;
+    }
+
+    .ion-ios-arrow_forward_icon:before,.ion-md-arrow_forward_icon:before,.ion-wp-arrow_forward_icon:before 
+    {
+        content: url(../../assets/icon/arrow-forward.svg);
+        width: 40px;
+    }
+
+    .toolbar-ios 
+    {
+        padding: 0px !important;
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+}

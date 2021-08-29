@@ -1,0 +1,143 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>Return Order</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding style="background-color: #fff !important;">
+	<!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher> -->
+
+	<div *ngIf="item_count == 0" class="error_handling_div">
+		<img src="assets/icon/error.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">Some Error Occurred</p>
+			<p class="error_p2">Click below to try again</p>
+
+			<button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">Try Again</span>
+	      	</button>
+		</div>
+	</div>
+
+	<div *ngIf="item_count == 1 && orders_data_array == ''" class="error_handling_div">
+		<img src="assets/icon/error.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">Some Error Occurred</p>
+			<p class="error_p2">Click below to try again</p>
+
+			<button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">Try Again</span>
+	      	</button>
+		</div>
+	</div>
+
+	<div class="error_handling_div" *ngIf="success_count == 1">
+        <img src="assets/icon/account_2.svg" class="error_handling_image">
+
+        <div>
+            <p class="error_p1">We got your request for return order</p>
+            <p class="error_p2">Thank you for shopping with us</p>
+
+            <button ion-button color="dark" round medium (click)="shopping()" class="text_gradient four_side_border_gradient error_submit_button">
+                <span class="text_gradient">Continue Shopping</span>
+            </button>
+        </div>
+    </div>
+
+	<div *ngIf="item_count == 1 && orders_data_array != '' && success_count == 0">
+		<img src="assets/icon/account_1_1.svg" style="margin:0 auto;display:block;max-width:25%;">
+		<div style="text-align:center;">
+			<span class="text_gradient" style="font-size: 22px;font-weight: 500;">#{{ order_id }}</span><span [ngStyle]="{'color':order_status_color}" style="font-size: 13px;padding-left:8px;">( {{ order_status }} )</span>
+		</div>
+		<div style="text-align:center;margin-bottom:10px;">
+			<span style="font-size: 13px;">{{ order_date }}</span>
+		</div>
+
+		<div style="text-align:center;margin-bottom:10px;" *ngIf="total_wallet_amount != 0">
+			<span style="font-size: 13px;color:#ed6663;">Wallet Amount: {{ total_wallet_amount | currency:'INR':true:'1.1-1' }}</span>
+		</div>
+
+		<!-- <div style="text-align:center;margin-bottom:10px;" *ngIf="total_wallet_amount == 0">
+			<span style="font-size: 13px;color:#ed6663;">Wallet Amount: {{ total_wallet_amount | currency:'INR':true:'1.1-1' }}</span>
+		</div> -->
+
+		<div style="text-align:center;margin-bottom:10px;" *ngIf="slot_day != '' && slot_time != ''">
+			<span style="font-size: 13px;color:#333333;">Delivery On <span style="font-size: 14px;font-weight:500;">{{ slot_day }} {{ slot_time }}</span></span>
+		</div>
+
+
+		<hr style="margin-top: 3.5vh;margin-bottom:5px;">
+		<h6>My Orders</h6> 
+	  	<ion-grid>
+	  		<ion-row *ngFor="let orders_data of temp_orders_data_array; let i = index;" style="margin-bottom: 5px;">
+	  			<ion-col>
+	  				<ion-card>
+	  					<ion-card-content>
+	  						<ion-grid>
+		  						<ion-row>
+			  						<ion-col style="max-width:35%;">
+			  						<ion-avatar item-left class="image_vertical_center">
+					        			<img [src]="orders_data.photo1">
+					      			</ion-avatar>
+					      			</ion-col>
+					      			<ion-col style="max-width:65%;padding-top: 10px !important;padding-left: 15px !important;">
+					      				<p class="label_bold" class="order_name">{{orders_data.product_name}}</p>
+							        	<span class="font_size_12">Qty:</span> <span class="font_size_15 font_weight_400">{{ orders_data.single_product_total_quantity }}</span>  <span class="font_size_12">Total:</span> <span class="font_size_15 font_weight_400">{{ orders_data.price | currency:'INR':true:'1.1-1' }}</span>
+							        	<p>
+							        		<span [ngStyle]="{'color':orders_data.return_status_color}" style="font-size: 13px;">( {{ orders_data.return_status }} )</span>
+							        	</p>
+							        	<!-- <ion-select>
+									    	<ion-option value="{{ quantity }}" *ngFor="let quantity of orders_data.single_product_total_quantity_array">{{ quantity }}</ion-option>
+									  	</ion-select> -->
+
+							        	<!-- <ion-textarea placeholder="Enter Return Order Reason" [(ngModel)]= "array[orders_data.id]" (change)='onChangeText($event.target.value,orders_data.id)'></ion-textarea> -->
+							        	<ion-list no-lines>
+							        		<ion-item *ngIf="orders_data.is_returnable == 0">
+										      	<div style="font-size: 14px;float:left;color:#aba9a9;">
+										  			Quantity returned
+										  		</div>
+										  		<div style="font-size: 14px;float:right;color:#aba9a9;">
+										  			{{ orders_data.single_product_total_return_quantity }}
+										  		</div>
+										      	<!-- <ion-select disabled ="true">
+											    	<ion-option value="{{ orders_data.single_product_total_return_quantity }}" [selected]="i===0">{{ orders_data.single_product_total_return_quantity }}</ion-option>
+											    	
+											  	</ion-select> -->
+											</ion-item>
+											<ion-item *ngIf="orders_data.is_returnable == 1">
+										      	<ion-label style="font-size: 14px;color: #2d2d2d;">
+										  			Quantity to be return
+										  		</ion-label>
+										      	<ion-select>
+											    	<ion-option value="{{ quantity }}" *ngFor="let quantity of orders_data.single_product_total_quantity_array;let i= index" (ionSelect)="onChangeQty($event,orders_data.id)" [selected]="quantity == orders_data.single_product_total_return_quantity">{{ quantity }}</ion-option>
+											  	</ion-select>
+											</ion-item>
+								        	<ion-item style="margin-top: 0vh;border-radius: 6px;" *ngIf="orders_data.is_returnable == 0">
+							                    <ion-textarea type="text" rows="2" value="{{ orders_data.return_reason }}" style="font-size: 12px;border-radius:5px;" disabled ="true"></ion-textarea>
+							                </ion-item>
+							                <ion-item style="margin-top: 0vh;border-radius: 6px;" *ngIf="orders_data.is_returnable == 1">
+							                    <ion-textarea type="text" [(ngModel)]= "array[orders_data.id]" (keyup)="onChangeText($event.target.value,orders_data.id)" rows="2" placeholder="Enter Return Order Reason" value="{{ orders_data.return_reason }}" style="font-size: 12px;border-radius:5px;border: 1px solid #d9d9d9;"></ion-textarea>
+							                </ion-item>
+							            </ion-list>
+					      			</ion-col>
+					      		</ion-row>
+					      	</ion-grid>
+	  					</ion-card-content>
+	  				</ion-card>
+	  			</ion-col>
+	  		</ion-row>
+	  	</ion-grid>
+	</div>
+</ion-content>
+<ion-footer style="bottom:0px !important;" *ngIf="success_count == 0">
+  	<div class="footer">
+    	<div class="button-left">
+      		<button ion-button full clear (click)="returnOrder()"><span class="text_gradient" style="font-weight: 600;">Return Now</span><ion-icon name="arrow_forward_icon" style="padding: 0px 10px;"></ion-icon></button>
+    	</div>
+  	</div>
+</ion-footer>

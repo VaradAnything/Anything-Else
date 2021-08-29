@@ -1,0 +1,112 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <img src="assets/icon/menu.svg" class="menu-image animated_rIn rotateIn">
+        </button>
+        <ion-title>
+            Categories
+        </ion-title>
+        <!-- <ion-buttons end>
+            <button ion-button icon-only id="notification_btn" (click)="openNotification()">
+                <ion-icon name="notification_icon" style="font-size:1.7em;"></ion-icon>
+            </button>
+        </ion-buttons> -->
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content class="card-background-page list-avatar-page">
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher> -->
+    
+    <div *ngIf="item_count == 0" class="error_handling_div">
+        <img src="assets/icon/error.svg" class="error_handling_image">
+        <div>
+            <p class="error_p1">Some Error Occurred</p>
+            <p class="error_p2">Click below to try again</p>
+
+            <button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+                <span class="text_gradient">Try Again</span>
+            </button>
+        </div>
+    </div>
+    <div *ngIf="item_count == 1 && category_data_array == ''" class="error_handling_div">
+        <img src="assets/icon/error.svg" class="error_handling_image">
+        <div>
+            <p class="error_p1">Some Error Occurred</p>
+            <p class="error_p2">Click below to try again</p>
+
+            <button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+                <span class="text_gradient">Try Again</span>
+            </button>
+        </div>
+    </div>
+    <div *ngIf="item_count == 1 && category_data_array != ''">
+  	    <!-- <ion-card *ngFor="let category_data of category_data_array" (click)="openSubCategories(category_data.id,category_data.category_title,category_data.is_sub_category)">
+            <img [src]="category_data.category_banner_image">
+    	    <div class="card-title">{{ category_data.category_title }}</div>
+  	    </ion-card> -->
+        <ion-list>
+            <!-- <button ion-item *ngFor="let category_data of category_data_array" (click)="openSubCategories(category_data.id,category_data.category_title,category_data.is_sub_category)">
+                <ion-thumbnail item-left>
+                    <img [src]="category_data.category_small_banner_image">
+                </ion-thumbnail>
+                {{ category_data.category_title }}
+            </button>  -->
+        
+            <ion-item *ngFor="let category_data of category_data_array" (click)="openSubCategories(category_data.id,category_data.category_title,category_data.is_sub_category)">
+                <ion-avatar item-start>
+                    <img [src]="category_data.category_small_banner_image">
+                </ion-avatar>
+                <div>
+                    <div style="float:left;">{{ category_data.category_title }}</div>
+                    <div style="float:right;"><ion-icon name="arrow_forward_icon" style="font-size:1.7em;"></ion-icon></div>
+                    <div style="clear:both;"></div>
+                </div>
+                <!-- <h2>{{ category_data.category_title }}</h2>
+                <p><ion-icon name="arrow-forward" style="font-size:1.7em;"></ion-icon></p> -->
+            </ion-item>
+        </ion-list>
+    </div>
+</ion-content>
+
+<ion-footer style="bottom:0px !important;background-color: #fefefe;">
+    <div class="footer">
+        <ion-grid>
+            <ion-row>
+                <ion-col (click)="openTabsPage(1)">
+                    <ion-icon name="tab_1_black"></ion-icon>
+                    <div>Home</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(2)">
+                    <ion-icon name="tab_2"></ion-icon>
+                    <div class="text_gradient">Categories</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(3)">
+                    <div *ngIf="cart_items_count > 0" class="cart_badge">{{ cart_items_count }}</div>
+                    <ion-icon name="tab_3_black"></ion-icon>
+                    <div>My Cart</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(4)">
+                    <ion-icon name="tab_4_black"></ion-icon>
+                    <div>Account</div>
+                </ion-col>
+            </ion-row>
+            <!-- <ion-row style="margin-top: -2vh;">
+                <ion-col (click)="openTabsPage(1)">
+                    <span>Home</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(2)">
+                    <span class="text_gradient">Categories</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(3)">
+                    <span>My Cart</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(4)">
+                    <span>Account</span>
+                </ion-col>
+            </ion-row> -->
+        </ion-grid>
+    </div>
+</ion-footer>

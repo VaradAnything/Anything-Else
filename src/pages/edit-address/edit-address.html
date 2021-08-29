@@ -1,0 +1,216 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>Edit Address</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<form [formGroup]="moduleForm">
+	    <ion-list class="clear-list">
+	    	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="first_name" type="text" [class.invalid]="!moduleForm.controls.first_name.valid && (moduleForm.controls.first_name.dirty || submitAttempt)" placeholder="Enter First Name" value="{{ address_data.first_name }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.first_name.valid  && (moduleForm.controls.first_name.dirty || submitAttempt)">
+	        	<p>Please enter first name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="last_name" type="text" [class.invalid]="!moduleForm.controls.last_name.valid && (moduleForm.controls.last_name.dirty || submitAttempt)" placeholder="Enter Last Name" value="{{ address_data.last_name }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.last_name.valid  && (moduleForm.controls.last_name.dirty || submitAttempt)">
+	        	<p>Please enter last name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="company_icon" item-left></ion-icon>
+	        	<ion-input formControlName="company" type="text" [class.invalid]="!moduleForm.controls.company.valid && (moduleForm.controls.company.dirty || submitAttempt)" placeholder="Enter Company Name" value="{{ address_data.company }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.company.valid  && (moduleForm.controls.company.dirty || submitAttempt)">
+	        	<p>Please enter company name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+	        	<ion-input formControlName="mobile" type="number" [class.invalid]="!moduleForm.controls.mobile.valid && (moduleForm.controls.mobile.dirty || submitAttempt)" placeholder="Enter Mobile Number" value="{{ address_data.mobile }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.mobile.valid  && (moduleForm.controls.mobile.dirty || submitAttempt)">
+	        	<p>Please enter valid mobile</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="home_icon" item-left></ion-icon>
+	        	<ion-input formControlName="address1" type="text" [class.invalid]="!moduleForm.controls.address1.valid && (moduleForm.controls.address1.dirty || submitAttempt)" placeholder="Enter Address 1" rows="1" value="{{ address_data.address1 }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.address1.valid  && (moduleForm.controls.address1.dirty || submitAttempt)">
+	        	<p>Please enter valid address 1</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="home_icon" item-left></ion-icon>
+	        	<ion-input formControlName="address2" type="text" [class.invalid]="!moduleForm.controls.address2.valid && (moduleForm.controls.address2.dirty || submitAttempt)" placeholder="Enter Address 2" rows="1" value="{{ address_data.address2 }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.address2.valid  && (moduleForm.controls.address2.dirty || submitAttempt)">
+	        	<p>Please enter valid address 2</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	      		<ion-icon class="input-icon" name="pin_icon" item-left></ion-icon>
+	        	<ion-label (click)="viewCountry()" style="margin-left: 6px !important;">{{ country_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+	      	</ion-item>
+
+	      	<ion-item *ngIf="is_state_show == 1">
+	      		<ion-icon class="input-icon" name="pin_icon" item-left></ion-icon>
+	        	<ion-label (click)="viewState()" style="margin-left: 6px !important;">{{ state_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+	      	</ion-item>
+
+	      	<ion-item *ngIf="is_city_show == 1">
+	      		<ion-icon class="input-icon" name="pin_icon" item-left></ion-icon>
+	        	<ion-label (click)="viewCity()" style="margin-left: 6px !important;">{{ city_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="pin_icon" item-left></ion-icon>
+	        	<ion-input formControlName="pincode" type="number" [class.invalid]="!moduleForm.controls.pincode.valid && (moduleForm.controls.pincode.dirty || submitAttempt)" placeholder="Enter Pincode" value="{{ address_data.pincode }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.pincode.valid  && (moduleForm.controls.pincode.dirty || submitAttempt)">
+	        	<p>Please enter pincode</p>
+	      	</ion-item>
+
+	      	<!-- <ion-item *ngIf="is_billing_default == 0">
+	          	<ion-label>Billing Address</ion-label>
+	          	<ion-checkbox color="dark" checked="false" (ionChange)="getBillingData(1)"></ion-checkbox>
+	        </ion-item>
+
+	        <ion-item *ngIf="is_billing_default == 1">
+	          	<ion-label>Billing Address</ion-label>
+	          	<ion-checkbox color="dark" checked="true" (ionChange)="getBillingData(0)"></ion-checkbox>
+	        </ion-item>
+
+	        <ion-item *ngIf="is_shipping_default == 0">
+	          	<ion-label>Shipping Address</ion-label>
+	          	<ion-checkbox color="dark" checked="false" (ionChange)="getShippingData(1)"></ion-checkbox>
+	        </ion-item>
+
+	        <ion-item *ngIf="is_shipping_default == 1">
+	          	<ion-label>Shipping Address</ion-label>
+	          	<ion-checkbox color="dark" checked="true" (ionChange)="getShippingData(0)"></ion-checkbox>
+	        </ion-item> -->
+
+	      	<!-- <button ion-button color="dark" outline round block (click)="editAddress()" style="margin: 0 auto;margin-top: 25px;">
+	      		Save
+	      	</button> -->
+	    </ion-list>
+  	</form>
+</ion-content>
+<ion-footer style="bottom:0px !important;">
+  	<div class="footer">
+    	<div class="button-left">
+      		<button ion-button full clear (click)="editAddress()"><span class="text_gradient" style="font-weight: 600;">Save</span><ion-icon name="arrow_forward_icon" style="padding: 0px 10px;"></ion-icon></button>
+    	</div>
+  	</div>
+</ion-footer>
+
+<!--  <ion-header>
+  	<ion-navbar>
+    	<ion-title>Edit Address</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<form [formGroup]="moduleForm">
+	    <ion-list class="clear-list">
+	    	<ion-item>
+	        	<ion-icon class="input-icon" name="pin" item-left></ion-icon>
+	        	<ion-input formControlName="first_name" type="text" [class.invalid]="!moduleForm.controls.first_name.valid && (moduleForm.controls.first_name.dirty || submitAttempt)" placeholder="First Name" value="{{ address_data.first_name }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.first_name.valid  && (moduleForm.controls.first_name.dirty || submitAttempt)">
+	        	<p>Please enter first name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="pin" item-left></ion-icon>
+	        	<ion-input formControlName="last_name" type="text" [class.invalid]="!moduleForm.controls.last_name.valid && (moduleForm.controls.last_name.dirty || submitAttempt)" placeholder="Last Name" value="{{ address_data.last_name }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.last_name.valid  && (moduleForm.controls.last_name.dirty || submitAttempt)">
+	        	<p>Please enter last name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="pin" item-left></ion-icon>
+	        	<ion-input formControlName="company" type="text" [class.invalid]="!moduleForm.controls.company.valid && (moduleForm.controls.company.dirty || submitAttempt)" placeholder="Enter Company Name" value="{{ address_data.company }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.company.valid  && (moduleForm.controls.company.dirty || submitAttempt)">
+	        	<p>Please enter company name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="pin" item-left></ion-icon>
+	        	<ion-input formControlName="mobile" type="number" [class.invalid]="!moduleForm.controls.mobile.valid && (moduleForm.controls.mobile.dirty || submitAttempt)" placeholder="Mobile" value="{{ address_data.mobile }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.mobile.valid  && (moduleForm.controls.mobile.dirty || submitAttempt)">
+	        	<p>Please enter valid mobile</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="pin" item-left></ion-icon>
+	        	<ion-textarea formControlName="address1" type="text" [class.invalid]="!moduleForm.controls.address1.valid && (moduleForm.controls.address1.dirty || submitAttempt)" placeholder="Enter Address 1" rows="1" value="{{ address_data.address1 }}"></ion-textarea>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.address1.valid  && (moduleForm.controls.address1.dirty || submitAttempt)">
+	        	<p>Please enter valid address 1</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="pin" item-left></ion-icon>
+	        	<ion-textarea formControlName="address2" type="text" [class.invalid]="!moduleForm.controls.address2.valid && (moduleForm.controls.address2.dirty || submitAttempt)" placeholder="Enter Address 2" rows="1" value="{{ address_data.address2 }}"></ion-textarea>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.address2.valid  && (moduleForm.controls.address2.dirty || submitAttempt)">
+	        	<p>Please enter valid address 2</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	      		<ion-icon class="input-icon" ios="ios-pin-outline" md="md-pin" item-left></ion-icon>
+	        	<ion-label (click)="viewCountry()">{{ country_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+	      	</ion-item>
+
+	      	<ion-item *ngIf="is_state_show == 1">
+	      		<ion-icon class="input-icon" ios="ios-pin-outline" md="md-pin" item-left></ion-icon>
+	        	<ion-label (click)="viewState()">{{ state_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+	      	</ion-item>
+
+	      	<ion-item *ngIf="is_city_show == 1">
+	      		<ion-icon class="input-icon" ios="ios-pin-outline" md="md-pin" item-left></ion-icon>
+	        	<ion-label (click)="viewCity()">{{ city_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="pin" item-left></ion-icon>
+	        	<ion-input formControlName="pincode" type="number" [class.invalid]="!moduleForm.controls.pincode.valid && (moduleForm.controls.pincode.dirty || submitAttempt)" placeholder="Enter Pincode" (keyup)="eventHandler($event.keyCode,$event.target.value)" value="{{ address_data.pincode }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.pincode.valid  && (moduleForm.controls.pincode.dirty || submitAttempt)">
+	        	<p>Please enter pincode</p>
+	      	</ion-item>
+
+	      	<button ion-button color="dark" outline round block (click)="editAddress()" style="margin: 0 auto;margin-top: 25px;">
+	      		Save
+	      	</button>
+	    </ion-list>
+  	</form>
+</ion-content> -->

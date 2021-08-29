@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg enable-background="new -2445.847 2518.36 24 24" version="1.1" viewBox="-2445.8 2518.4 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+	<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+		<linearGradient id="c" x1="-2443.3" x2="-2424.4" y1="2530.4" y2="2530.4" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+		<polygon points="-2424.9 2541.2 -2442.8 2541.2 -2442.8 2527.5 -2433.8 2519.6 -2424.9 2527.5" stroke="url(#c)"/>
+		<linearGradient id="b" x1="-2443.3" x2="-2424.4" y1="2534.3" y2="2534.3" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+			<line x1="-2442.8" x2="-2424.9" y1="2527.5" y2="2541.2" stroke="url(#b)"/>
+		<linearGradient id="a" x1="-2434.3" x2="-2424.4" y1="2530.9" y2="2530.9" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+			<line x1="-2424.9" x2="-2433.8" y1="2527.5" y2="2534.3" stroke="url(#a)"/>
+	</g>
+			<rect x="-2445.8" y="2518.4" width="24" height="24" fill="none"/>
+</svg>

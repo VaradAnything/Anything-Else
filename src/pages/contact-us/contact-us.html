@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Contact Us</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<img src="assets/icon/contact_us.svg" style="margin-top:4vh;max-width: 50%;margin: auto;display: block;">
+	<ion-card style="margin-top:5vh !important;" *ngIf="success_count == 1">
+		<ion-card-content>
+			<p style="font-weight:400;font-size:14px;">
+				{{ address1 }}
+			</p>
+			<p style="font-weight:400;font-size:14px;">
+				{{ address2 }}
+			</p>
+			<div style="font-weight:400;font-size:12px;margin-top:10px;">
+				<p style="font-size:14px;font-weight:400;color:#333;">Email <span style="margin-left:8px;">:</span> <span style="margin-left:15px;text-decoration:underline;" (click)="openEmailer(email)">{{ email }}</span></p>
+				<p  style="font-size:14px;font-weight:400;color:#333;">Mobile <span>:</span> <span style="margin-left:15px;text-decoration:underline;" (click)="openDialerPad(mobile)">{{ mobile }}</span></p>
+			</div>
+		</ion-card-content>
+  	</ion-card>
+</ion-content>

@@ -1,0 +1,117 @@
+<ion-header>
+  	<ion-navbar>
+    	<!-- <button ion-button menuToggle>
+      		<img src="assets/icon/menu.svg" class="menu-image animated_rIn rotateIn">
+    	</button> -->
+    	<ion-title>Profile</ion-title>
+    	<ion-buttons end>
+      		<button ion-button icon-only (click)="editProfile()" class="label_bold" style="text-transform: uppercase !important;color:#fff !important;">
+        		Edit
+      		</button>
+    	</ion-buttons>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<!-- <h3 (click)="editProfile()">Edit Profile</h3>
+	<h3 (click)="changePassword()">Change Password</h3>
+	<form [formGroup]="moduleForm" style="margin-top:20vh;">
+	    <ion-list class="clear-list">
+	    	<ion-item>
+	        	<ion-icon class="input-icon" name="password_icon" item-left></ion-icon>
+	        	<ion-input formControlName="old_password" type="password" [class.invalid]="!moduleForm.controls.old_password.valid && (moduleForm.controls.old_password.dirty || submitAttempt)" placeholder="Old Password"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.old_password.valid  && (moduleForm.controls.old_password.dirty || submitAttempt)">
+	        	<p>Password should be minimum six characters</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="password_icon" item-left></ion-icon>
+	        	<ion-input formControlName="new_password" type="password" [class.invalid]="!moduleForm.controls.new_password.valid && (moduleForm.controls.new_password.dirty || submitAttempt)" placeholder="New Password"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.new_password.valid  && (moduleForm.controls.new_password.dirty || submitAttempt)">
+	        	<p>Password should be minimum six characters</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="password_icon" item-left></ion-icon>
+	        	<ion-input formControlName="confirm_password" type="password" [class.invalid]="!moduleForm.controls.confirm_password.valid && (moduleForm.controls.confirm_password.dirty || submitAttempt)" placeholder="Confirm Password" (keyup)="eventHandler($event.keyCode,$event.target.value)"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.confirm_password.valid  && (moduleForm.controls.confirm_password.dirty || submitAttempt)">
+	        	<p>Confirm Password should be matched with password</p>
+	      	</ion-item>
+
+	      	<button ion-button color="dark" outline round block (click)="changePassword()" style="margin: 0 auto;margin-top: 25px;">
+	      		Save
+	      	</button>
+	    </ion-list>
+  	</form> -->
+  	<!-- <img src="assets/icon/2.png"> -->
+
+  	<!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher> -->
+  	
+  	<div *ngIf="item_count == 0" class="error_handling_div">
+	  	<img src="assets/icon/error.svg" class="error_handling_image">
+	    <div>
+	        <p class="error_p1">Some Error Occurred</p>
+	        <p class="error_p2">Click below to try again</p>
+
+	        <button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+	            <span class="text_gradient">Try Again</span>
+	        </button>
+	    </div>
+	</div>
+	<div *ngIf="item_count == 1 && email == ''" class="error_handling_div">
+	    <img src="assets/icon/error.svg" class="error_handling_image">
+	    <div>
+	        <p class="error_p1">Some Error Occurred</p>
+	        <p class="error_p2">Click below to try again</p>
+
+	        <button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+	            <span class="text_gradient">Try Again</span>
+	        </button>
+	    </div>
+	</div>
+  	<img src="assets/icon/account_5.svg" style="margin-top:4vh;max-width: 50%;margin: auto;display: block;"  *ngIf="item_count == 1 && email != ''">
+  	<div style="margin-top:1vh;text-align:center;font-size:15px;font-weight:400;color: #ed6663;" *ngIf="item_count == 1 && email != ''">Wallet Amount : <span style="color:#ed6663;font-weight:500;" *ngIf="total_wallet_amount != 0">{{ total_wallet_amount | currency:'INR':true:'1.1-1' }}</span><span style="color:#ed6663;font-weight:500;" *ngIf="total_wallet_amount == 0">{{ total_wallet_amount | currency:'INR':true:'1.1-1' }}</span></div>
+  	<div class="content-wrapper" style="margin-top: 5vh;" *ngIf="item_count == 1 && email != ''">
+      	<div class="profile">
+	       <!--  <div class="avatar-image" style="margin-top:-14vh;">
+	          	<div class="avatar-container">
+	            	<div class="avatar-cropper">
+	              		<img src="assets/icon/account_5.svg">
+	            	</div>
+	          	</div>
+	        </div> -->
+	        <ion-list class="info-list">
+	          	<ion-item>
+	            	<ion-icon class="info-icon" item-left name="username_icon"></ion-icon>
+	            	<div class="info-detail bold_div">{{ first_name }} {{ last_name }} </div>
+	          	</ion-item>
+	          	<ion-item>
+	            	<ion-icon class="info-icon" item-left name="email_icon"></ion-icon>
+	            	<div class="info-detail bold_div">{{ email }}</div>
+	          	</ion-item>
+	          	<ion-item>
+	            	<ion-icon class="info-icon" item-left name="mobile_icon"></ion-icon>
+	            	<div class="info-detail bold_div">{{ mobile }}</div>
+	          	</ion-item>
+	          	<ion-item *ngIf="gender != ''">
+	            	<ion-icon class="info-icon" item-left name="username_icon"></ion-icon>
+	            	<div class="info-detail bold_div">{{ gender }}</div>
+	          	</ion-item>
+	        </ion-list>  
+	        <ion-list>
+	      		<ion-item (click)="logoutUser()">
+	          		<ion-icon class="info-icon" item-left name="logout_icon" style="color:#ed6663;"></ion-icon>
+	          			<div class="info-detail normal_div">Log Out</div>
+	    		</ion-item>
+	    	</ion-list>     
+      	</div>
+    </div>
+</ion-content>

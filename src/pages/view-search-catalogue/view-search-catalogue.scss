@@ -1,0 +1,623 @@
+page-view-search-catalogue 
+{
+  .scroll-content,.fixed-content
+  {
+    margin-bottom : 0px !important;
+    background-color: #f4f4f4 !important;
+    margin-top: 96px !important;
+  }
+
+  .cart-badge 
+  {
+    margin-top: -10px;
+    margin-left: -5px;
+  }
+  
+  ion-select 
+  {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    width: 100% !important;
+    border-bottom: 1px solid #808080 !important;
+  }
+
+  .select-ios,.select-md,.select-wp 
+  {
+    padding: 5px 5px 0px 0px !important;
+  }
+
+  .searchbar-ios .searchbar-clear-icon,.searchbar-md .searchbar-clear-icon,.searchbar-wp .searchbar-clear-icon 
+  {
+    top: 0px !important;
+  }
+
+  .searchbar-ios .searchbar-input, .searchbar-md .searchbar-input, .searchbar-wp .searchbar-input
+  {
+    //border: 1px solid #f4f4f4;
+    //border-radius: 15px;
+    box-shadow: 2px 2px 40px -12px #999;
+  }
+
+  .searchbar-ios
+  {
+    //border: 1px solid #f4f4f4;
+    //border-radius: 15px;
+    box-shadow: 2px 2px 40px -12px #999;
+    background: #fff !important;
+  }
+
+  .searchbar-wp .searchbar-input-container
+  {
+    //border: 1px solid #f4f4f4;
+    //border-radius: 15px;
+    box-shadow: 2px 2px 40px -12px #999; 
+  }
+
+  .searchbar-ios .searchbar-input,.searchbar-md .searchbar-input,.searchbar-wp .searchbar-input
+  {
+    padding: 5px 8px !important;
+  }
+
+  .searchbar-ios .searchbar-search-icon,.searchbar-md .searchbar-search-icon,.searchbar-wp .searchbar-search-icon
+  {
+    display : none !important;
+  }
+
+  .searchbar-ios .searchbar-input,.searchbar-md .searchbar-input,.searchbar-wp .searchbar-input 
+  {
+    font-size: 1.3rem !important;
+  }
+
+  .searchbar-ios,.searchbar-md,.searchbar-wp  
+  {
+    padding: 0px !important;
+  }
+
+  .search_height_add
+  {
+    margin-top: 2px;
+  }
+
+  .search_height_remove
+  {
+    margin-top: -42px;
+  }
+
+  .item-md.item-block .item-inner 
+  {
+    padding-right: 0px !important;
+  }
+
+  .ion-ios-down_arrow_icon,.ion-md-down_arrow_icon,.ion-wp-down_arrow_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-down_arrow_icon-outline  
+  {
+    content: url(../assets/icon/down-arrow.svg);
+    padding: 2px 0px 3px;
+    // opacity: 0.9;
+    width: 18px;
+    //height: 32px;
+  }
+
+  .ion-ios-down_arrow_icon:before,.ion-md-down_arrow_icon:before,.ion-wp-down_arrow_icon:before 
+  {
+    content: url(../../assets/icon/down-arrow.svg);
+    width: 18px;
+  }
+
+  .ion-ios-up_arrow_icon,.ion-md-up_arrow_icon,.ion-wp-up_arrow_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-up_arrow_icon-outline  
+  {
+    content: url(../assets/icon/up-arrow.svg);
+    padding: 2px 0px 3px;
+    // opacity: 0.9;
+    width: 18px;
+    //height: 32px;
+  }
+
+  .ion-ios-up_arrow_icon:before,.ion-md-up_arrow_icon:before,.ion-wp-up_arrow_icon:before 
+  {
+    content: url(../../assets/icon/up-arrow.svg);
+    width: 18px;
+  }
+
+    .swiper-pagination-bullet-active 
+    {
+      background: #ed6663 !important;
+      opacity: 1;
+    }
+
+    .content-wrapper 
+    {
+      width: 100vw;
+      min-height: calc(100vh - 32px - 50px - 70px);
+      background-color: color($colors, light);
+      .card9-container 
+      {
+          display: inline-block;
+          //margin: 1vw 0 0 2vw;
+          margin: 1vw 0 0 1vw;
+          width: 48.5vw;
+          //height: calc((100vh - 32px - 50px - 70px)/2 - 2px);
+          //height: 330px;
+          height: auto;
+          background-color: color($colors, pearl);
+          border: 1px solid #f4f4f4;
+          border-radius: 0px;
+          -webkit-box-shadow: 2px 2px 40px -12px #999;
+          box-shadow: 2px 2px 40px -12px #999;
+          .pic-box 
+          {
+            //text-align: center;
+            padding-top: 0.3vh;
+            img 
+            {
+                //height: calc(((100vh - 32px - 50px - 70px)/2 - 2px)*0.75);
+            }
+          }
+          .title 
+          {
+            width: 98%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            //padding-left: 3vw;
+            padding-left: 1.8vw;
+            padding-right: 3vw;
+            //color: color($colors, greydark);
+            font-size: 1.25rem;
+          }
+          .price-box 
+          {
+            padding-top: 0.5vh;
+            padding-left: 0px;
+            .price 
+            {
+                width: 80%;
+                text-align: left;
+                display: inline-block;
+                font-size: 1.5rem;
+                font-weight: 500;
+                color: #ed6663;
+                color: #000 !important;
+            }
+            .old-price 
+            {
+                text-align: left;
+                //padding-left: 3vw;
+                padding-left: 0vw;
+                display: inline-block;
+                font-size: 1.2rem;
+                text-decoration: line-through;
+                font-weight: 400;
+                color: color($colors, greydark);
+            }
+            .price-love 
+            {
+                margin-right: 3vw;
+                text-align: right;
+                font-size: 1.5rem;
+                ion-icon 
+                {
+                  color: color($colors, light) !important;
+                }
+            }
+            .price-love.selected 
+            {
+                ion-icon 
+                {
+                  color: color($colors, secondary) !important;
+                }
+            }
+          }
+      }
+    }
+
+    .title p
+    {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    #price_symbol
+    {
+      color: #ed6663 !important;
+      font-size: 12px;
+    }
+
+    #product_price
+    {
+      color: #ed6663 !important;
+      font-size: 11px;
+    }
+
+    .bar-button-default-ios, .bar-button-default.bar-button-ios-default, .bar-button-clear-ios-default,.bar-button-default-wp, .bar-button-default.bar-button-wp-default, .bar-button-clear-wp-default,.bar-button-default-md, .bar-button-default.bar-button-md-default, .bar-button-clear-md-default
+    {
+      color: #fff !important;
+    }
+
+    page-categories .content-wrapper .card9-container .price-box .price-love.selected ion-icon
+    {
+      color: #ed6663 !important;
+    }
+
+    .label_bold
+    {
+        letter-spacing: 1px;
+        font-weight: 400;
+        font-size: 14px;
+    }
+
+    .label_normal
+    {
+        letter-spacing: 1px;
+        font-weight: 100;
+        font-size: 14px;
+    }
+
+    .button-block 
+    {
+      width: 75% !important;
+    }
+
+    .button-ios,.button-md,.button-wp 
+    {
+      height: 2.6rem !important;
+    }
+
+    .sale-price 
+    {
+      color: color($colors, primary); 
+      color: #000 !important;
+      font-size: 16px; 
+      margin-top: 3px;
+      margin-left: 8px;
+      margin-right: 6px;
+    }
+
+    .old-price 
+    {
+      margin-right:5px;
+      font-size: 12px;
+      text-decoration: line-through;
+      color: color($colors, lightdark);
+      color: #9a9a9a !important;
+    }
+
+    .searchbar-ios
+    {
+      background: rgba(0, 0, 0, 0) !important;
+    }
+
+    .searchbar-wp .searchbar-input-container
+    {
+      border : 0px solid rgba(0, 0, 0, 0.5) !important; 
+    }
+
+    /*.toolbar-title-ios, .toolbar-title-md, .toolbar-title-wp  
+    {
+      padding: 0 12px;
+      font-size: 2rem;
+      font-weight: 500;
+      color: #fff;
+      letter-spacing: 1px;
+      font-weight: 400;
+      font-size: 16px;
+    }*/
+
+    ion-footer
+    {
+      bottom : 0px !important;
+    }
+
+    .ion-ios-arrow_forward_icon,.ion-md-arrow_forward_icon,.ion-wp-arrow_forward_icon 
+    {
+      content: url(../assets/icon/arrow_forward.svg);
+      padding: 2px 0px 3px;
+      width: 25px;
+    }
+
+    .ion-ios-arrow_forward_icon:before,.ion-md-arrow_forward_icon:before,.ion-wp-arrow_forward_icon:before 
+    {
+      content: url(../../assets/icon/arrow_forward.svg);
+      width: 25px;
+    }
+
+    .error_handling_div
+    {
+        .error_handling_image
+        {
+            margin-top:6vh;
+            max-width: 65%;
+            margin: 8vh auto;
+            display: block; 
+            margin-bottom: 0vh;
+        }
+
+        div
+        {
+            margin-top: 8vh;
+        }
+
+        .error_p1
+        {
+            font-size:18px;
+            font-weight:500;
+            text-align:center;
+            margin-bottom: -10px;
+        }
+
+        .error_p2
+        {
+            font-size: 15px;
+            font-weight: 400;
+            text-align: center;
+            color: #a5a1a1;
+        }
+
+        .error_submit_button
+        {
+            border-radius: 5px;
+            margin: 0 auto;
+            display:block;
+            padding-bottom: 1px;
+            text-transform: capitalize;
+        }
+    }
+
+    .ion-ios-sort_by_icon,.ion-md-sort_by_icon,.ion-wp-sort_by_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-sort_by_icon-outline  
+    {
+        content: url(../assets/icon/sort_by.svg);
+        padding: 2px 0px 3px;
+        // opacity: 0.9;
+        width: 30px;
+        //height: 32px;
+    }
+
+    .ion-ios-sort_by_icon:before,.ion-md-sort_by_icon:before,.ion-wp-sort_by_icon:before 
+    {
+        content: url(../../assets/icon/sort_by.svg);
+        width: 30px;
+    }
+
+    .ion-ios-filter_icon,.ion-md-filter_icon,.ion-wp-filter_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-filter_icon-outline  
+    {
+        content: url(../assets/icon/header_icon_2.svg);
+        padding: 2px 0px 3px;
+        // opacity: 0.9;
+        width: 30px;
+        //height: 32px;
+    }
+
+    .ion-ios-filter_icon:before,.ion-md-filter_icon:before,.ion-wp-filter_icon:before 
+    {
+        content: url(../../assets/icon/header_icon_2.svg);
+        width: 30px;
+    }
+
+    .ion-ios-mic_icon,.ion-md-mic_icon,.ion-wp-mic_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-mic_icon-outline  
+    {
+        content: url(../assets/icon/header_icon_3.svg);
+        padding: 10px 0px 3px;
+        // opacity: 0.9;
+        width: 25px;
+        //height: 32px;
+    }
+
+    .ion-ios-mic_icon:before,.ion-md-mic_icon:before,.ion-wp-mic_icon:before 
+    {
+        content: url(../../assets/icon/header_icon_3.svg);
+        width: 25px;
+    }
+
+    .ion-ios-search_icon,.ion-md-search_icon,.ion-wp-search_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-search_icon-outline  
+    {
+        content: url(../assets/icon/header_icon_4.svg);
+        padding: 10px 0px 3px;
+        // opacity: 0.9;
+        width: 25px;
+        //height: 32px;
+    }
+
+    .ion-ios-search_icon:before,.ion-md-search_icon:before,.ion-wp-search_icon:before 
+    {
+        content: url(../../assets/icon/header_icon_4.svg);
+        width: 25px;
+    }
+
+    .ion-ios-refresh_icon,.ion-md-refresh_icon,.ion-wp-refresh_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-refresh_icon-outline  
+    {
+        content: url(../assets/icon/header_icon_5.svg);
+        padding: 10px 0px 3px;
+        // opacity: 0.9;
+        width: 25px;
+        //height: 32px;
+    }
+
+    .ion-ios-refresh_icon:before,.ion-md-refresh_icon:before,.ion-wp-refresh_icon:before 
+    {
+        content: url(../../assets/icon/header_icon_5.svg);
+        width: 25px;
+    }
+
+
+
+    .ion-ios-sort_by_1_icon,.ion-md-sort_by_1_icon,.ion-wp-sort_by_1_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-sort_by_1_icon-outline  
+    {
+        content: url(../assets/icon/sort_by_1.svg);
+        padding: 10px 0px 3px;
+        // opacity: 0.9;
+        width: 25px;
+        //height: 32px;
+    }
+
+    .ion-ios-sort_by_1_icon:before,.ion-md-sort_by_1_icon:before,.ion-wp-sort_by_1_icon:before 
+    {
+        content: url(../../assets/icon/sort_by_1.svg);
+        width: 25px;
+    }
+
+
+    .ion-ios-sort_by_2_icon,.ion-md-sort_by_2_icon,.ion-wp-sort_by_2_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-sort_by_2_icon-outline  
+    {
+        content: url(../assets/icon/sort_by_2.svg);
+        padding: 10px 0px 3px;
+        // opacity: 0.9;
+        width: 25px;
+        //height: 32px;
+    }
+
+    .ion-ios-sort_by_2_icon:before,.ion-md-sort_by_2_icon:before,.ion-wp-sort_by_2_icon:before 
+    {
+        content: url(../../assets/icon/sort_by_2.svg);
+        width: 25px;
+    }
+
+    .ion-ios-sort_by_3_icon,.ion-md-sort_by_3_icon,.ion-wp-sort_by_3_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-sort_by_3_icon-outline  
+    {
+        content: url(../assets/icon/sort_by_3.svg);
+        padding: 10px 0px 3px;
+        // opacity: 0.9;
+        width: 25px;
+        //height: 32px;
+    }
+
+    .ion-ios-sort_by_3_icon:before,.ion-md-sort_by_3_icon:before,.ion-wp-sort_by_3_icon:before 
+    {
+        content: url(../../assets/icon/sort_by_3.svg);
+        width: 25px;
+    }
+
+    .ion-ios-sort_by_4_icon,.ion-md-sort_by_4_icon,.ion-wp-sort_by_4_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-sort_by_4_icon-outline  
+    {
+        content: url(../assets/icon/sort_by_4.svg);
+        padding: 10px 0px 3px;
+        // opacity: 0.9;
+        width: 25px;
+        //height: 32px;
+    }
+
+    .ion-ios-sort_by_4_icon:before,.ion-md-sort_by_4_icon:before,.ion-wp-sort_by_4_icon:before 
+    {
+        content: url(../../assets/icon/sort_by_4.svg);
+        width: 25px;
+    }
+
+    .ion-ios-sort_by_5_icon,.ion-md-sort_by_5_icon,.ion-wp-sort_by_5_icon,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-sort_by_5_icon-outline  
+    {
+        content: url(../assets/icon/sort_by_5.svg);
+        padding: 10px 0px 3px;
+        // opacity: 0.9;
+        width: 25px;
+        //height: 32px;
+    }
+
+    .ion-ios-sort_by_5_icon:before,.ion-md-sort_by_5_icon:before,.ion-wp-sort_by_5_icon:before 
+    {
+        content: url(../../assets/icon/sort_by_5.svg);
+        width: 25px;
+    }
+
+    .action-sheets-basic-page 
+    {
+        .ion-md-share,.ion-md-share,.ion-md-share 
+        {
+            color: #ED4248;
+        }
+        .ion-md-arrow-dropright-circle 
+        {
+            color: #508AE4;
+        }
+        .ion-md-heart-outline 
+        {
+            color: #31D55F;
+        }
+        .action-sheet-cancel ion-icon,.action-sheet-destructive ion-icon 
+        {
+            color: #757575;
+        }
+    }
+
+    .action-sheet-ios .action-sheet-button,.action-sheet-md .action-sheet-button,.action-sheet-wp .action-sheet-button 
+    {
+        min-height: 3rem !important;
+        color: #3bac44 !important;
+    }
+
+    .ion-ios-tab_3,.ion-md-tab_3,.ion-wp-tab_3,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-tab_3-outline
+    {
+        content: url(../assets/icon/cart_black.svg);
+        //padding: 2px 0px 3px;
+        width: 35px;
+    }
+  
+    .ion-ios-tab_3:before,.ion-md-tab_3:before,.ion-wp-tab_3:before 
+    {
+        content: url(../../assets/icon/cart_black.svg);
+        width: 35px;
+    }
+
+    .ion-ios-tab_3_black,.ion-md-tab_3_black,.ion-wp-tab_3_black,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-tab_3_black-outline
+    {
+        content: url(../assets/icon/cart_black.svg);
+        //padding: 2px 0px 3px;
+        width: 34px;
+    }
+  
+    .ion-ios-tab_3_black:before,.ion-md-tab_3_black:before,.ion-wp-tab_3_black:before 
+    {
+        content: url(../../assets/icon/cart_black.svg);
+        width: 34px;
+    }
+
+    .toolbar-ios, .toolbar-md 
+    {
+        padding: 0px !important;
+    }
+
+    ion-title div 
+    {
+      //font-size: 16px !important;
+    }
+
+    .back-button-ios, .back-button-md 
+    {
+      margin: 0 0px !important;
+    }
+
+    .bar-button-ios, .bar-button-md 
+    {
+      //margin: 0 0rem !important;
+      //padding: 0 0px !important;
+    }
+
+    .ion-ios-tab_3_white,.ion-md-tab_3_white,.ion-wp-tab_3_white,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-tab_3_white-outline
+    {
+        content: url(../assets/icon/cart_white.svg);
+        //padding: 2px 0px 3px;
+        width: 34px;
+    }
+  
+    .ion-ios-tab_3_white:before,.ion-md-tab_3_white:before,.ion-wp-tab_3_white:before 
+    {
+        content: url(../../assets/icon/cart_white.svg);
+        width: 34px;
+    }
+
+    .name_tooltip
+    { 
+        z-index: 1;
+        font-size: 1.2rem;
+        float: right;
+        margin: 13px -27px;
+    }
+
+    .searchbar-md .searchbar-clear-icon,.searchbar-wp .searchbar-clear-icon 
+  {
+    top: 7px !important;
+  }
+
+  .searchbar-ios .searchbar-clear-icon 
+  {
+    top: 0px !important;
+  }
+
+}

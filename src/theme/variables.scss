@@ -1,0 +1,461 @@
+    // Ionic Variables and Theming. For more info, please see:
+    // http://ionicframework.com/docs/v2/theming/
+    $font-path: "../assets/fonts";
+
+    @import "ionic.globals";
+
+
+    // Shared Variables
+    // --------------------------------------------------
+    // To customize the look and feel of this app, you can override
+    // the Sass variables found in Ionic's source scss files.
+    // To view all the possible Ionic variables, see:
+    // http://ionicframework.com/docs/v2/theming/overriding-ionic-variables/
+
+
+
+
+    // Named Color Variables
+    // --------------------------------------------------
+    // Named colors makes it easy to reuse colors on various components.
+    // It's highly recommended to change the default colors
+    // to match your app's branding. Ionic uses a Sass map of
+    // colors so you can add, rename and remove colors as needed.
+    // The "primary" color is the only required color in the map.
+
+    $colors: ( 
+        primary: #00acec,
+        secondary: #3fb653,
+        danger: #f15a67,
+        light: #f4f4f4,
+        dark: #333333,
+        pearl: #ffffff,
+        primarydark:#0081b1,
+        lightdark: #d9d9d9,
+        greydark: #858585,
+        processing: #e0a018
+    );
+
+
+    // App iOS Variables
+    // --------------------------------------------------
+    // iOS only Sass variables can go here
+
+    // App Material Design Variables
+    // --------------------------------------------------
+    // Material Design only Sass variables can go here
+
+    // App Windows Variables
+    // --------------------------------------------------
+    // Windows only Sass variables can go here
+
+    // App Theme
+    // --------------------------------------------------
+    // Ionic apps can have different themes applied, which can
+    // then be future customized. This import comes last
+    // so that the above variables are used and Ionic's
+    // default are overridden.
+
+    @import "ionic.theme.default";
+
+    // Ionicons
+    // --------------------------------------------------
+    // The premium icon font for Ionic. For more info, please see:
+    // http://ionicframework.com/docs/v2/ionicons/
+
+    @import "ionic.ionicons";
+
+
+    // Fonts
+    // --------------------------------------------------
+
+    @import "roboto";
+    @import "noto-sans";
+    $tabs-background: color($colors, dark);
+ 
+    $tabs-wp-tab-color: color($colors, lightdark);
+    $tabs-wp-tab-icon-color: color($colors, lightdark);
+    $tabs-wp-tab-color-active: color($colors, primary);
+    $tabs-wp-tab-icon-color-active: color($colors, primary);
+
+    $tabs-md-tab-icon-color: color($colors, lightdark);
+    $tabs-md-tab-text-color: color($colors, lightdark);
+    $tabs-md-tab-icon-color-active: color($colors, primary);
+    $tabs-md-tab-text-color-active: color($colors, primary);
+
+    $tabs-ios-tab-text-color: color($colors, lightdark);
+    $tabs-ios-tab-icon-color: color($colors, lightdark);
+    $tabs-ios-tab-icon-color-active: color($colors, primary);
+    $tabs-ios-tab-text-color-active: color($colors, primary);
+ 
+    /* Header Toolbar */
+ 
+    //$toolbar-background: color($colors, pearl);
+    $toolbar-background: #2754a2;
+    //$toolbar-background: linear-gradient(to right, #43C6AC 0%, #6db63f 100%);
+    $toolbar-border-color: transparent;
+    .toolbar-white-button 
+    {
+        color: #000;
+    }
+
+    .toolbar-background-ios,.toolbar-background-md,.toolbar-background-wp 
+    {
+        background: linear-gradient(to left, #83b765 -2%, #6db63f 117%) !important;
+    }
+ 
+    ion-title 
+    {
+        div 
+        {
+            margin-top: 0.1vh;
+            font-size: 16px;
+            font-family: "Roboto", "Helvetica Neue", sans-serif;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: #fff !important;
+            span 
+            {
+                color: color($colors, secondary);
+            }
+        }
+    }
+
+    .text_gradient
+    {
+        background: linear-gradient(to left, #6db63f -2%, #6db63f 117%) !important;
+        -webkit-background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+    }
+
+    .three_side_border_gradient
+    {
+        border-top: 1px solid #6db63f !important;
+        border-bottom: 1px solid #6db63f !important;
+        border-left: 1px solid #6db63f !important;
+    }
+
+    .four_side_border_gradient
+    {
+        border-top: 1px solid #6db63f !important;
+        border-bottom: 1px solid #6db63f !important;
+        border-left: 1px solid #6db63f !important;
+        border-right: 1px solid #6db63f !important;
+    }
+
+    .background_gradient
+    {
+        background: linear-gradient(to left, #6db63f -2%, #6db63f 117%) !important;
+        color: #fff !important;
+    }
+
+    ion-title div
+    {
+        color: #fff !important;
+        font-size: 18px !important;
+        font-family: "roboto";
+        font-weight: 500 !important;
+    }
+ 
+    .menu-image 
+    {
+        height: 5.6vw;
+    }
+ 
+    /*.no-scroll .scroll-content 
+    {
+        overflow: hidden;
+    }*/
+ 
+    .clear-gap 
+    {
+        margin: 0 0 0 0;
+        padding: 0 0 0 0;
+    }
+ 
+    .line 
+    {
+        display: inline-block;
+        border-bottom: 2px solid color($colors, secondary);
+        width: 10vw;
+    }
+ 
+    .line2left 
+    {
+        display: inline-block;
+        .line-left 
+        {
+            display: inline-block;
+            border-bottom: 2px solid color($colors, secondary);
+            width: 8vw;
+        }
+        .line-right 
+        {
+            display: inline-block;
+            border-bottom: 2px solid color($colors, lightdark);
+            width: 8vw;
+        }
+    }
+ 
+    .line2right 
+    {
+        display: inline-block;
+        .line-left 
+        {
+            display: inline-block;
+            border-bottom: 2px solid color($colors, lightdark);
+            width: 8vw;
+        }
+        .line-right 
+        {
+            display: inline-block;
+            border-bottom: 2px solid color($colors, secondary);
+            width: 8vw;
+        }
+    }
+ 
+    .ion-ios-facebook,.ion-ios-facebook-outline,.ion-md-facebook 
+    {
+        content: url(http://depasserinfotech.com/ejohri-mobile/img/facebook.png);
+        height: 24px !important;
+        margin-left: 5vw;
+        opacity: 1;
+    }
+ 
+    .ion-ios-twitter,.ion-ios-twitter-outline,.ion-md-twitter 
+    {
+        content: url(http://depasserinfotech.com/ejohri-mobile/img/twitter.png);
+        height: 24px !important;
+        margin-left: 5vw;
+        opacity: 1;
+    }
+ 
+    .ion-ios-google,.ion-ios-google-outline,.ion-md-google 
+    {
+        content: url(http://depasserinfotech.com/ejohri-mobile/img/google.png);
+        height: 24px !important;
+        margin-left: 5vw;
+        opacity: 1;
+    }
+ 
+    .clear-list .item 
+    {
+        margin: 0 0 0 0;
+        border: none !important;
+        ion-label 
+        {
+            color: color($colors, greydark);
+        }
+        ion-input 
+        {
+            color: color($colors, primary);
+        }
+        .text-input 
+        {
+            border: none;
+            border-bottom: 1px solid color($colors, lightdark) !important;
+            box-shadow: none;
+        }
+        .text-input:focus 
+        {
+            border: none;
+            border-bottom: 1px solid color($colors, primary) !important;
+            box-shadow: none;
+        }
+        .input-icon 
+        {
+            padding-top: 3vh;
+            color: color($colors, primary) !important;
+        }
+    }
+ 
+    .clear-list .item:last-child 
+    {
+        border: none !important;
+        ion-input 
+        {
+            color: color($colors, primary);
+        }
+        .text-input 
+        {
+            border: none;
+            border-bottom: 1px solid color($colors, lightdark) !important;
+            box-shadow: none;
+        }
+        .text-input:focus 
+        {
+            border: none;
+            border-bottom: 1px solid color($colors, primary) !important;
+            box-shadow: none;
+        }
+    }
+ 
+    .clear-list .item .item-inner 
+    {
+        border: none !important;
+    }
+    /* clear android input focus... */
+    .item-md.item-input.input-has-focus .item-inner 
+    {
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+    }
+ 
+    .list-md .item-input.input-has-focus:last-child 
+    {
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+    }
+ 
+    .list-md .item-input.input-has-focus:last-child .item-inner 
+    {
+        box-shadow: none;
+    }
+ 
+    .item-md.item-input.ng-valid.input-has-value:not(.input-has-focus) .item-inner 
+    {
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+    }
+ 
+    .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child 
+    {
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+    }
+ 
+    .list-md .item-input.ng-valid.input-has-value:not(.input-has-focus):last-child .item-inner 
+    {
+        box-shadow: none;
+    }
+ 
+    .item-md.item-input.ng-invalid.ng-touched:not(.input-has-focus) .item-inner 
+    {
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+    }
+ 
+    .list-md .item-input.ng-invalid.ng-touched:not(.input-has-focus):last-child 
+    {
+        border-bottom-color: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .loading-md .loading-wrapper, .loading-wp .loading-wrapper
+    {
+        background : transparent !important;
+        max-width: 60px !important;
+        padding: 0px !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+
+    .loading-ios .loading-wrapper
+    {
+        background : transparent !important;
+        padding: 0px !important;
+        max-width: 60px !important;
+    }
+
+    ion-backdrop.show-backdrop 
+    {
+        opacity: 0.35 !important;
+    }
+
+    ion-menu[type=overlay] .show-backdrop 
+    {
+        display: block !important;
+    }
+
+    ion-navbar.toolbar.toolbar-ios.statusbar-padding
+    {
+        //margin-top: -2.5vh !important;
+    }
+
+    ion-app.md [padding] .scroll-content,ion-app.ios [padding] .scroll-content,ion-app.wp [padding] .scroll-content 
+    {
+        //padding: 12px !important;
+    }
+
+    h1,h2,h3,span,div,ion-list,ion-item,ion-label,ion-input,ion-textarea,p,ion-grid,ion-row,ion-col
+    {
+        //font-family: 'Segoe UI' !important;
+        font-family: 'roboto' !important;
+        //font-family: 'Roboto', 'Helvetica Neue', sans-serif !important;
+    }
+
+    .toolbar-title-ios,.toolbar-title-md,.toolbar-title-wp 
+    {
+        padding: 0 0px !important;
+    }
+
+    .list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block 
+    {
+        //border-bottom: 0.55px solid #c8c7cc;
+        border-bottom: none !important;
+    }
+
+    .list-ios > .item-block:first-child 
+    {
+        //border-top: 0.55px solid #c8c7cc;
+        border-top: none !important;
+    }
+
+    .item-ios[detail-push] .item-inner, button.item-ios:not([detail-none]) .item-inner, a.item-ios:not([detail-none]) .item-inner 
+    {
+        //background-image: url(data:image/svg+xml;charset=utf-8,<svg%20xmlns='http://www.w3.org/2000/svg'%…><path%20d='M2,20l-2-2l8-8L0,2l2-2l10,10L2,20z'%20fill='%23c8c7cc'/></svg>);
+        background-image: none !important;
+    }
+
+    .fab-ios-light 
+    {
+        color: #000 !important;
+        background-color: #f4f4f4 !important;
+        box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.14), 0 4px 5px rgba(0, 0, 0, 0.1) !important;
+    }
+
+    .toolbar-ios 
+    {
+        min-height: 56px !important;
+    }
+
+    .searchbar-ios .searchbar-input, .searchbar-md .searchbar-input, .searchbar-wp .searchbar-input
+    {
+        box-shadow: none !important;
+    }
+
+    .content-ios hr 
+    {
+        height: 1px !important;
+        background-color: rgba(0, 0, 0, 0.12) !important;
+    }
+
+    .toolbar-title-ios 
+    {
+        text-align: left !important;
+        font-size: 1.7rem;
+        font-weight: 600;
+        color: #fff;
+        pointer-events: auto;
+    }
+
+
+    .back-button.show-back-button 
+    {
+        margin-left: 5px !important;
+    }
+
+    .toolbar-title-ios 
+    {
+        //text-align: center !important;
+    }
+
+    .toolbar-ios ion-title 
+    {
+        padding: 0 50px 1px !important;
+    }
+
+    .searchbar-ios .searchbar-ios-cancel 
+    {
+        padding: 0px 8px 0 0px !important;
+    }

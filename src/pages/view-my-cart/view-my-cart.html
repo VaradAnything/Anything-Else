@@ -1,0 +1,208 @@
+<!-- <ion-header>
+  	<ion-navbar>
+    	<ion-title>View Cart</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<b>View Cart</b>
+	<ion-list>
+		<ion-item *ngFor="let cart_data of cart_data_array">
+			{{ cart_data.product_name }}
+		</ion-item>
+	</ion-list>
+
+	<b>Add To Cart</b>
+	<p (click)="addToCart('reeva-fashion-jewellery-alloy-jewel-set-gold','reeva-fashion-jewellery-alloy-jewel-set-gold',1)">reeva-fashion-jewellery-alloy-jewel-set-gold</p>
+
+	<b>Remove From Cart</b>
+	<p (click)="removeFromCart('reeva-fashion-jewellery-alloy-jewel-set-gold','reeva-fashion-jewellery-alloy-jewel-set-gold')">reeva-fashion-jewellery-alloy-jewel-set-gold</p>
+</ion-content> -->
+
+<ion-header>
+	<ion-navbar>
+	    <button ion-button menuToggle>
+	      	<img src="assets/icon/menu.svg" class="menu-image animated_rIn rotateIn">
+	    </button>
+	    <ion-title>
+	      	My Cart
+	    </ion-title>
+	    <!-- <ion-buttons end>
+	       	<button ion-button icon-only id="notification_btn" (click)="openNotification()">
+	        	<ion-icon name="notification_icon" style="font-size:1.7em;"></ion-icon>
+	      	</button>
+	    </ion-buttons> -->
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  	<!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher> -->
+
+  	<div *ngIf="login_type == 0 && cart_data_array == ''" class="error_handling_div">
+	  	<img src="assets/icon/empty_cart.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">You have no items in cart</p>
+			<p class="error_p2">Click below to add product in cart</p>
+
+			<button ion-button color="dark" round medium (click)="viewCategories()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">View Product</span>
+	      	</button>
+		</div>
+  	</div>
+  	<div *ngIf="item_count == 0 && login_type > 0" class="error_handling_div">
+		<img src="assets/icon/error.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">Some Error Occurred</p>
+			<p class="error_p2">Click below to try again</p>
+
+			<button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">Try Again</span>
+	      	</button>
+		</div>
+	</div>
+	<div *ngIf="item_count == 1 && cart_data_array == '' && login_type > 0" class="error_handling_div">
+		<img src="assets/icon/empty_cart.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">You have no items in cart</p>
+			<p class="error_p2">Click below to add product in cart</p>
+
+			<button ion-button color="dark" round medium (click)="viewCategories()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">View Product</span>
+	      	</button>
+		</div>
+	</div>
+  	<!-- <p class="marquee" style="color: #ed6663;" *ngIf="item_count == 1">Swipe left on product to delete it from My Cart</p> -->
+  	<!-- <div class="content-wrapper" *ngIf="item_count == 1">
+      	<div class="wishlist">
+		  	<ion-list class="cart-list">
+	          	<ion-item-sliding  *ngFor="let wishlists_data of wishlists_data_array; let i = index;">
+		            <ion-item class="cart-list-item" [class.odd]="i%2!==0">
+		              	<ion-thumbnail item-left>
+		                	<img [src]="wishlists_data.photo1">
+		              	</ion-thumbnail>
+		              	<h2 class="label_bold">{{wishlists_data.product_name}}</h2>
+					    <div class="price-wrapper">
+				            <div class="price label_bold" style="font-weight: 300;"><span id="product_price"  class="label_bold" style="font-weight: 400;">{{ wishlists_data.product_price  | currency:'INR':true:'1.1-1' }}</span></div>
+				        </div>
+	              		<div item-right class="right-bag label_bold">
+	                		<div class="available label_bold" style="color:#008000;">In stock</div>
+	              		</div>
+		              	<div>
+		              		<button class="add-button label_bold" round small ion-button clear style="color: #ed6663;background-color: #fff;border: 1px solid #ed6663;margin-top: 1vh;">Buy Now <ion-icon name="cart" style="padding-left:5px;font-size: 1.6em;"></ion-icon></button>
+		              	</div>
+		            </ion-item>
+	            	<ion-item-options>
+			            <button color="danger" id="slide_btn" (click)="updateWishlist(wishlists_data.product_seo_url,wishlists_data.product_variant_seo_url,0)"> <ion-icon name="trash"></ion-icon> Delete</button>
+			        </ion-item-options>
+	          	</ion-item-sliding>
+		    </ion-list>
+		</div>
+	</div> -->
+
+	<ion-list class="cart-list" *ngIf="item_count == 1 && cart_data_array != ''">
+      	<ion-item-sliding *ngFor="let cart_data of cart_data_array; let i = index;">
+	        <ion-item class="cart-list-item" [class.odd]="i%2!==0">
+	          	<ion-thumbnail item-left>
+	            	<img [src]="cart_data.product_image">
+	          	</ion-thumbnail>
+	          	<!-- <h2 class="label_bold" (click)="openProductDetails(cart_data.product_variant_seo_url)" style="margin-top:0px !important;">{{cart_data.product_name}}</h2> -->
+	          	<p class="label_bold" (click)="openProductDetails(cart_data.product_variant_seo_url)" style="font-weight: 500;margin-top:0px !important;color:#000;">{{cart_data.product_name}}</p>
+	          	<span *ngIf="cart_data.product_variant_one != ''" style="font-size: 13px;">{{ cart_data.product_variant_one }}</span> <span *ngIf="cart_data.product_variant_two != ''" style="font-size: 13px;">( {{ cart_data.product_variant_two }} )</span>
+	          	<!-- <p class="label_normal">SKU : {{cart_data.sku}}</p> -->
+	          	<div class="price-wrapper">
+	            	<!-- <div class="price label_bold" style="font-weight: 300;"><span id="product_price"  class="label_bold" style="font-weight: 400;">{{ cart_data.product_variant_price  | currency:'INR':true:'1.1-1' }}</span></div> -->
+
+	            	<span class="text_gradient sale-price">{{ cart_data.product_variant_price  | currency:'INR':true:'1.1-1' }}</span> <span class="old-price" style="margin-left:5px;" *ngIf="cart_data.product_variant_mrp > cart_data.product_variant_price">{{ cart_data.product_variant_mrp  | currency:'INR':true:'1.1-1' }}</span>
+	          	</div>
+	          	<div item-right class="right-bag size_bag">
+	            	<div class="right-button">
+	              		<button ion-button clear (click)="updateToCart(i,cart_data.product_seo_url,cart_data.product_variant_seo_url,cart_data.product_variant_quantity,1)" style="margin-left: -1.5px;">
+	              			<ion-icon class="add" name="plus_icon"></ion-icon>
+	            		</button>
+	            	</div>
+	            	<div class="right-quantity label_bold">
+	              		{{ cart_data.product_variant_quantity }}
+	            	</div>
+	            	<div class="right-button">
+	              		<button ion-button clear icon-only (click)="updateToCart(i,cart_data.product_seo_url,cart_data.product_variant_seo_url,cart_data.product_variant_quantity,0)">
+	              			<ion-icon name="minus_icon"></ion-icon>
+	            		</button>
+					</div>
+	          	</div>
+	        </ion-item>
+	        <ion-item-options>
+	            <button color="danger" id="slide_btn" (click)="removeFromCart(cart_data.product_seo_url,cart_data.product_variant_seo_url)"> <ion-icon name="trash" style="padding-right: 2px;"></ion-icon>Delete</button>
+	        </ion-item-options>
+      	</ion-item-sliding>
+    </ion-list>
+
+    <!-- <div class="place-order-wrapper" *ngIf="item_count == 1 && cart_data_array != ''" (click)="placeOrder()">
+      	<div class="place-order-round" id="order_btn">
+        	<div class="place-order">
+          		<button ion-button clear>Place this order</button>
+        	</div>
+        	<div class="order-price label_bold">
+          		{{ order_total_amount  | currency:'INR':true:'1.1-1' }}
+        	</div>
+      	</div>
+    </div> -->
+    <ion-grid *ngIf="item_count == 1 && cart_data_array != ''" style="padding-left:12px;padding-right:12px;">
+    	<ion-row>
+	    	<ion-col class="background_gradient" style="border-bottom-left-radius: 8px;border-top-left-radius: 8px;max-width:60%;">
+	    		<button ion-button full clear class="label_bold" (click)="placeOrder()" style="text-transform: capitalize;height: 1.5rem !important;"><span class="label_bold" style="color:#fff;">Place This Order</span></button>
+	    	</ion-col>
+	    	<ion-col class="four_side_border_gradient" style="border-bottom-right-radius: 8px;border-top-right-radius: 8px;max-width:40%;">
+	    		<button ion-button full clear class="label_bold" (click)="placeOrder()" style="height: 1.5rem !important;"><span class="label_bold text_gradient" style="font-size: 14px;">{{ order_total_amount | currency:'INR':true:'1.1-1' }}</span></button>
+	    	</ion-col>
+	    </ion-row>
+    </ion-grid>
+    <br>
+    <br>
+</ion-content>
+
+<ion-footer style="bottom:0px !important;background-color: #fefefe;">
+    <div class="footer">
+        <ion-grid>
+            <ion-row>
+                <ion-col (click)="openTabsPage(1)">
+                    <ion-icon name="tab_1_black"></ion-icon>
+                    <div>Home</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(2)">
+                    <ion-icon name="tab_2_black"></ion-icon>
+                    <div>Categories</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(3)">
+                    <div *ngIf="cart_items_count > 0" class="cart_badge">{{ cart_items_count }}</div>
+                    <ion-icon name="tab_3"></ion-icon>
+                    <div class="text_gradient">My Cart</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(4)">
+                    <ion-icon name="tab_4_black"></ion-icon>
+                    <div>Account</div>
+                </ion-col>
+            </ion-row>
+            <!-- <ion-row style="margin-top: -2vh;">
+                <ion-col (click)="openTabsPage(1)">
+                    <span>Home</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(2)">
+                    <span>Categories</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(3)">
+                    <span class="text_gradient">My Cart</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(4)">
+                    <span>Account</span>
+                </ion-col>
+            </ion-row> -->
+        </ion-grid>
+    </div>
+</ion-footer>

@@ -1,0 +1,115 @@
+<ion-header>
+	<ion-navbar>
+    	<ion-title>Edit Profile</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<!--<div class="content-wrapper">
+      	<div class="profile">
+	        <div class="avatar-image">
+	          	<div class="avatar-container">
+	            	<div class="avatar-cropper">
+	              		<img src="http://depasserinfotech.com/ejohri-mobile/img/profile.png">
+	            	</div>
+	          	</div>
+	        </div>
+	    </div>
+	</div> -->
+	<img src="assets/icon/account_5.svg" style="margin-top:4vh;max-width: 50%;margin: auto;display: block;"> 
+  	<form [formGroup]="moduleForm" style="margin-top:5vh;">
+	    <ion-list class="clear-list">
+	    	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="first_name" type="text" [class.invalid]="!moduleForm.controls.first_name.valid && (moduleForm.controls.first_name.dirty || submitAttempt)" placeholder="First Name" value="{{ first_name }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.first_name.valid  && (moduleForm.controls.first_name.dirty || submitAttempt)">
+	        	<p>Please enter first name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="last_name" type="text" [class.invalid]="!moduleForm.controls.last_name.valid && (moduleForm.controls.last_name.dirty || submitAttempt)" placeholder="Last Name" value="{{ last_name }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.last_name.valid  && (moduleForm.controls.last_name.dirty || submitAttempt)">
+	        	<p>Please enter last name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="email_icon" item-left></ion-icon>
+	        	<ion-input formControlName="email" type="text" [class.invalid]="!moduleForm.controls.email.valid && (moduleForm.controls.email.dirty || submitAttempt)" placeholder="Email" value="{{ email }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.email.valid  && (moduleForm.controls.email.dirty || submitAttempt)">
+	        	<p>Please enter valid email</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+	        	<ion-input formControlName="mobile" type="number" [class.invalid]="!moduleForm.controls.mobile.valid && (moduleForm.controls.mobile.dirty || submitAttempt)" placeholder="Mobile" value="{{ mobile }}"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.mobile.valid  && (moduleForm.controls.mobile.dirty || submitAttempt)">
+	        	<p>Please enter valid mobile</p>
+	      	</ion-item>
+
+	      	<!-- <ion-list radio-group id="radio_list_id" no-lines>
+	      		<ion-grid>
+	      			<ion-row>
+	      				<ion-col style="max-width:10%;">
+	      				</ion-col>
+	      				<ion-col style="max-width:40%;padding-left: 10px;">
+      						<ion-item>
+						    	<ion-label>Male</ion-label>
+						    	<ion-radio (ionSelect)="getGender('male')" *ngIf="gender == 'male'" checked></ion-radio>
+						    	<ion-radio (ionSelect)="getGender('male')" *ngIf="gender == 'female'"></ion-radio>
+						  	</ion-item>
+	      				</ion-col>
+	      				<ion-col style="max-width:10%;">
+	      				</ion-col>
+	      				<ion-col style="max-width:40%;">
+	      					<ion-item>
+							    <ion-label>Female</ion-label>
+							    <ion-radio (ionSelect)="getGender('female')" *ngIf="gender == 'female'" checked></ion-radio>
+							    <ion-radio (ionSelect)="getGender('female')" *ngIf="gender == 'male'"></ion-radio>
+							</ion-item>
+	      				</ion-col>
+	      			</ion-row>
+	      		</ion-grid>
+			</ion-list> -->
+
+			<ion-grid style="margin-top: 2vh;">
+         	 	<ion-row style="margin-left: 6vh;margin-right: 6vh;">
+		            <ion-col style="max-width:30%;border: 1px solid #333333;border-radius: 4px;padding: 0px !important;" *ngIf="gender == 'male'">
+		                <p style="color: #333333;font-weight: 500;text-align: center;">Male</p>
+		            </ion-col>
+		            <ion-col style="max-width:30%;padding: 0px !important;" (click)="getGender('male')" *ngIf="gender == 'female'">
+		                <p style="color: #333333;font-weight: 500;text-align: center;">Male</p>
+		            </ion-col>
+		            <ion-col style="max-width:10%;padding: 0px !important;">
+		            </ion-col>
+		            <ion-col style="max-width:30%;border: 1px solid #333333;border-radius: 4px;padding: 0px !important;" *ngIf="gender == 'female'">
+		                <p style="color: #333333;font-weight: 500;text-align: center;">Female</p>
+		            </ion-col>
+		            <ion-col style="max-width:30%;padding: 0px !important;" (click)="getGender('female')" *ngIf="gender == 'male'">
+		                <p style="color: #333333;font-weight: 500;text-align: center;">Female</p>
+		            </ion-col>
+          		</ion-row>
+    		</ion-grid>
+
+	      	<!-- <button ion-button color="dark" outline round block (click)="editProfile()" style="margin: 0 auto;margin-top: 25px;">
+	      		Save
+	      	</button> -->
+	    </ion-list>
+  	</form>
+</ion-content>
+<ion-footer style="bottom:0px !important;">
+  	<div class="footer">
+    	<div class="button-left">
+      		<button ion-button full clear (click)="editProfile()"><span class="text_gradient" style="font-weight: 600;">Save</span><ion-icon name="arrow_forward_icon" style="padding: 0px 10px;"></ion-icon></button>
+    	</div>
+  	</div>
+</ion-footer>

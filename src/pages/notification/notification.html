@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Notifications</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+	<ion-card *ngIf="is_show_notification_1 == 0 && is_show_notification_2 == 0 && is_show_notification_3 == 0 && is_show_notification_4 == 0 && is_show_notification_5 == 0">
+		<ion-card-content style="text-align:center;">
+			<span style="background: linear-gradient(to left, #3bac44 -2%, #3bac44 117%);-webkit-background-clip: text;-webkit-text-fill-color: transparent;">
+				You have no notification
+			</span>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-list class="order-list" *ngIf="item_count == 1">
+		<ion-item-sliding *ngIf="is_show_notification_1 == 1">
+	      	<ion-item>
+	            <ion-avatar item-left>
+		        	<img src="assets/icon/notification.svg">
+		      	</ion-avatar>
+	            <div class="item-title title_div">Lorem Ipsum Dolor Sit</div>
+	            <div class="item-title sub_title">11:00 am</div>
+	            <div style="clear:both;"></div>
+	            <p class="item-description" style="margin-top:1vh;">Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+		      	<p class="item-description date_color">12 May 2018</p>
+	      	</ion-item>
+      		<ion-item-options>
+	            <button color="danger" id="slide_btn" (click)="removeNotification(1)"> <ion-icon name="trash"></ion-icon>Delete</button>
+	        </ion-item-options>
+      	</ion-item-sliding>
+      	<ion-item-sliding *ngIf="is_show_notification_2 == 1">
+	      	<ion-item>
+	            <ion-avatar item-left>
+		        	<img src="assets/icon/notification.svg">
+		      	</ion-avatar>
+	            <div class="item-title title_div">Lorem Ipsum Dolor Sit</div>
+	            <div class="item-title sub_title">04:30 am</div>
+	            <div style="clear:both;"></div>
+	            <p class="item-description" style="margin-top:1vh;">Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+		      	<p class="item-description date_color">12 May 2018</p>
+	      	</ion-item>
+      		<ion-item-options>
+	            <button color="danger" id="slide_btn" (click)="removeNotification(2)"> <ion-icon name="trash"></ion-icon>Delete</button>
+	        </ion-item-options>
+      	</ion-item-sliding>
+      	<ion-item-sliding *ngIf="is_show_notification_3 == 1">
+	      	<ion-item>
+	            <ion-avatar item-left>
+		        	<img src="assets/icon/notification.svg">
+		      	</ion-avatar>
+	            <div class="item-title title_div">Lorem Ipsum Dolor Sit</div>
+	            <div class="item-title sub_title">11:30 am</div>
+	            <div style="clear:both;"></div>
+	            <p class="item-description " style="margin-top:1vh;">Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+		      	<p class="item-description date_color">13 May 2018</p>
+	      	</ion-item>
+      		<ion-item-options>
+	            <button color="danger" id="slide_btn" (click)="removeNotification(3)"> <ion-icon name="trash"></ion-icon>Delete</button>
+	        </ion-item-options>
+      	</ion-item-sliding>
+      	<ion-item-sliding *ngIf="is_show_notification_4 == 1">
+	      	<ion-item>
+	            <ion-avatar item-left>
+		        	<img src="assets/icon/notification.svg">
+		      	</ion-avatar>
+	            <div class="item-title title_div">Lorem Ipsum Dolor Sit</div>
+	            <div class="item-title sub_title">03:30 pm</div>
+	            <div style="clear:both;"></div>
+	            <p class="item-description" style="margin-top:1vh;">Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+		      	<p class="item-description date_color">13 May 2018</p>
+	      	</ion-item>
+      		<ion-item-options>
+	            <button color="danger" id="slide_btn" (click)="removeNotification(4)"> <ion-icon name="trash"></ion-icon>Delete</button>
+	        </ion-item-options>
+      	</ion-item-sliding>
+      	<ion-item-sliding *ngIf="is_show_notification_5 == 1">
+	      	<ion-item>
+	            <ion-avatar item-left>
+		        	<img src="assets/icon/notification.svg">
+		      	</ion-avatar>
+	            <div class="item-title title_div">Lorem Ipsum Dolor Sit</div>
+	            <div class="item-title sub_title">06:50 pm</div>
+	            <div style="clear:both;"></div>
+	            <p class="item-description" style="margin-top:1vh;">Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet</p>
+		      	<p class="item-description date_color">13 May 2018</p>
+	      	</ion-item>
+      		<ion-item-options>
+	            <button color="danger" id="slide_btn" (click)="removeNotification(5)"> <ion-icon name="trash" style="padding-right: 2px;"></ion-icon>Delete</button>
+	        </ion-item-options>
+      	</ion-item-sliding>
+    </ion-list>
+</ion-content>

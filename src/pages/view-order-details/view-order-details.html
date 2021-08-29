@@ -1,0 +1,185 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>Order Details</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher> -->
+
+	<div *ngIf="item_count == 0" class="error_handling_div">
+		<img src="assets/icon/error.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">Some Error Occurred</p>
+			<p class="error_p2">Click below to try again</p>
+
+			<button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">Try Again</span>
+	      	</button>
+		</div>
+	</div>
+
+	<div *ngIf="item_count == 1 && orders_data_array == ''" class="error_handling_div">
+		<img src="assets/icon/error.svg" class="error_handling_image">
+
+		<div>
+			<p class="error_p1">Some Error Occurred</p>
+			<p class="error_p2">Click below to try again</p>
+
+			<button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+	      		<span class="text_gradient">Try Again</span>
+	      	</button>
+		</div>
+	</div>
+
+	<div *ngIf="item_count == 1 && orders_data_array != ''">
+		<img src="assets/icon/account_1_1.svg" style="margin:0 auto;display:block;max-width:25%;">
+		<div style="text-align:center;">
+			<span class="text_gradient" style="font-size: 22px;font-weight: 500;">#{{ order_id }}</span><span [ngStyle]="{'color':order_status_color}" style="font-size: 13px;padding-left:8px;">( {{ order_status }} )</span>
+		</div>
+		<div style="text-align:center;margin-bottom:3px;">
+			<span style="font-size: 13px;">{{ order_date }}</span>
+		</div>
+		<div style="text-align:center;margin-bottom:10px;" *ngIf="total_wallet_amount != 0">
+			<span style="font-size: 13px;color:#ed6663;">Wallet Amount: {{ total_wallet_amount | currency:'INR':true:'1.1-1' }}</span>
+		</div>
+		
+		<div style="text-align:center;margin-bottom:10px;" *ngIf="slot_day != '' && slot_time != ''">
+			<span style="font-size: 13px;color:#333333;">Delivery On <span style="font-size: 14px;font-weight:500;">{{ slot_day }} {{ slot_time }}</span></span>
+		</div>
+		<ion-grid>
+			<ion-row>
+				<ion-col>
+					<ion-card>
+						<ion-card-header style="font-size: 15px;font-weight: 600;padding-top: 10px;padding-bottom: 3px;text-align: center;">
+							Address
+						</ion-card-header>
+						<hr>
+						<ion-card-content style="margin-top: -9px;">
+							<p class="text_gradient" style="font-size: 16px;font-weight:500;" *ngIf="address_data.first_name != '' || address_data.last_name != ''">{{ address_data.first_name }} {{ address_data.last_name }}</p>
+							<!-- <p style="font-size: 16px;color: #ed6663;font-weight: 500;">kuldeep patel</p> -->
+							<p *ngIf="address_data.address1 != ''">{{ address_data.address1 }}</p>
+							<p *ngIf="address_data.address2 != ''">{{ address_data.address2 }}</p>
+							<p>{{ address_data.city }}, {{ address_data.state }}, {{ address_data.country }} {{ address_data.pincode }}</p>
+							<p *ngIf="address_data.mobile != ''">Mob: {{ address_data.mobile }}</p>
+							<!-- <p>Mob: +91 1234567897</p> -->
+						</ion-card-content>
+					</ion-card>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+
+
+		<hr style="margin-top: 3.5vh;margin-bottom:5px;">
+		<h6>My Orders</h6> 
+	  	<ion-grid>
+	  		<ion-row *ngFor="let orders_data of orders_data_array; let i = index;" style="margin-bottom: 5px;">
+	  			<ion-col>
+	  				<ion-card>
+	  					<ion-card-content>
+	  						<ion-grid>
+		  						<ion-row>
+			  						<ion-col style="max-width:18%;">
+			  						<ion-avatar item-left class="image_vertical_center">
+					        			<img [src]="orders_data.photo1">
+					      			</ion-avatar>
+					      			</ion-col>
+					      			<ion-col style="max-width:82%;padding-top: 10px !important;padding-left: 15px !important;">
+					      				<p class="label_bold" class="order_name">{{orders_data.product_name}}</p>
+							        	<span class="font_size_12">Qty:</span> <span class="font_size_15 font_weight_400">{{ orders_data.quantity }}</span>  <span class="font_size_12">Total:</span> <span class="font_size_15 font_weight_400">{{ orders_data.price | currency:'INR':true:'1.1-1' }}</span>
+					      			</ion-col>
+					      		</ion-row>
+					      	</ion-grid>
+	  					</ion-card-content>
+	  				</ion-card>
+	  			</ion-col>
+	  		</ion-row>
+	  	</ion-grid>
+
+	  	<!-- <ion-list style="margin-top: 3vh;">
+  			<ion-item>
+    			<ion-label style="font-size: 14px;">You want to apply wallet amount?</ion-label>
+    			<ion-checkbox *ngIf="is_wallet_apply == 0" disabled></ion-checkbox>
+    			<ion-checkbox *ngIf="is_wallet_apply == 1" disabled checked></ion-checkbox>
+  			</ion-item>
+		</ion-list> -->
+
+		<hr style="margin-top: 2.5vh;margin-bottom:5px;">
+		<h6>Payment Summary</h6>
+	    <div class="item_left">Order Amount</div>
+	    <div class="item_right label_bold">{{ sub_total_amount | currency:'INR':true:'1.2-2' }}</div>
+	    <div style="clear:both"></div>
+	    <hr class="order_summary_hr" *ngIf="is_coupon_apply != 0">
+	    <div class="item_left" *ngIf="is_coupon_apply != 0">Coupon Code Discount</div>
+	    <div class="item_right label_bold" *ngIf="is_coupon_apply != 0"><span id="currency_price" style="color:#2754a2;">{{ coupon_code_discount | currency:'INR':true:'1.2-2' }}</span></div>
+	    <div style="clear:both" *ngIf="is_coupon_apply != 0"></div>
+	    <div class="item_left"><span *ngIf="is_coupon_apply != 0">(</span> <span class="label_bold">{{ coupon_code }}</span> <span *ngIf="is_coupon_apply != 0">)</span></div>
+	    <div class="item_right label_bold"></div>
+		<div style="clear:both" *ngIf="is_wallet_apply == 1"></div>
+		<hr class="order_summary_hr" *ngIf="is_wallet_apply == 1">
+		<div class="item_left" *ngIf="is_wallet_apply == 1">Applied Wallet Amount</div>
+		<div class="item_right label_bold" *ngIf="is_wallet_apply == 1 && total_wallet_amount != 0"><span id="currency_price" style="color:#2754a2;">{{ total_wallet_amount | currency:'INR':true:'1.2-2' }}</span></div>
+		<div class="item_right label_bold" *ngIf="is_wallet_apply == 1 && total_wallet_amount == 0"><span id="currency_price" style="color:#2754a2;">{{ total_wallet_amount | currency:'INR':true:'1.2-2' }}</span></div>
+		<div style="clear:both"></div>
+	    <hr class="order_summary_hr">
+	    <div class="item_left">Shipping Charges</div>
+	    <div class="item_right label_bold" *ngIf="shipping_amount != 0"><span id="currency_price" style="color:#ed6663;">{{ shipping_amount | currency:'INR':true:'1.2-2' }}</span></div>
+	    <div class="item_right label_bold" *ngIf="shipping_amount == 0"><span id="currency_price" style="color:#ed6663;">Free</span></div>
+	    <div style="clear:both"></div>
+	    <hr class="order_summary_hr">
+	    <div class="item_left">Payment Method</div>
+	    <div class="item_right label_bold">{{ payment_method }}</div>
+	    <div style="clear:both"></div>
+	    <hr class="order_summary_hr">
+	    <div class="item_left">Total Amount</div>
+	    <div class="item_right label_bold"><span id="currency_price" style="color:#000;">{{ total_amount | currency:'INR':true:'1.2-2' }}</span></div>
+	    <div style="clear:both"></div>
+	</div>
+
+	<!-- <p (click)="showCancelOrderOption(1)" *ngIf="order_status_code == 0">Click Here To Cancel Order</p>
+
+	<ion-list no-lines *ngIf="is_show_cancel_option == 1">
+	  	<ion-item>
+	    	<ion-label id="reason_label">Reason For Cancel Order</ion-label>
+	  	</ion-item>
+    </ion-list>
+	<ion-list radio-group id="radio_list_id" no-lines *ngIf="is_show_cancel_option == 1">
+		<ion-item>
+	    	<ion-label>Reason 1</ion-label>
+	    	<ion-radio (ionSelect)="reasonType(1)" checked="true"></ion-radio>
+	  	</ion-item>
+	  	 <ion-item>
+		    <ion-label>Reason 2</ion-label>
+		    <ion-radio (ionSelect)="reasonType(2)"></ion-radio>
+		</ion-item>
+		<ion-item>
+	    	<ion-label>Reason 3</ion-label>
+	    	<ion-radio (ionSelect)="reasonType(3)"></ion-radio>
+	  	</ion-item>
+	  	<ion-item>
+	    	<ion-label>Other Reason</ion-label>
+	    	<ion-radio (ionSelect)="reasonType(0)"></ion-radio>
+	  	</ion-item>
+	</ion-list>
+
+	<form [formGroup]="moduleForm" style="margin-top:20vh;" *ngIf="is_show_cancel_option == 1 && is_show_cancel_order_reason == 1">
+	    <ion-list class="clear-list">
+	    	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="cancel_order_reason" type="text" [class.invalid]="!moduleForm.controls.cancel_order_reason.valid && (moduleForm.controls.cancel_order_reason.dirty || submitAttempt)" placeholder="Enter Cancel Order Reason"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.cancel_order_reason.valid  && (moduleForm.controls.cancel_order_reason.dirty || submitAttempt)">
+	        	<p>Please enter cancel order reason</p>
+	      	</ion-item>
+
+	      	<button ion-button color="dark" outline round block (click)="cancelOrder()" style="margin: 0 auto;margin-top: 25px;">
+	      		Save
+	      	</button>
+	    </ion-list>
+  	</form> -->
+</ion-content>

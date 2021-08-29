@@ -1,0 +1,375 @@
+    // http://ionicframework.com/docs/v2/theming/
+
+
+    // App Global Sass
+    // --------------------------------------------------
+    // Put style rules here that you want to apply globally. These
+    // styles are for the entire app and not just one component.
+    // Additionally, this file can be also used as an entry point
+    // to import other Sass files to be included in the output CSS.
+    //
+    // Shared Sass variables, which can be used to adjust Ionic's
+    // default Sass variables, belong in "theme/variables.scss".
+    //
+    // To declare rules for a specific mode, create a child rule
+    // for the .md, .ios, or .wp mode classes. The mode class is
+    // automatically applied to the <body> element in the app.
+  
+    ion-backdrop.backdrop-no-tappable
+    {
+        //background-color: #000 !important;
+    }
+
+    ion-alert ion-backdrop 
+    {
+        //background-color: #000 !important;
+    }
+
+    ion-backdrop 
+    {
+        //background-color: #9E9E9E !important;
+    }
+
+    .profile_img
+    {
+        padding-top: 8vh !important;
+    }
+
+    .profile_img img
+    {
+        max-width: 26vw !important;
+    }
+
+    @media screen and (max-width: 390px)
+    {
+        .profile_img
+        {
+            //padding-top: 8vh !important;
+        }
+
+        .profile_img img
+        {
+            //max-width: 26vw !important;
+        }
+    }
+
+    @media screen and (min-width: 391px) and (max-width: 500px)
+    {
+        .profile_img
+        {
+            //padding-top: 6vh !important;
+        }
+
+        .profile_img img
+        {
+            //max-width: 35vw !important;
+        }
+    }
+
+    page-about-us,page-add-address,page-cancel,page-cancel-order,page-change-password,page-contact-us,page-edit-address,page-edit-profile,page-faq,page-filter,page-forgot-password,page-mobile-otp,page-notification,page-profile-mobile-otp,page-return,page-return-order,page-thank-you,page-signin,page-signup,page-view-address,page-view-catalogue,page-view-checkout,page-view-city,page-view-country,page-view-my-wishlists,page-view-order-details,page-view-orders,page-view-product-details,page-view-profile,page-view-returns,page-view-review,page-view-search-catalogue,page-view-state,page-view-sub-categories 
+    {
+        transition: all .40s cubic-bezier(.78,.37,.62,.86) !important; 
+        transform: scale3d(1, 1, 1) rotateY(0) translateX(0) !important;
+    }
+
+    @media screen and (min-width: 441px) and (max-width: 500px)
+    {
+        .profile_img
+        {
+            //padding-top: 5vh !important;
+        }
+
+        .profile_img img
+        {
+            //max-width: 31vw !important;
+        }
+    }
+
+    @media screen and (min-width: 501px) and (max-width: 550px)
+    {
+        .profile_img
+        {
+            //padding-top: 5vh !important;
+        }
+
+        .profile_img img
+        {
+            //max-width: 29vw !important;
+        }
+    }
+
+    @media screen and (min-width: 551px) and (max-width: 600px)
+    {
+        .profile_img
+        {
+            //padding-top: 5vh !important;
+        }
+
+        .profile_img img
+        {
+            //max-width: 28vw !important;
+        }
+    }
+
+    @media screen and (min-width: 601px) and (max-width: 700px)
+    {
+        .profile_img
+        {
+            //padding-top: 5vh !important;
+        }
+
+        .profile_img img
+        {
+            //max-width: 24vw !important;
+        }
+    }
+
+    @media screen and (min-width: 701px) and (max-width: 800px)
+    {
+        .profile_img
+        {
+            //padding-top: 5vh !important;
+        }
+
+        .profile_img img
+        {
+            //max-width: 20vw !important;
+        }
+    }
+
+    @media screen and (min-width: 765px)
+    {
+        .profile_img
+        {
+            //padding-top: 5vh !important;
+        }
+
+        .profile_img img
+        {
+            max-width: 18vw !important;
+        }
+    }
+
+    .profile_img
+    {
+        //padding-top: 5vh !important;
+    }
+
+    .welcome_div span
+    {
+        text-transform:capitalize !important;
+        font-size: 18px !important;
+        color:#fff !important;
+        font-weight:500 !important;
+        font-family:'roboto' !important;
+    }
+
+    .welcome_div
+    {
+        margin-top: 8px !important;
+        text-transform:capitalize !important;
+        font-size: 18px !important;
+        font-weight:400 !important;
+        font-family:'roboto' !important;
+        color:#fff !important;
+        padding-left: 17px !important;
+    }
+
+    .side_menu_img
+    {
+        max-width: 9%;
+        vertical-align: bottom;
+    }
+
+    .side_menu_text
+    {
+        font-weight:500;
+        font-family: 'roboto';
+        letter-spacing: 0px;
+        font-size: 14px;
+        vertical-align: super;
+        padding-left: 10px;
+    }
+
+    .menu 
+    {
+        background-color: #fff !important;
+        .menu-list 
+        {
+            padding-top: 5vh;
+        }
+        .menu-list .item 
+        {
+            color: #f6a531;
+            color: #000 !important;
+            font-size: 1.36rem;
+            background: transparent;
+            border: none;
+            // border-bottom: 0.1rem solid color($colors, light);
+            ion-icon 
+            {
+                font-size: 2rem;
+            }
+        }
+
+        ion-icon
+        {
+            color: #2754a2 !important;
+            color: #000 !important;
+        }
+        .menu-list .child 
+        {
+            padding-left: 8vw !important;
+            font-size: 1.28rem;
+        }
+        .menu-list .item .item-inner 
+        {
+            background: transparent;
+            border: none;
+        }
+
+        .list 
+        {
+            margin-bottom: 0 !important;
+        }
+        .profile 
+        {
+            .avatar-image 
+            {
+                //width: 100vw;
+                min-height: 25vh;
+                border-bottom: 1px solid color($colors, light);
+                .avatar-container 
+                {
+                    //width: 100vw;
+                    height: auto;
+                    left: 0;
+                    right: 0;
+                    transform: translateX(calc((100vw - 190px)/2));
+                }
+                .avatar-cropper 
+                {
+                    margin-top: 0vh;
+                    margin-bottom: 5vh;
+                    display: inline-block;
+                    position: relative;
+                    overflow: hidden;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    -ms-border-radius: 50%;
+                    -o-border-radius: 50%;
+                    border-radius: 50%;
+                    border: 1px solid color($colors, lightdark);
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+        }
+
+    .menu
+    {
+        background-color: #fff !important;
+    }
+
+    #company_name
+    {
+        color: #f6a531 !important;
+        color: #fff !important;
+        margin-left: 13vh;
+        margin-top: -17px;
+        font-size: 18px;
+    }
+
+    #company_name span
+    {
+        color: #2754a2 !important;
+        color: #fff !important;
+    }
+
+    .child
+    {
+        color: #2754a2 !important;
+        color: #000 !important;
+    }
+
+    .button-effect
+    {
+        background-color : #fff !important;
+    }
+
+    .ion-ios-right_arrow_icon,.ion-md-right_arrow_icon,.ion-wp-right_arrow_icon  
+    {
+        content: url(../assets/icon/right_arrow.png);
+        padding: 2px 0px 3px;
+        // opacity: 0.9;
+        //width: 30px;
+        //height: 32px;
+    }
+    .ion-ios-right_arrow_icon:before,.ion-md-right_arrow_icon:before,.ion-wp-right_arrow_icon:before 
+    {
+        content: url(../../assets/icon/right_arrow.png);
+        //width: 30px;
+    }
+
+    .ion-ios-down_arrow_icon,.ion-md-down_arrow_icon,.ion-wp-down_arrow_icon  
+    {
+        content: url(../assets/icon/down_arrow.png);
+        padding: 2px 0px 3px;
+        // opacity: 0.9;
+        //width: 30px;
+        //height: 32px;
+    }
+
+    .ion-ios-down_arrow_icon:before,.ion-md-down_arrow_icon:before,.ion-wp-down_arrow_icon:before 
+    {
+        content: url(../../assets/icon/down_arrow.png);
+        //width: 30px;
+    }
+
+    .ion-ios-arrow_back_icon,.ion-md-arrow_back_icon,.ion-wp-arrow_back_icon  
+    {
+        content: url(../assets/icon/arrow_back.svg);
+        padding: 9px 9px 9px;
+        // opacity: 0.9;
+        width: 45px;
+        //height: 32px;
+    }
+
+    .ion-ios-arrow_back_icon:before,.ion-md-arrow_back_icon:before,.ion-wp-arrow_back_icon:before 
+    {
+        content: url(../../assets/icon/arrow_back.svg);
+        width: 45px;
+    }
+
+    .iphone_5_size
+    {
+        padding-top: 9vh;
+    }
+
+    .iphone_6_size
+    {
+        padding-top: 12vh;
+    }
+
+    .list-md .profile
+    {
+        padding-top: 10vh;
+    }
+
+    .list-ios .profile
+    {
+        padding-top: 10vh;
+    }
+
+    @font-face
+    {
+        font-family: 'roboto';
+        //font-family: 'Segoe UI';
+        //src: url('../assets/fonts/segoe.woff2') format('woff2');
+    }
+
+    .footer_button .item-inner
+    {
+        border-bottom: 0px solid #fff !important;
+    }
+}

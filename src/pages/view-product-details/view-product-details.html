@@ -1,0 +1,397 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>Anythingelse</ion-title>
+    	<ion-buttons end>
+      		<button ion-button icon-only (click)="myWishlist()" *ngIf="login_type > 0">
+        		<ion-icon name="heart" ></ion-icon>
+        		<ion-badge class="cart-badge" *ngIf="my_wishlist_count != 0" style="color:#fff;background-color: #ed6663 !important;">{{ my_wishlist_count }}</ion-badge>
+      		</button>
+      		<button ion-button icon-only (click)="myCart()">
+        		<ion-icon name="tab_3_white" ></ion-icon>
+        		<ion-badge class="cart-badge" style="color:#fff;background-color: #ed6663 !important;" *ngIf="total_items_in_cart != 0">{{ total_items_in_cart }}</ion-badge>
+      		</button>
+    	</ion-buttons>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content class="page-product" parallax-header>
+    <!--<ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>-->
+    <!-- <div class="header-image"></div>
+    <div class="main-content">
+ 
+      <h2>Parallax Header</h2>
+ 
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+ 
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+ 
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+ 
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+ 
+    </div> -->
+
+    <div class="header-image" style="margin-bottom: 5px;">
+        <!-- <div style="float:right;margin-top:5px;">
+            <ion-icon name="heart" style="color: #d6d3d3 !important;font-size:1.6em;" *ngIf="is_wishlisted == 0" (click)="updateWishlist(is_wishlisted)"></ion-icon>
+            <ion-icon name="heart" style="color: #cc0000 !important;font-size:1.6em;" *ngIf="is_wishlisted == 1" (click)="updateWishlist(is_wishlisted)"></ion-icon>
+        </div> -->
+        <!-- <div style="float:left;width:50%;position: relative;min-height: 10px;">
+            <img src="assets/icon/discount.png" style="max-width:37%;padding: 5px;" *ngIf="discount_percent != '0'">
+            <div style="position: absolute;top:5px;top: 9.3px;left: 25px;color: #fff;font-size: 12px;font-weight: 600;"  *ngIf="discount_percent != '0'">{{ discount_percent }} %</div>
+        </div> -->
+
+        <div style="float:left;width:50%;min-height: 10px;">
+                <!-- <img src="assets/icon/discount.png" style="max-width:75%;padding: 5px;" *ngIf="catalogue_data.discount_percent != '0'">
+                <div style="position: absolute;top:5px;top: 9.3px;left: 25px;color: #fff;font-size: 12px;font-weight: 600;"  *ngIf="catalogue_data.discount_percent != '0'">{{ catalogue_data.discount_percent }} %</div> -->
+                <div class="text_gradient" style="margin-left: 10px;margin-top: 7px;font-size: 16px;font-weight: 600;"  *ngIf="discount_percent != '0'">{{ discount_percent }}% OFF</div>
+            </div>
+        <div style="float:left;width:50%;">
+            <div style="float:right;margin-top:5px;">
+                <ion-icon name="heart-outline" style="color: #000 !important;font-size:1.6em;" *ngIf="is_wishlisted == 0" (click)="updateWishlist(is_wishlisted)"></ion-icon>
+                <ion-icon name="heart" style="color: #f15a67 !important;font-size:1.6em;" *ngIf="is_wishlisted == 1" (click)="updateWishlist(is_wishlisted)"></ion-icon>
+            </div>
+        </div>
+        <div style="clear:both;"></div>
+
+        <div *ngFor="let product_data of product_data_array">
+            <ion-slides #slidersone class="ads-slider" pager autoplay="5000" speed="500" slidesPerView="1" zoom="true" style="margin-top: -10px;" *ngIf="product_data.photo1_size_medium != '' || product_data.photo2_size_medium != '' || product_data.photo3_size_medium != '' || product_data.photo4_size_medium != '' || product_data.photo5_size_medium != ''">
+                <ion-slide *ngIf="product_data.photo1_size_medium != ''">
+                    <img [src]="product_data.photo1_size_medium" style="width: 280px;margin: 0 auto !important;" (click)="zoomImage(product_data.photo1_size_medium)">
+                </ion-slide>
+                <ion-slide *ngIf="product_data.photo2_size_medium != ''">
+                    <img [src]="product_data.photo2_size_medium" style="width: 280px;margin: 0 auto !important;" (click)="zoomImage(product_data.photo2_size_medium)">
+                </ion-slide>
+                <ion-slide *ngIf="product_data.photo3_size_medium != ''">
+                    <img [src]="product_data.photo3_size_medium" style="width: 280px;margin: 0 auto !important;" (click)="zoomImage(product_data.photo3_size_medium)">
+                </ion-slide>
+                <ion-slide *ngIf="product_data.photo4_size_medium != ''">
+                    <img [src]="product_data.photo4_size_medium" style="width: 280px;margin: 0 auto !important;" (click)="zoomImage(product_data.photo4_size_medium)">
+                </ion-slide>
+                <ion-slide *ngIf="product_data.photo5_size_medium != ''">
+                    <img [src]="product_data.photo5_size_medium" style="width: 280px;margin: 0 auto !important;" (click)="zoomImage(product_data.photo5_size_medium)">
+                </ion-slide>
+            </ion-slides>
+            <ion-fab right middle *ngIf="product_data.photo1_size_large != '' || product_data.photo2_size_large != '' || product_data.photo3_size_large != '' || product_data.photo4_size_large != '' || product_data.photo5_size_large != ''">
+                <button ion-fab color="light" mini><ion-icon name="share"></ion-icon></button>
+                <ion-fab-list side="left">
+                    <!-- <button ion-fab (click)="facebookShare(product_data.product_name,product_data.product_url)"><ion-icon name="logo-facebook"></ion-icon></button> -->
+                    <button ion-fab (click)="whatsappShare(product_data.product_name,product_data.product_url)"><ion-icon name="logo-whatsapp"></ion-icon></button>
+                    <!-- <button ion-fab (click)="twitterShare(product_data.product_name,product_data.product_url)"><ion-icon name="logo-twitter"></ion-icon></button>
+                    <button ion-fab (click)="otherShare(product_data.product_name,product_data.product_url)"><ion-icon name="logo-googleplus"></ion-icon></button> -->
+                </ion-fab-list>
+            </ion-fab>
+        </div>
+    </div>
+    <div class="main-content" style="left: 12px;right: 12px;margin-bottom: 12px;border-radius: 10px;">
+        <div class="product-detail-wrapper" *ngFor="let product_data of product_data_array" style="margin-bottom: 40px;margin-top: 5px;padding-left:10px;
+        padding-right:10px;">
+            <div class="label_bold" style="text-align:center;">
+                <div style="margin-top: 10px;">{{ product_data.product_name }}</div>
+                <!-- <div style="margin-top: 5px;font-size:12px;font-weight:400;">SKU : <span style="font-size:15px;font-weight:500;">{{ product_data.variant_sku_id }}</span>
+                </div> -->
+                <div *ngIf="product_data.avg_review == '0.5'">
+                    <img src="assets/icon/rating_1.svg" style="max-width:40%;">
+                </div>
+                <div *ngIf="product_data.avg_review == '1'">
+                    <img src="assets/icon/rating_2.svg" style="max-width:40%;">
+                </div>
+                <div *ngIf="product_data.avg_review == '1.5'">
+                    <img src="assets/icon/rating_3.svg" style="max-width:40%;">
+                </div>
+                <div *ngIf="product_data.avg_review == '2'">
+                    <img src="assets/icon/rating_4.svg" style="max-width:40%;">
+                </div>
+                <div *ngIf="product_data.avg_review == '2.5'">
+                    <img src="assets/icon/rating_5.svg" style="max-width:40%;">
+                </div>
+                <div *ngIf="product_data.avg_review == '3'">
+                    <img src="assets/icon/rating_6.svg" style="max-width:40%;">
+                </div>
+                <div *ngIf="product_data.avg_review == '3.5'">
+                    <img src="assets/icon/rating_7.svg" style="max-width:40%;">
+                </div>
+                <div *ngIf="product_data.avg_review == '4'">
+                    <img src="assets/icon/rating_8.svg" style="max-width:40%;">
+                </div>
+                <div *ngIf="product_data.avg_review == '4.5'">
+                    <img src="assets/icon/rating_9.svg" style="max-width:40%;">
+                </div>
+                <div *ngIf="product_data.avg_review == '5'">
+                    <img src="assets/icon/rating_10.svg" style="max-width:40%;">
+                </div>
+                <div style="margin-top: 5px;">
+                    <div class="price-wrapper" *ngIf="product_data.product_price < product_data.product_mrp" style="margin-top: 0vh !important;text-align:center;"> 
+                        <span id="" class="sale-price text_gradient" style="font-size: 16px;font-weight: 700;"> 
+                            {{ product_data.product_price | currency:'INR':true:'1.1-1' }}
+                        </span>
+                        <span id="" class="old-price">
+                            {{ product_data.product_mrp | currency:'INR':true:'1.1-1' }}
+                        </span>
+                        <span style="color:#f15a67;" *ngIf="discount_save != '' && discount_save != '0'">
+                            (Save - {{ discount_save | currency:'INR':true:'1.1-1' }})
+                        </span>
+                        
+                        <!-- <div style="font-size:12px;font-weight:400;margin-top: 2px !important;">
+                            Available Qty : <span style="font-size:15px;font-weight:500;">{{ product_data.product_qty }}</span>
+                        </div> -->
+                        <div style="margin-top: 2px !important;">
+                            <span style="color:#dc2c2c;" *ngIf="in_stock == 0">
+                            ( Out Of Stock )
+                            </span>
+                            <span style="color:#008000;" *ngIf="in_stock > 0">
+                                ( In Stock )
+                            </span>
+                            <span style="color:#80d34c;" *ngIf="is_returnable == 0">
+                                ( Non Returnable )
+                            </span>
+                            <span style="color:#80d34c;" *ngIf="is_returnable == 1">
+                                ( Returnable )
+                            </span>
+                        </div>
+                        <!-- <div style="margin-top: 5px !important;" *ngIf="in_stock == 0">
+                            <button ion-item round medium (click)="notify()" class="text_gradient four_side_border_gradient error_submit_button">
+                                <span class="text_grdient">Notify</span>
+                            </button>
+                        </div> -->
+                    </div>
+
+                    <div class="price-wrapper" *ngIf="product_data.product_price >= product_data.product_mrp" style="margin-top: 0vh !important;text-align:center;">
+                        <span id="" class="sale-price text_gradient" style="font-size: 16px;font-weight: 700;">
+                            {{ product_data.product_price | currency:'INR':true:'1.1-1' }}
+                        </span>
+                        <span style="color:#f15a67;" *ngIf="discount_save != '' && discount_save != '0'">
+                            (Save - {{ discount_save | currency:'INR':true:'1.1-1' }})
+                        </span>
+                        <div style="margin-top: 2px !important;">
+                            <span style="color:#dc2c2c;" *ngIf="in_stock == 0">
+                            ( Out Of Stock )
+                            </span>
+                            <span style="color:#008000;" *ngIf="in_stock > 0">
+                                ( In Stock )
+                            </span>
+                            <span style="color:#80d34c;" *ngIf="is_returnable == 0">
+                                ( Non Returnable )
+                            </span>
+                            <span style="color:#80d34c;" *ngIf="is_returnable == 1">
+                                ( Returnable )
+                            </span>
+                        </div>
+                        <!-- <div style="margin-top: 5px !important;" *ngIf="in_stock == 0">
+                            <button ion-item round medium (click)="notify()" class="text_gradient four_side_border_gradient error_submit_button">
+                                <span class="text_grdient">Notify</span>
+                            </button>
+                        </div> -->
+                        <!-- <div style="font-size:12px;font-weight:400;margin-top: 2px !important;">
+                            Available Qty : <span style="font-size:15px;font-weight:500;">{{ product_data.product_qty }}</span><span style="padding-left:8px;color:#000 !important;" *ngIf="product_data.discount_percent != 0">({{ product_data.discount_percent }}%)</span>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+            <ion-list class="variant_list" *ngIf="variant_group_data_array != ''">
+                <ion-item *ngFor="let variant_group_data of this.variant_group_data_array">
+                    <span style="font-size:15px;font-weight:500;">{{ variant_group_data.variant_title }}</span>
+                    <ion-slides #slidersone class="ads-slider variant" slidesPerView="5" style="margin-top: -6px;">
+                        <ion-slide *ngFor="let variant_group of variant_group_data.variant_data" (click)="openProductDetails(variant_group.product_variant_seo_url)">
+                            <span style="font-size:12px;font-weight:400;border:1px solid #fff;border-radius:3px;background-color:#fff;color:#808080;padding:5px;" *ngIf="variant_group.is_selected == 0">
+                                {{ variant_group.value }}
+                            </span>
+                            <span class="" style="border:1px solid #808080;color:#808080;font-size:13px;font-weight:600;border-radius:3px;padding:5px;" *ngIf="variant_group.is_selected == 1">
+                                {{ variant_group.value }}
+                            </span>
+                        </ion-slide>
+                    </ion-slides>
+                </ion-item>
+            </ion-list>
+
+            <p style="font-size: 13px;color: #333;" *ngIf="product_min_qty != 0">Min Quantity for this product is <b>{{ product_min_qty }}</b>.</p>
+            <p style="font-size: 13px;margin-top: -8px;color: #333;" *ngIf="product_min_qty != 0">It will be added to cart for first time.</p>
+
+        <ion-segment [(ngModel)]="product_description_type" style="margin-top:2vh;">
+            <ion-segment-button value="1" *ngIf="product_short_description != '' || key_feature_1 != '' || key_feature_2 != '' || key_feature_3 != ''">
+                Description
+            </ion-segment-button>
+            <ion-segment-button value="2" *ngIf="specification_data_array != ''">
+                Specification
+            </ion-segment-button>
+            <ion-segment-button value="3">
+                Reviews
+            </ion-segment-button>
+        </ion-segment>
+
+        <div [ngSwitch]="product_description_type">
+            <div *ngSwitchCase="'1'" style="margin-top:2vh;">
+                <ion-card>
+                    <ion-card-content>
+                        <span>
+                            {{ product_short_description }}
+                        </span>
+                        <p *ngIf="key_feature_1 != ''">{{ key_feature_1 }}</p>
+                        <p *ngIf="key_feature_2 != ''">{{ key_feature_2 }}</p>
+                        <p *ngIf="key_feature_3 != ''">{{ key_feature_3 }}</p>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+            <div *ngSwitchCase="'2'" style="margin-top:2vh;">
+                <ion-card *ngIf="specification_data_array != ''">
+                    <ion-card-content *ngFor="let specification_data of specification_data_array" style=" padding: 0px 0px !important;">
+                        <ion-grid>
+                            <ion-row>
+                                <ion-col style="max-width:50%">
+                                    <span style="font-weight: 500;font-size:14px;">
+                                        {{ specification_data.specification_title }}
+                                    </span>
+                                </ion-col>
+                                <ion-col style="max-width:50%">
+                                    <span style="font-weight: 400;font-size:13px;">
+                                        {{ specification_data.specification_value }}
+                                    </span>
+                                </ion-col>
+                            </ion-row>
+                        </ion-grid>
+                    </ion-card-content>
+                </ion-card>
+                <ion-card *ngIf="specification_data_array == ''">
+                    <ion-card-content>
+                        <p>No Specification</p>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+            <div *ngSwitchCase="'3'" style="margin-top:2vh;">
+                <ion-card *ngIf="reviews_data_array != ''">
+                    <ion-card-header style="padding: 10px !important;" (click)="viewReviews(1)" *ngIf="is_show_review == 0">
+                        <div style="float:left;font-size: 15px;font-weight: 500;">View Reviews</div>
+                        <div><ion-icon name="eye" style="float:right;font-size: 21px;"></ion-icon></div>
+                        <div style="clear:both;"></div>
+                    </ion-card-header>
+                    <ion-card-header style="padding: 10px !important;" (click)="viewReviews(0)" *ngIf="is_show_review == 1">
+                        <div style="float:left;font-size: 15px;font-weight: 500;">Hide Reviews</div>
+                        <div><ion-icon name="eye-off" style="float:right;font-size: 21px;"></ion-icon></div>
+                        <div style="clear:both;"></div>
+                    </ion-card-header>
+                    <div *ngIf="is_show_review == 1">
+                        <ion-card-content *ngFor="let reviews_data of reviews_data_array">
+                            <div style="font-size: 16px;font-weight: 500;float:left;">
+                                {{ reviews_data.review_title }}
+                            </div>
+                            <div style="float:right;">
+                                <p *ngIf="reviews_data.total_star == 1">
+                                    <ion-icon name="star" style="color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#ddd;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#ddd;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#ddd;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#ddd;"></ion-icon>
+                                </p>
+                                <p *ngIf="reviews_data.total_star == 2">
+                                    <ion-icon name="star" style="color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#ddd;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#ddd;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#ddd;"></ion-icon>
+                                </p>
+                                <p *ngIf="reviews_data.total_star == 3">
+                                    <ion-icon name="star" style="color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#ddd;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#ddd;"></ion-icon>
+                                </p>
+                                <p *ngIf="reviews_data.total_star == 4">
+                                    <ion-icon name="star" style="color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#ddd;"></ion-icon>
+                                </p>
+                                <p *ngIf="reviews_data.total_star == 5">
+                                    <ion-icon name="star" style="color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#FFC107;"></ion-icon>
+                                    <ion-icon name="star" style="padding-left:5px;color:#FFC107;"></ion-icon>
+                                </p>
+                            </div>
+                            <div style="clear:both;">
+                            </div>
+                            <p style="font-size: 13px;font-weight: 400;">
+                                {{ reviews_data.review_comment }}
+                            </p>
+                  
+                            <p>
+                                {{ reviews_data.updated_on }}
+                            </p>     
+                        </ion-card-content>
+                    </div>
+                </ion-card>
+                <ion-card *ngIf="reviews_data_array == ''">
+                    <ion-card-content>
+                        <p style="font-weight: 300;"><span style="font-weight:500;padding-right:5px;">0</span>Reviews</p>
+                        <p style="font-weight: 500;">Be the first to give review</p>
+                    </ion-card-content>
+                </ion-card>
+                <ion-card>
+                    <ion-card-content>
+                        <form [formGroup]="moduleForm">
+                            <ion-list class="clear-list">
+                                <ion-item>
+                                    <ion-icon class="input-icon" name="title_icon" item-left></ion-icon>
+                                    <ion-input formControlName="review_title" type="text" [class.invalid]="!moduleForm.controls.review_title.valid && (moduleForm.controls.review_title.dirty || submitAttempt)" placeholder="Enter Review Title"></ion-input>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-icon class="input-icon" name="comment_icon" item-left></ion-icon>
+                                    <ion-input formControlName="review_comment" type="text" [class.invalid]="!moduleForm.controls.review_comment.valid && (moduleForm.controls.review_comment.dirty || submitAttempt)" placeholder="Enter Review Comment" rows="1"></ion-input>
+                                </ion-item>
+
+                                <ion-item class="invalid_item" *ngIf="!moduleForm.controls.review_comment.valid  && (moduleForm.controls.review_comment.dirty || submitAttempt)">
+                                    <p>Please enter valid review comment</p>
+                                </ion-item>
+
+                                <ion-item>
+                                    <ion-icon name="star" (click)="getStar(1)" [ngClass]="cssTempReviewStarClass1"></ion-icon>
+                                    <ion-icon name="star" (click)="getStar(2)" [ngClass]="cssTempReviewStarClass2"></ion-icon>
+                                    <ion-icon name="star" (click)="getStar(3)" [ngClass]="cssTempReviewStarClass3"></ion-icon>
+                                    <ion-icon name="star" (click)="getStar(4)" [ngClass]="cssTempReviewStarClass4"></ion-icon>
+                                    <ion-icon name="star" (click)="getStar(5)" [ngClass]="cssTempReviewStarClass5"></ion-icon>
+                                </ion-item>
+
+                                <button ion-button color="dark" outline round block (click)="addReview()" style="margin: 0 auto;margin-top: 5px;">
+                                    Save
+                                </button>
+                            </ion-list>
+                        </form>
+                    </ion-card-content>
+                </ion-card>
+            </div>
+        </div>
+      </div>
+    </div>
+</ion-content>
+
+
+
+<ion-footer *ngIf="item_count == 1 && product_data_array != ''">
+    <div class="footer" *ngIf="in_stock == 1">
+        <div class="button-left background_gradient">
+            <button ion-button full clear  class="label_bold" (click)="addToCart(1)"><ion-icon name="cart" style="padding: 0px 10px;"></ion-icon><span class="label_bold">Add To Cart</span></button>
+        </div>
+        <div class="button-right">
+            <button ion-button full clear (click)="addToCart(2)" class="three_side_border_gradient text_gradient"><ion-icon name="buy_icon" style="padding: 0px 10px;"></ion-icon><span class="label_bold text_gradient">Buy Now</span></button>
+        </div>
+    </div>
+    <div class="footer" *ngIf="in_stock == 0 && mobile_access_token != ''">
+        <div class="button-left background_gradient notify_button" style="width:100%;">
+            <button ion-button full clear class="label_bold" (click)="notify()"><span class="label_bold">Notify</span></button>
+        </div>
+    </div>
+</ion-footer>
+
+
+
+
+
+
+

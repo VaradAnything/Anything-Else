@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title style="font-size:17px !important;">
+            Mobile Verification
+        </ion-title>
+        <ion-buttons end *ngIf="is_mobile_entered == 1">
+          	<button ion-button icon-only (click)="changeMobileNumber()" style="color:#fff !important;">
+        		change
+          	</button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  	<form [formGroup]="moduleForm" style="margin-top: 3vh;">
+    	<ion-list class="clear-list">
+    		<ion-item>
+        		<ion-icon class="input-icon" name="email_icon" item-left></ion-icon>
+        		<ion-input type="text" [disabled]="disable_email" value="{{ email }}"></ion-input>
+      		</ion-item>
+
+      		<ion-item>
+        		<ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+        		<ion-input formControlName="mobile" type="number" [class.invalid]="!moduleForm.controls.mobile.valid && (moduleForm.controls.mobile.dirty || submitAttempt)" placeholder="Enter Mobile Number" [disabled]="disable_mobile" value="{{ mobile }}"></ion-input>
+      		</ion-item>
+
+      		<ion-item class="invalid_item" *ngIf="!moduleForm.controls.mobile.valid  && (moduleForm.controls.mobile.dirty || submitAttempt)">
+        		<p>Please enter valid mobile.</p>
+      		</ion-item>
+
+      		<button ion-button color="dark" outline round block (click)="continue()" *ngIf="is_show_otp_div == 0" style="margin: 0 auto;margin-top: 25px;">
+      			Get OTP
+      		</button>
+    	</ion-list>
+  	</form>
+
+  	<form [formGroup]="moduleFormOtp" style="margin-top: 5vh;" *ngIf="is_show_otp_div == 1">
+    	<ion-list class="clear-list" style="margin-top: -6vh;">
+      		<ion-item>
+        		<ion-icon class="input-icon" name="otp" item-left></ion-icon>
+        		<ion-input formControlName="otp" type="number" [class.invalid]="!moduleFormOtp.controls.otp.valid && (moduleFormOtp.controls.otp.dirty || submitAttemptOtp)" placeholder="Enter OTP" [disabled]="disable_otp"></ion-input>
+      		</ion-item>
+
+      		<ion-item class="invalid_item" *ngIf="!moduleFormOtp.controls.otp.valid  && (moduleFormOtp.controls.otp.dirty || submitAttemptOtp)">
+        		<p>Please enter a valid OTP.</p>
+      		</ion-item>
+    	</ion-list>
+  	</form>
+</ion-content>
+
+<ion-footer style="bottom:0px !important;" *ngIf="is_show_footer_otp == 1">
+  	<div class="footer">
+    	<div class="button-left background_gradient">
+      		<button ion-button full class="label_bold" clear (click)="getOtp(2)"><ion-icon name="resend_otp_icon" style="padding: 0px 10px;"></ion-icon><span class="label_bold">Resend OTP</span></button>
+    	</div>
+    	<div class="button-right">
+      		<button ion-button full clear (click)="verifyOtp()" class="three_side_border_gradient text_gradient"><ion-icon name="verify_otp_icon" style="padding: 0px 10px;"></ion-icon><span class="label_bold text_gradient">Verify OTP</span></button>
+    	</div>
+  	</div>
+</ion-footer>

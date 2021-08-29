@@ -1,0 +1,238 @@
+<ion-header>
+
+</ion-header>
+
+
+<!-- <ion-content padding style="background-image:url('assets/icon/bg_img.jpg');background-repeat: no-repeat;background-size: 100% 100%;"> -->
+<ion-content padding [style.background-size]="'100% ' + shouldHeight" class="abc">
+	<!-- <video playsinline autoplay loop src="assets/icon/background_video.mp4"></video> -->
+  	<!-- <div class="login-header" style="padding-top:15vh;">
+      <div class="top-logo">
+        <img src="assets/icon/logo.png" style="width: 25vw;margin: 0 auto;display: block;">
+      </div>
+  	</div> -->
+  	<!-- <img src="assets/icon/login_Screen_05_1.png"> -->
+  	<div class="welcome_header"><span style="font-weight: 300;">Welcome to</span> Anythingelse!</div>
+  	<!-- <div style="text-align:center;margin-top: 40px;">
+  		<ion-grid>
+  			<ion-row>
+  				<ion-col style="max-width:40%;">
+  					<div style="border:1px solid #ddd;padding:10px;">
+  						<ion-icon name="facebook_icon"></ion-icon><span style="padding-left:8px;color:#fff;font-weight:500;font-size:15px;">Facebook</span>
+  					</div>
+  				</ion-col>
+  				<ion-col style="max-width:10%;">
+  				</ion-col>
+  				<ion-col style="max-width:40%;">
+  					<div style="border:1px solid #ddd;padding:10px;">
+  						<ion-icon name="google_plus_icon"></ion-icon><span style="padding-left:8px;color:#fff;font-weight:500;font-size:15px;">Google+</span>
+  					</div>
+  				</ion-col>
+  			</ion-row>
+  		</ion-grid>
+  	</div> -->
+    <!-- <div style="text-align:center;margin-top: 40px;">
+        <ion-grid>
+            <ion-row>
+                <ion-col style="max-width:40%;" (click)="fbSignin()" *ngIf="is_signup == 0">
+                    <img src="assets/icon/facebook.svg">
+                </ion-col>
+                <ion-col style="max-width:40%;" (click)="fbSignin()" *ngIf="is_signup == 1">
+                    <img src="assets/icon/facebook.svg">
+                </ion-col>
+                <ion-col style="max-width:10%;">
+                </ion-col>
+                <ion-col style="max-width:40%;" (click)="googleSignin()" *ngIf="is_signup == 0">
+                    <img src="assets/icon/google_plus.svg">
+                </ion-col>
+                <ion-col style="max-width:40%;" (click)="googleSignin()" *ngIf="is_signup == 1">
+                    <img src="assets/icon/google_plus.svg">
+                </ion-col>
+            </ion-row>
+            <ion-row style="margin-top: 30px;">
+            <ion-col width-50>
+                <hr style="height: 1px;">
+            </ion-col>
+            <ion-col style="color:#fff;padding-left:5px;font-size:16px;font-weight:300;font-family: 'roboto';">
+                OR
+            </ion-col>
+            <ion-col width-50>
+                <hr style="height: 1px;">
+            </ion-col>
+        </ion-row>
+        </ion-grid>
+    </div> --> 
+    
+    <!-- <div style="margin-top: 30px;">
+      <ion-grid>
+        <ion-row>
+          <ion-col style="max-width:40%;text-align:left !important;margin:0 0 !important;" (click)="googleSignin()" *ngIf="is_signup == 0">
+              <img src="assets/icon/google_plus.svg">
+          </ion-col>
+          <ion-col style="max-width:40%;text-align:left !important;margin:0 0 !important;" (click)="googleSignup()" *ngIf="is_signup == 1">
+              <img src="assets/icon/google_plus.svg">
+          </ion-col>
+        </ion-row>
+        <ion-row style="margin-top: 30px;">
+            <ion-col width-50>
+                <hr style="height: 1px;">
+            </ion-col>
+            <ion-col style="color:#fff;padding-left:5px;font-size:16px;font-weight:300;font-family: 'roboto';">
+                OR
+            </ion-col>
+            <ion-col width-50>
+                <hr style="height: 1px;">
+            </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div> -->
+  	<form [formGroup]="moduleForm" class="form_adjust" *ngIf="is_signup == 0">
+      <ion-list class="clear-list">
+        	<ion-item>
+          	<ion-icon class="input-icon" name="email_icon" item-left></ion-icon>
+          	<ion-input formControlName="email" type="text" [class.invalid]="!moduleForm.controls.email.valid && (moduleForm.controls.email.dirty || submitAttempt)" placeholder="Email"></ion-input>
+        	</ion-item>
+
+        	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.email.valid  && (moduleForm.controls.email.dirty || submitAttempt)">
+          	<p>Please enter valid email.</p>
+        	</ion-item>
+
+        	<ion-item>
+          	<ion-icon class="input-icon" name="password_icon" item-left></ion-icon>
+          	<ion-input formControlName="password" type="password" [class.invalid]="!moduleForm.controls.password.valid && (moduleForm.controls.password.dirty || submitAttempt)" placeholder="Password"></ion-input>
+        	</ion-item>
+
+        	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.password.valid  && (moduleForm.controls.password.dirty || submitAttempt)">
+          	<p>Password must be minimum six characters.</p>
+        	</ion-item>
+
+        	<button ion-button color="dark" outline block (click)="signin()" class="submit_button" style="text-transform: uppercase !important;">
+        		Sign In
+        	</button>
+      </ion-list>
+  	</form>
+
+    <form [formGroup]="moduleForm1" class="form_adjust" *ngIf="is_signup == 1">
+        <ion-list class="clear-list">
+            <ion-item>
+                <ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+                <ion-input formControlName="first_name" type="text" [class.invalid]="!moduleForm1.controls.first_name.valid && (moduleForm1.controls.first_name.dirty || submitAttempt1)" placeholder="First Name"></ion-input>
+            </ion-item>
+
+            <ion-item class="invalid_item" *ngIf="!moduleForm1.controls.first_name.valid  && (moduleForm1.controls.first_name.dirty || submitAttempt1)">
+                <p>Please enter first name</p>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+                <ion-input formControlName="last_name" type="text" [class.invalid]="!moduleForm1.controls.last_name.valid && (moduleForm1.controls.last_name.dirty || submitAttempt1)" placeholder="Last Name"></ion-input>
+            </ion-item>
+
+            <ion-item class="invalid_item" *ngIf="!moduleForm1.controls.last_name.valid  && (moduleForm1.controls.last_name.dirty || submitAttempt1)">
+                <p>Please enter last name</p>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon class="input-icon" name="email_icon" item-left></ion-icon>
+                <ion-input formControlName="email" type="text" [class.invalid]="!moduleForm1.controls.email.valid && (moduleForm1.controls.email.dirty || submitAttempt1)" placeholder="Email"></ion-input>
+            </ion-item>
+
+            <ion-item class="invalid_item" *ngIf="!moduleForm1.controls.email.valid  && (moduleForm1.controls.email.dirty || submitAttempt1)">
+                <p>Please enter valid email</p>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+                <ion-input formControlName="mobile" type="number" [class.invalid]="!moduleForm1.controls.mobile.valid && (moduleForm1.controls.mobile.dirty || submitAttempt1)" placeholder="Mobile Number"></ion-input>
+            </ion-item>
+
+            <ion-item class="invalid_item" *ngIf="!moduleForm1.controls.mobile.valid  && (moduleForm1.controls.mobile.dirty || submitAttempt1)">
+                <p>Please enter valid mobile</p>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon class="input-icon" name="password_icon" item-left></ion-icon>
+                <ion-input formControlName="password" type="password" [class.invalid]="!moduleForm1.controls.password.valid && (moduleForm1.controls.password.dirty || submitAttempt1)" placeholder="Password"></ion-input>
+            </ion-item>
+
+            <ion-item class="invalid_item" *ngIf="!moduleForm1.controls.password.valid  && (moduleForm1.controls.password.dirty || submitAttempt1)">
+                <p>Password should be minimum six characters</p>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon class="input-icon" name="password_icon" item-left></ion-icon>
+                <ion-input formControlName="confirm_password" type="password" [class.invalid]="!moduleForm1.controls.confirm_password.valid && (moduleForm1.controls.confirm_password.dirty || submitAttempt1)" placeholder="Confirm Password"></ion-input>
+            </ion-item>
+
+            <ion-item class="invalid_item" *ngIf="!moduleForm1.controls.confirm_password.valid  && (moduleForm1.controls.confirm_password.dirty || submitAttempt1)">
+                <p>Confirm Password should be matched with password</p>
+            </ion-item>
+
+            <!-- <ion-list radio-group id="radio_list_id" no-lines>
+                <ion-grid>
+                    <ion-row>
+                        <ion-col style="max-width:10%;">
+                        </ion-col>
+                        <ion-col style="max-width:40%;padding-left: 10px;">
+                            <ion-item>
+                                <ion-label>Male</ion-label>
+                                <ion-radio (ionSelect)="getGender('male')" checked="true"></ion-radio>
+                            </ion-item>
+                        </ion-col>
+                        <ion-col style="max-width:10%;">
+                        </ion-col>
+                        <ion-col style="max-width:40%;">
+                            <ion-item>
+                                <ion-label>Female</ion-label>
+                                <ion-radio (ionSelect)="getGender('female')"></ion-radio>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+            </ion-list> -->
+
+            <ion-grid style="margin-top: 5px;margin-bottom: 5px;">
+              <ion-row style="margin-left: 3vh;margin-right: 3vh;">
+                <ion-col style="max-width:30%;border: 1px solid #fff;" *ngIf="gender == 'male'">
+                    <p style="color: #fff;font-weight: 500;">Male</p>
+                </ion-col>
+                <ion-col style="max-width:30%;" (click)="getGender('male')" *ngIf="gender == 'female'">
+                    <p style="color: #fff;font-weight: 500;">Male</p>
+                </ion-col>
+                <ion-col style="max-width:30%;border: 1px solid #fff;" *ngIf="gender == 'female'">
+                    <p style="color: #fff;font-weight: 500;">Female</p>
+                </ion-col>
+                <ion-col style="max-width:30%;" (click)="getGender('female')" *ngIf="gender == 'male'">
+                    <p style="color: #fff;font-weight: 500;">Female</p>
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+
+            <button ion-button color="dark" outline block (click)="signup()" class="submit_button" style="text-transform: uppercase !important;">
+                Sign Up
+            </button>
+        </ion-list>
+    </form>
+
+  	<div style="float:left;">
+    	<p class="p_left" *ngIf="is_signup == 0">Don't have an account?<span (click)="loginChoice(1)" style="font-weight:600;text-transform: uppercase;">Sign Up</span></p>
+  	</div>
+  	<div style="float:right;" (click)="forgot()">
+    	<p class="p_right" *ngIf="is_signup == 0">Forgot Password?</p>
+  	</div>
+  	<div style="clear:both;">
+  	</div>
+  	<div style="float:right;width: 30%;text-align: right;" (click)="skip()">
+      <p style="color:#fff;font-size:14px;font-weight:600;text-decoration:underline;text-transform: uppercase;"  *ngIf="is_signup == 0">Skip</p>
+    </div>
+  	<div style="clear:both;">
+  	</div>
+
+
+
+    <div style="float:left;">
+        <p class="p_left" *ngIf="is_signup == 1">Already have an account?<span (click)="loginChoice(0)" style="text-transform: uppercase;">Sign In</span></p>
+    </div>
+    <div style="clear:both;">
+    </div>
+</ion-content>

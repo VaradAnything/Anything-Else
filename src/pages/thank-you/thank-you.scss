@@ -1,0 +1,48 @@
+page-thank-you 
+{
+    .error_handling_div
+    {
+        .error_handling_image
+        {
+            //margin-top:6vh;
+            max-width: 100%;
+            margin: 0vh auto;
+            display: block; 
+            margin-bottom: 0vh;
+        }
+
+        div
+        {
+            margin-top: 4vh;
+            background-color: #f1f1f1;
+            //height: 50vh;
+        }
+
+        .error_p1
+        {
+            font-size:18px;
+            font-weight:500;
+            text-align:center;
+            margin-bottom: -10px;
+            padding-top:5vh;
+        }
+
+        .error_p2
+        {
+            font-size:15px;
+            font-weight:400;
+            text-align:center;
+            margin-bottom: -10px;
+        }
+
+        .error_submit_button
+        {
+            margin-top: 5vh;
+            border-radius: 5px;
+            margin: 5vh auto;
+            display:block;
+            padding-bottom: 1px;
+            text-transform: capitalize;
+        }
+    }
+}

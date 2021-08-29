@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg enable-background="new -2626.347 2601.276 24 24" version="1.1" viewBox="-2626.3 2601.3 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+		<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+			<linearGradient id="f" x1="-2624.7" x2="-2606.4" y1="2604.7" y2="2604.7" gradientUnits="userSpaceOnUse">
+				<stop stop-color="#80d34c" offset="0"/>
+				<stop stop-color="#80d34c" offset="1"/>
+			</linearGradient>
+				<line x1="-2624.2" x2="-2606.9" y1="2604.7" y2="2604.7" stroke="url(#f)"/>
+			<linearGradient id="e" x1="-2624.7" x2="-2617.1" y1="2610.7" y2="2610.7" gradientUnits="userSpaceOnUse">
+				<stop stop-color="#80d34c" offset="0"/>
+				<stop stop-color="#80d34c" offset="1"/>
+			</linearGradient>
+				<line x1="-2624.2" x2="-2617.6" y1="2610.7" y2="2610.7" stroke="url(#e)"/>
+			<linearGradient id="d" x1="-2624.7" x2="-2617.6" y1="2616.6" y2="2616.6" gradientUnits="userSpaceOnUse">
+				<stop stop-color="#80d34c" offset="0"/>
+				<stop stop-color="#80d34c" offset="1"/>
+			</linearGradient>
+				<line x1="-2624.2" x2="-2618.1" y1="2616.6" y2="2616.6" stroke="url(#d)"/>
+			<linearGradient id="c" x1="-2624.7" x2="-2609.4" y1="2622.6" y2="2622.6" gradientUnits="userSpaceOnUse">
+				<stop stop-color="#80d34c" offset="0"/>
+				<stop stop-color="#80d34c" offset="1"/>
+			</linearGradient>
+				<line x1="-2624.2" x2="-2609.9" y1="2622.6" y2="2622.6" stroke="url(#c)"/>
+		</g>
+	<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+		<linearGradient id="b" x1="-2616.6" x2="-2606.5" y1="2614.5" y2="2614.5" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+			<circle cx="-2611.5" cy="2614.5" r="4.552" stroke="url(#b)"/>
+		<linearGradient id="a" x1="-2608.8" x2="-2603.4" y1="2619.9" y2="2619.9" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+			<line x1="-2603.9" x2="-2608.3" y1="2622.1" y2="2617.7" stroke="url(#a)"/>
+	</g>
+			<rect x="-2626.4" y="2601.3" width="24" height="24" fill="none"/>
+</svg>

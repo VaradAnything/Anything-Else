@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg enable-background="new -2501.347 2563.526 24 24" version="1.1" viewBox="-2501.3 2563.5 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+<g fill="none">
+	<g stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+		<linearGradient id="e" x1="-2499.3" x2="-2479.4" y1="2575.5" y2="2575.5" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+			<rect x="-2498.8" y="2565.7" width="18.89" height="19.662" stroke="url(#e)"/>
+		<linearGradient id="d" x1="-2495" x2="-2483.7" y1="2570.4" y2="2570.4" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+			<line x1="-2494.5" x2="-2484.2" y1="2570.4" y2="2570.4" stroke="url(#d)"/>
+		<linearGradient id="c" x1="-2495" x2="-2483.7" y1="2573.9" y2="2573.9" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+			<line x1="-2494.5" x2="-2484.2" y1="2573.9" y2="2573.9" stroke="url(#c)"/>
+		<linearGradient id="b" x1="-2495" x2="-2483.7" y1="2577.5" y2="2577.5" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+			<line x1="-2494.5" x2="-2484.2" y1="2577.5" y2="2577.5" stroke="url(#b)"/>
+		<linearGradient id="a" x1="-2495" x2="-2487.7" y1="2581" y2="2581" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+			<line x1="-2494.5" x2="-2488.2" y1="2581" y2="2581" stroke="url(#a)"/>
+	</g>
+	<rect x="-2501.3" y="2563.5" width="24" height="24"/>
+</g>
+</svg>

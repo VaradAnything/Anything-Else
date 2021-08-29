@@ -1,0 +1,57 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Return Orders</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher> -->
+    
+    <div *ngIf="item_count == 0" class="error_handling_div">
+        <img src="assets/icon/error.svg" class="error_handling_image">
+
+        <div>
+            <p class="error_p1">Some Error Occurred</p>
+            <p class="error_p2">Click below to try again</p>
+
+            <button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+                <span class="text_gradient">Try Again</span>
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="item_count == 1 && orders_data_array == ''" class="error_handling_div">
+        <img src="assets/icon/account_3_1.svg" class="error_handling_image">
+
+        <div>
+            <p class="error_p1">You have no return orders</p>
+            <p class="error_p2">Click below to return order your favourite product</p>
+
+            <button ion-button color="dark" round medium (click)="viewCategories()" class="text_gradient four_side_border_gradient error_submit_button">
+                <span class="text_gradient">View Product</span>
+            </button>
+        </div>
+    </div>
+
+    <ion-list class="order-list" *ngIf="item_count == 1 && orders_data_array != ''">
+        <div *ngFor="let orders_data of orders_data_array">
+            <button ion-item (click)="returnOrder(orders_data.order_id,orders_data.order_status,orders_data.order_status_color,orders_data.order_date)">
+                <ion-avatar item-left>
+                    <img src="assets/icon/account_1_1.svg">
+                </ion-avatar>
+                <div class="order-number"><span class="font_size_13">Order id</span> <span class="font_size_15 font_weight_400">#{{ orders_data.order_id }}</span></div>
+                <div class="font_size_13 margin_top_3 font_weight_300">{{ orders_data.order_date }}</div>
+                <div class="order-number" style="margin-bottom:5px;"><span class="font_size_13">Qty:</span> <span class="font_size_15 font_weight_400">{{ orders_data.total_quantity }}</span>  <span class="font_size_12">Total:</span> <span class="font_weight_400" style="font-size:14px;">{{ orders_data.total_price  | currency:'INR':true:'1.1-1' }}</span></div>
+                <div class="order-number" style="margin-bottom:5px;" *ngIf="orders_data.slot_day != '' && orders_data.slot_time != ''"><span class="font_size_13">Delivery On: </span> <span class="font_size_12 font_weight_400">{{ orders_data.slot_day }} {{ orders_data.slot_time }}</span> </div>
+                <!-- <div class="order-number" style="margin-bottom:5px;color:#ed6663;" *ngIf="total_wallet_amount != 0"><span class="font_size_13">Wallet Amount:</span> <span class="font_size_15 font_weight_400">{{ orders_data.total_wallet_amount | currency:'INR':true:'1.1-1' }}</span></div>
+                <div class="order-number" style="margin-bottom:5px;color:#ed6663;" *ngIf="total_wallet_amount == 0"><span class="font_size_13">Wallet Amount:</span> <span class="font_size_15 font_weight_400">{{ orders_data.total_wallet_amount | currency:'INR':true:'1.1-1' }}</span></div> -->
+                <ion-note item-right [ngStyle]="{'color':orders_data.order_status_color}">
+                  {{ orders_data.order_status }}
+                </ion-note>
+            </button>
+        </div>
+    </ion-list>
+</ion-content>

@@ -1,0 +1,119 @@
+.ios, .md 
+{
+    page-view-intro-slider 
+    {
+        /*.scroll-content 
+        {
+            padding: 0px !important;
+        }
+
+        ion-slide 
+        {
+            background-color: #fff;
+        }
+ 
+        ion-slide img 
+        {
+            //height: 60vh !important;
+            //width: auto !important;
+            //margin-top: -15vh !important;
+            margin-top: 12vh !important;
+            max-width: 85% !important;
+        }
+
+        .slider_content_div
+        {
+            background-color: #f1f1f1;
+            height: 45vh;
+            padding: 50px;
+            padding-top: 12vh;
+            margin-top: 5vh;
+            padding-left: 2vh;
+            padding-right: 2vh;
+        }
+
+        .p1
+        {
+            margin-top: -1vh;
+            font-size:18px;
+            font-weight:500;
+            text-align:center;
+            margin-bottom: -10px;
+        }
+
+        .p2
+        {
+            margin-top: 5vh;
+            font-size: 15px;
+            font-weight: 400;
+            text-align: center;
+            color: #a5a1a1;
+        }
+
+        .p3
+        {
+            margin-top: 3vh;
+            font-size: 15px;
+            font-weight: 500;
+            text-align: center;
+            color: #2754a2;
+        }*/
+
+        .toolbar-background 
+        {
+            background: transparent !important;
+            border-color: transparent !important;
+        }
+
+        .slide-zoom 
+        {
+            height: 100%;
+        }
+
+        .slide-title 
+        {
+            margin-top: 2.8rem;
+        }
+
+        .slide-image 
+        {
+            max-height: 50%;
+            max-width: 70%;
+            margin: 36px 0;
+        }
+
+        b 
+        {
+            font-weight: 500;
+        }
+
+        p 
+        {
+            padding: 0 40px;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #60646B;
+            b 
+            {
+                color: #000000;
+            }
+        }
+
+
+        .get_started_button
+        {
+            border-top: 1px solid #6db63f;
+            border-bottom: 1px solid #6db63f;
+            border-left: 1px solid #6db63f;
+            border-right: 1px solid #6db63f;
+            border-radius: 5px;
+            background: linear-gradient(to left, #6db63f -2%, #6db63f 117%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0 auto;
+            display:block;
+            padding-bottom: 1px;
+            text-transform: none;
+        }
+    }
+}

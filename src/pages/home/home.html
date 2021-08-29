@@ -1,0 +1,266 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <img src="assets/icon/menu.svg" class="menu-image animated_rIn rotateIn">
+        </button>
+        <ion-title>
+            Anythingelse
+        </ion-title>
+        <!-- <ion-title *ngIf="is_search_show == 1">
+            <ion-searchbar [(ngModel)]="product_search" placeholder="what are you looking for?" style="margin-top: 3px !important;" (keyup)="eventHandler($event.keyCode,$event.target.value)"></ion-searchbar>
+        </ion-title>
+      <ion-buttons end>
+            <button ion-button icon-only id="notification_btn" (click)="showSearch(1)" *ngIf="is_search_show == 0">
+                <ion-icon name="search"></ion-icon>
+            </button>
+            <button ion-button icon-only id="notification_btn" (click)="showSearch(0)" *ngIf="is_search_show == 1">
+                <ion-icon name="close"></ion-icon>
+            </button>
+      </ion-buttons> -->
+        <ion-buttons end>
+            <button ion-button icon-only id="notification_btn" (click)="reloadPage()">
+                <ion-icon name="refresh"></ion-icon>
+            </button>
+          <!-- <button ion-button icon-only id="notification_btn" (click)="getLocationAddress()" style="margin-top:7px;">
+            <ion-icon name="pin_white_icon" style="font-size:1.7em;"></ion-icon>
+          </button> -->
+            <!-- <button ion-button icon-only id="notification_btn" (click)="openNotification()">
+                <ion-icon name="notification_icon" style="font-size:1.7em;"></ion-icon>
+            </button> --> 
+        </ion-buttons>
+        <!-- <ion-buttons end>
+            <button ion-button icon-only (click)="searchShow(1)" *ngIf="is_search_show == 0">
+                <ion-icon name="down_arrow_icon"></ion-icon>
+            </button>
+            <button ion-button icon-only (click)="searchShow(0)" *ngIf="is_search_show == 1">
+                <ion-icon name="up_arrow_icon"></ion-icon>
+            </button>
+        </ion-buttons> -->
+    </ion-navbar>
+    <ion-grid *ngIf="is_search_show == 1" style="background-color: #fff;padding:0px !important;">
+        <ion-row>
+            <ion-col style="max-width: 100%;padding:0px !important;"><ion-searchbar [(ngModel)]="product_search" placeholder="what are you looking for?" style="margin-top: 3px !important;" (focusin)="onFocus($event)" (focusout)="onBlur($event)"></ion-searchbar></ion-col>
+            <!--<ion-col style="max-width: 10%;font-size:1.8em;padding:0px !important;text-align: center;background-color: #fff;" (click)="getPermission()"><ion-icon style="font-size:1em;color:#000;vertical-align: sub;" name="mic_icon"></ion-icon></ion-col>-->
+            <!-- <ion-col style="max-width: 10%;font-size:1.8em;padding:0px !important;text-align: center;background-color: #fff;" (click)="goToSearchCataloguePage()"><ion-icon style="font-size:1em;color:#80d34c;vertical-align: sub;" name="search_icon"></ion-icon></ion-col>
+            <ion-col style="max-width: 10%;font-size:1.8em;padding:0px !important;text-align: center;background-color: #fff;" (click)="resetSearch()"><ion-icon  style="font-size:1em;color:#80d34c;vertical-align: sub;" name="refresh_icon"></ion-icon></ion-col> -->
+        </ion-row>
+    </ion-grid>
+    <!-- <ion-grid style="background-color: #fff;padding:0px !important;padding-left:7px !important;padding-right: 5px !important;" *ngIf="total_address_results != '' || total_address_results != null">
+        <ion-row>
+            <ion-col style="max-width: 100%;padding:0px !important;">
+              <ion-select interface="popover">
+                  <ion-option style="font-size: 1.2rem !important; font-weight: 500 !important;" (ionSelect)="onChangeLocation('','','','','','','','','0')" [selected]="true"><span>Select Location</span></ion-option>
+                <ion-option style="font-size: 1.2rem !important; font-weight: 500 !important;" (ionSelect)="onChangeLocation(address_data.countryCode,address_data.countryName,address_data.postalCode,address_data.administrativeArea,address_data.subAdministrativeArea,address_data.locality,address_data.subLocality,address_data.thoroughfare,'1')" *ngFor="let address_data of total_address_results; let i = index;"><span>{{ address_data.thoroughfare }}<span *ngIf="address_data.thoroughfare != '' && address_data.thoroughfare != null" style="margin-left:5px;"> , </span>{{ address_data.subLocality }}<span *ngIf="address_data.subLocality != '' && address_data.subLocality != null" style="margin-left:5px;">  </span>{{ address_data.locality }}<span *ngIf="address_data.locality != '' && address_data.locality != null" style="margin-left:5px;">  </span>{{ address_data.postalCode }}<span *ngIf="address_data.postalCode != '' && address_data.postalCode != null" style="margin-left:5px;"> - </span>{{ address_data.administrativeArea }}<span *ngIf="address_data.administrativeArea != '' && address_data.administrativeArea != null" style="margin-left:5px;">  </span>{{ address_data.countryName }}</span></ion-option>
+              </ion-select>
+            </ion-col>
+        </ion-row>
+    </ion-grid> -->
+    <!-- <div style="text-align:center;margin-top:1vh;background-color: #fefefe;" *ngIf="is_search_show == 0" (click)="searchShow(1)"><ion-icon name="down_arrow_icon"></ion-icon></div>
+    <div style="text-align:center;margin-top:-1vh;background-color: #fefefe;" *ngIf="is_search_show == 1" (click)="searchShow(0)"><ion-icon name="up_arrow_icon"></ion-icon></div> -->
+</ion-header>
+
+
+<ion-content>
+
+    <ion-slides #slidersone pager loop="true" autoplay="2500" speed="500" effect="coverflow" slidesPerView="1" style="height:auto;width:auto;" *ngIf="item_count == 1 && slider_data_array != ''">
+        <ion-slide *ngFor="let slider_data of slider_data_array">
+            <img [src]="slider_data.big_image_name" style="height: auto;width:auto;" (click)="openCategories(slider_data.category_id,slider_data.sub_category_id,slider_data.sub_sub_category_id)">
+        </ion-slide>
+    </ion-slides>
+
+
+    <!-- <ion-slides #slidersone loop="true" autoplay="2500" speed="500" slidesPerView="3.3" style="height:170px;width:auto;margin-top: 3vh;background-color: #fff;margin-top: 3.5vh;" *ngIf="category_count == 1 && category_data_array != ''">
+        <ion-slide *ngFor="let category_data of category_data_array" (click)="openSubCategories(category_data.id,category_data.category_title,category_data.is_sub_category)" style="padding-left:5px;padding-right:5px;">
+            <img [src]="category_data.category_small_banner_image" style="border: 2px solid #00000059;border-radius:50%;width: 100px;height: 100px;margin: 0 auto !important;padding: 15px;margin-top: 25px !important;">
+            <p style="font-size:14px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ category_data.category_title }}</p>
+        </ion-slide>
+    </ion-slides> -->
+
+    <ion-slides #slidersone autoplay="2500" speed="500" slidesPerView="3.3" style="height:120px;width:auto;margin-top: 3vh;background-color: #fff;margin-top: 3.5vh;" *ngIf="category_count == 1 && category_data_array != ''">
+        <ion-slide *ngFor="let category_data of category_data_array" (click)="openSubCategories(category_data.id,category_data.category_title,category_data.is_sub_category)" style="border-right: 1px solid #ddd;padding-left:5px;padding-right:5px;">
+            <img [src]="category_data.category_small_banner_image" style="margin: 0 auto !important;padding: 10px;">
+            <p style="margin-top: -5px !important;font-size:14px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;">{{ category_data.category_title }}</p>
+        </ion-slide>
+    </ion-slides>
+
+    <ion-slides #slidersone loop="true" slidesPerView="1" style="height:auto;width:auto;" *ngIf="item_count == 0">
+      <ion-slide>
+          <img src="assets/icon/no_image_1.jpg" style="height: auto;width:auto;">
+      </ion-slide>
+      <ion-slide>
+          <img src="assets/icon/no_image_1.jpg" style="height: auto;width:auto;">
+      </ion-slide>
+      <ion-slide>
+          <img src="assets/icon/no_image_1.jpg" style="height: auto;width:auto;">
+      </ion-slide>
+    </ion-slides>
+
+    <!-- <div id="title_div" *ngIf="item_count == 1 && best_selling_product_data_array != ''" style="margin-top: 3vh;font-weight: 700;font-size: 16px;"  [ngStyle]="{'color':bg_image1_color }"><b>Best Selling Products</b></div> -->
+    <div id="title_div" *ngIf="item_count == 1 && best_selling_product_data_array != ''" style="color:#333;margin-top: 3vh;font-weight: 700;font-size: 16px;"><b>Best Selling Products</b></div>
+    <ion-slides #sliderstwo class="ads-slider image-background1" slidesPerView="2.3" style="height:auto !important;margin-top: 9vh;" *ngIf="item_count == 1 && best_selling_product_data_array != ''" [style.background-image]="'url(' + bg_image1 + ')'">
+        <ion-slide *ngFor="let best_selling_product_data of best_selling_product_data_array" (click)="openProductDetails(best_selling_product_data.product_variant_seo_url)">
+            <ion-card style="height: auto;border: 1px solid #f4f4f4;box-shadow: 2px 2px 40px -12px #999;border-radius: 7px;">
+                <ion-card-content>
+                  <img [src]="best_selling_product_data.product_image1" style="width: 280px;margin: 0 auto !important;padding: 0px;" [ngClass]="cssClass1">
+                </ion-card-content>
+                <ion-card-header style="padding: 5px !important;">
+                    <p>{{ best_selling_product_data.product_title }}</p>
+                </ion-card-header>
+
+                <div>
+                    <ion-card-header class="card_header_price" style="margin-top: -8px;" *ngIf="best_selling_product_data.product_price < best_selling_product_data.product_mrp"><div class="sale-price"><span  class="text_gradient" style="font-weight: 500;">{{ best_selling_product_data.product_price | currency:'INR':true:'1.1-1' }}</span><span class="old-price" style="margin-left:5px;">{{ best_selling_product_data.product_mrp | currency:'INR':true:'1.1-1' }}</span></div></ion-card-header>
+
+                    <ion-card-header class="card_header_price" style="margin-top: -8px;" *ngIf="best_selling_product_data.product_price >= best_selling_product_data.product_mrp">
+                    <div class="sale-price"><span class="text_gradient" style="font-weight: 500;">{{ best_selling_product_data.product_price | currency:'INR':true:'1.1-1' }}</span></div>
+                    </ion-card-header>
+                </div>
+            </ion-card>
+        </ion-slide>
+        <ion-slide>
+        </ion-slide>
+    </ion-slides>
+
+
+    <img [src]="banner_image4" style="margin-top: 4vh;" *ngIf="item_count == 1" (click)="openCategories(banner_category_id_4,banner_sub_category_id_4,banner_sub_sub_category_id_4)">
+    <img src="assets/icon/no_image_2.jpg" style="margin-top: 4vh;" *ngIf="item_count == 0">
+    <!-- <ion-button icon-only tooltip="sdnfjksdnfn " navTooltip>Hi</ion-button> -->
+
+    <div id="title_div" *ngIf="item_count == 1 && new_arrival_product_data_array != ''" style="color:#333;margin-top: 2.3vh;">New Arrival Products</div>
+    <ion-slides #sliderstwo class="ads-slider image-background3" slidesPerView="2.3" style="height:auto !important;margin-top: 6vh;" *ngIf="item_count == 1 && new_arrival_product_data_array != ''">
+        <ion-slide *ngFor="let new_arrival_product_data of new_arrival_product_data_array" (click)="openProductDetails(new_arrival_product_data.product_variant_seo_url)">
+            <ion-card style="height: auto;padding: 0px;">
+                <ion-card-content>
+                  <img [src]="new_arrival_product_data.product_image1" style="width: 280px;margin: 0 auto !important;" [ngClass]="cssClass2">
+                </ion-card-content>
+                <ion-card-header style="padding: 5px !important;">
+                    <p>{{ new_arrival_product_data.product_title }}</p>
+                </ion-card-header>
+
+                <div>
+                    <ion-card-header class="card_header_price" style="margin-top: -8px;" *ngIf="new_arrival_product_data.product_price < new_arrival_product_data.product_mrp"><div class="sale-price"><span  class="text_gradient" style="font-weight: 500;">{{ new_arrival_product_data.product_price | currency:'INR':true:'1.1-1' }}</span><span class="old-price" style="margin-left:5px;">{{ new_arrival_product_data.product_mrp | currency:'INR':true:'1.1-1' }}</span></div></ion-card-header>
+
+                    <ion-card-header class="card_header_price" style="margin-top: -8px;" *ngIf="new_arrival_product_data.product_price >= new_arrival_product_data.product_mrp">
+                    <div class="sale-price"><span class="text_gradient" style="font-weight: 500;">{{ new_arrival_product_data.product_price | currency:'INR':true:'1.1-1' }}</span></div>
+                    </ion-card-header>
+                </div>
+
+            </ion-card>
+        </ion-slide>
+    </ion-slides>
+
+    <img [src]="banner_image5" style="margin-top: 3vh;" *ngIf="item_count == 1" (click)="openCategories(banner_category_id_5,banner_sub_category_id_5,banner_sub_sub_category_id_5)">
+    <img src="assets/icon/no_image_2.jpg" style="margin-top: 3vh;" *ngIf="item_count == 0">
+
+    <!-- <div id="title_div" *ngIf="item_count == 1 && featured_product_data_array != ''" style="margin-top: 6vh;float:right;padding-right: 8px;margin-bottom: 15px;font-weight: 700;font-size: 16px;" [ngStyle]="{'color':bg_image2_color }"><b>Feature Products</b></div> -->
+    <div id="title_div" *ngIf="item_count == 1 && featured_product_data_array != ''" style="color:#333;margin-top: 2vh;float:left;padding-right: 8px;margin-bottom: 15px;font-weight: 700;font-size: 16px;"><b>Featured Products</b></div>
+    <ion-slides #sliderstwo class="ads-slider image-background2 left_spacing" slidesPerView="2.3" style="height:auto !important;margin-top: 7vh;" *ngIf="item_count == 1 && featured_product_data_array != ''" [style.background-image]="'url(' + bg_image2 + ')'">
+        <ion-slide *ngFor="let featured_product_data of featured_product_data_array" (click)="openProductDetails(featured_product_data.product_variant_seo_url)">
+            <ion-card style="height: auto;border: 1px solid #f4f4f4;box-shadow: 2px 2px 40px -12px #999;border-radius: 7px;margin-top: 4vh;">
+                <ion-card-content>
+                  <img [src]="featured_product_data.product_image1" style="width: 280px;margin: 0 auto !important;padding: 0px;">
+                </ion-card-content>
+                <ion-card-header style="padding: 5px !important;">
+                    <p>{{ featured_product_data.product_title }}</p>
+                </ion-card-header>
+
+                <div>
+                    <ion-card-header class="card_header_price" style="margin-top: -8px;" *ngIf="featured_product_data.product_price < featured_product_data.product_mrp"><div class="sale-price"><span  class="text_gradient" style="font-weight: 500;">{{ featured_product_data.product_price | currency:'INR':true:'1.1-1' }}</span><span class="old-price" style="margin-left:5px;">{{ featured_product_data.product_mrp | currency:'INR':true:'1.1-1' }}</span></div></ion-card-header>
+
+                    <ion-card-header class="card_header_price" style="margin-top: -8px;" *ngIf="featured_product_data.product_price >= featured_product_data.product_mrp">
+                    <div class="sale-price"><span class="text_gradient" style="font-weight: 500;">{{ featured_product_data.product_price | currency:'INR':true:'1.1-1' }}</span></div>
+                    </ion-card-header>
+                </div>
+            </ion-card>
+        </ion-slide>
+        <ion-slide>
+        </ion-slide>
+    </ion-slides>
+
+    <ion-slides #slidersone pager slidesPerView="1" style="height:auto;width:auto;margin-top: 4vh;" *ngIf="item_count == 1">
+        <ion-slide>
+            <img [src]="banner_image1" style="height: auto;width:auto;" (click)="openCategories(banner_category_id_1,banner_sub_category_id_1,banner_sub_sub_category_id_1)">
+        </ion-slide>
+        <ion-slide>
+            <img [src]="banner_image2" style="height: auto;width:auto;" (click)="openCategories(banner_category_id_2,banner_sub_category_id_2,banner_sub_sub_category_id_2)">
+        </ion-slide>
+        <ion-slide>
+            <img [src]="banner_image3" style="height: auto;width:auto;" (click)="openCategories(banner_category_id_3,banner_sub_category_id_3,banner_sub_sub_category_id_3)">
+        </ion-slide>
+    </ion-slides>
+    <ion-slides #slidersone pager slidesPerView="1" style="height:auto;width:auto;margin-top: 4vh;padding-bottom:50px;" *ngIf="item_count == 0">
+        <ion-slide>
+            <img src="assets/icon/no_image_2.jpg" style="height: auto;width:auto;">
+        </ion-slide>
+        <ion-slide>
+            <img src="assets/icon/no_image_2.jpg" style="height: auto;width:auto;">
+        </ion-slide>
+        <ion-slide>
+            <img src="assets/icon/no_image_2.jpg" style="height: auto;width:auto;">
+        </ion-slide>
+    </ion-slides>
+      <!-- <br> -->
+      <!-- <br *ngIf="is_search_show == 1">
+      <br *ngIf="is_search_show == 1">
+      <br *ngIf="is_search_show == 1">
+      <br *ngIf="is_search_show == 1"> -->
+    
+
+    <!-- <h6 (click)="viewProfile()">View Profile / Change Password / edit profile</h6>
+    <h6 (click)="addAddress()">Add Address</h6>
+    <h6 (click)="viewAddress()">View Address / Delete Address / Edit Address</h6>
+    <h6 (click)="viewOrders()">View Orders/ View Order Details</h6>
+    <h6 (click)="viewWishlists()">View My Wishlists / Remove From my Wishlists</h6>
+    <h6 (click)="viewCart()">View My Cart / increase or decrease product quantity</h6>
+    <h6 (click)="viewReview()">View Review / Add Review</h6>
+    <h6 (click)="viewCheckout()">View Checkout</h6>
+    <h6 (click)="viewRange()">View Range</h6>
+
+    <ion-list>
+       <ion-item>
+            <ion-range dualKnobs="true" pin="true" [(ngModel)]="structure" color="dark">
+                <ion-icon range-left small name="brush"></ion-icon>
+                <ion-icon range-right name="brush"></ion-icon>
+            </ion-range>
+        </ion-item>
+    </ion-list> -->
+</ion-content>
+
+<ion-footer style="bottom:0px !important;background-color: #fefefe;">
+    <div class="footer">
+        <ion-grid>
+            <ion-row>
+                <ion-col (click)="openTabsPage(1)">
+                    <ion-icon name="tab_1"></ion-icon>
+                    <div class="text_gradient">Home</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(2)">
+                    <ion-icon name="tab_2_black"></ion-icon>
+                    <div>Categories</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(3)">
+                    <div *ngIf="cart_items_count > 0" class="cart_badge">{{ cart_items_count }}</div>
+                    <ion-icon name="tab_3_black"></ion-icon>
+                    <div>My Cart</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(4)">
+                    <ion-icon name="tab_4_black"></ion-icon>
+                    <div>Account</div>
+                </ion-col>
+            </ion-row>
+            <!-- <ion-row>
+                <ion-col (click)="openTabsPage(1)">
+                    <span class="text_gradient">Home</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(2)">
+                    <span>Categories</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(3)">
+                    <span>My Cart</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(4)">
+                    <span>Account</span>
+                </ion-col>
+            </ion-row> -->
+        </ion-grid>
+    </div>
+</ion-footer>

@@ -1,0 +1,253 @@
+page-view-returns 
+{
+    .scroll-content 
+    {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-bottom: 12px !important;
+    }
+    
+    .order-list 
+    {
+      border: none;
+      .date 
+      {
+          font-size: 1.46rem;
+          font-weight: 400;
+      }
+      .order-number 
+      {
+          margin-top: 0px;
+          font-size: 1.36rem;
+          font-weight: 300;
+      }
+    }
+    .order-list .item 
+    {
+      border: none;
+      //height: 13vh;
+      border-bottom: 1px solid color($colors, light);
+    }
+    .order-list .item .item-inner 
+    {
+      border: none;
+    }
+
+    ion-note
+    {
+      font-size: 12px;
+    }
+
+    ion-avatar ion-img
+    {
+      border-radius: 50%;
+      border-bottom: 0.55px solid #c8c7cc;
+    }
+
+    .font_size_13
+    {
+      font-size: 13px;
+    }
+
+    .margin_top_3
+    {
+      margin-top: 3px;
+    }
+
+    .font_weight_300
+    {
+      font-weight: 300;
+    }
+
+    .font_size_15
+    {
+      font-size: 15px;
+    }
+
+    .font_weight_400
+    {
+      font-weight: 400;
+    }
+
+    .text_decoration
+    {
+      text-decoration: underline;
+    }
+
+    .card-ios,.card-md,.card-wp
+    {
+      border: 1px solid #f4f4f4;
+      border-radius: 10px;
+      box-shadow: 2px 2px 40px -12px #999;
+    }
+
+    .card-content-ios,.card-content-md,.card-content-wp 
+    {
+      padding: 10px 10px !important;
+      display: block;
+    }
+
+    .card-ios,.card-md,.card-wp 
+    {
+      margin: 0px !important;
+      width: 100% !important;
+    }
+
+    .footer 
+    {
+      width: 100vw;
+      bottom: 0;
+      //height: 42px;
+      height: 55px;
+      .button-left 
+      {
+          display: inline-block;
+          //background-color: #1b1b1b;
+          background-color: #ed6663;
+          button 
+          {
+            height: 42px;
+            color: color($colors, pearl);
+            font-size: 1.5rem;
+            width: 40vw;
+            margin: 0 0 0 0;
+            padding: 0 0 0 0;
+          }
+          .quantity-select 
+          {
+            display: none;
+          }
+      }
+      .button-right 
+      {
+          text-align: right;
+          width: 60vw;
+          display: inline-block;
+          position: fixed;
+          right: 0;
+          background-color: #2f2e2e;
+          button 
+          {
+            height: 42px;
+            color: color($colors, pearl);
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 0 0 0 0;
+          }
+      }
+    }
+
+    .grid
+    {
+      //padding: 0px !important;
+    }
+
+    .ion-ios-tab_1,.ion-md-tab_1,.ion-wp-tab_1,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-tab_1-outline
+    {
+        content: url(../assets/icon/home.svg);
+        padding: 2px 0px 3px;
+        width: 23px;
+    }
+
+    .ion-ios-tab_1:before,.ion-md-tab_1:before,.ion-wp-tab_1:before
+    {
+        content: url(../../assets/icon/home.svg);
+        width: 23px;
+    }
+  
+    .ion-ios-tab_2,.ion-md-tab_2,.ion-wp-tab_2,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-tab_2-outline
+    {
+        content: url(../assets/icon/category.svg);
+        padding: 2px 0px 3px;
+        width: 23px;
+    }
+
+    .ion-ios-tab_2:before,.ion-md-tab_2:before,.ion-wp-tab_2:before 
+    {
+        content: url(../../assets/icon/category.svg);
+        width: 23px;
+    }
+
+    .ion-ios-tab_3,.ion-md-tab_3,.ion-wp-tab_3,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-tab_3-outline
+    {
+        content: url(../assets/icon/cart.svg);
+        padding: 2px 0px 3px;
+        width: 23px;
+    }
+  
+    .ion-ios-tab_3:before,.ion-md-tab_3:before,.ion-wp-tab_3:before 
+    {
+        content: url(../../assets/icon/cart.svg);
+        width: 23px;
+    }
+
+    .ion-ios-tab_4,.ion-md-tab_4,.ion-wp-tab_4,ion-icon.tab-button-icon.icon.icon-ios.ion-ios-tab_4-outline
+    {
+        content: url(../assets/icon/account_5.svg);
+        padding: 2px 0px 3px;
+        width: 23px;
+    }
+  
+    .ion-ios-tab_4:before,.ion-md-tab_4:before,.ion-wp-tab_4:before 
+    {
+        content: url(../../assets/icon/account_5.svg);
+        width: 23px;
+    }
+
+    .item-ios,.item-md,.item-wp 
+    {
+      padding-left: 0px !important;
+    }
+
+    .item-ios.item-block .item-inner,.item-md.item-block .item-inner,.item-wp.item-block .item-inner 
+    {
+      padding-right: 0px !important;
+    }
+
+    .error_handling_div
+    {
+        .error_handling_image
+        {
+            margin-top:6vh;
+            max-width: 65%;
+            margin: 8vh auto;
+            display: block; 
+            margin-bottom: 0vh;
+        }
+
+        div
+        {
+            margin-top: 8vh;
+        }
+
+        .error_p1
+        {
+            font-size:18px;
+            font-weight:500;
+            text-align:center;
+            margin-bottom: -10px;
+        }
+
+        .error_p2
+        {
+            font-size: 15px;
+            font-weight: 400;
+            text-align: center;
+            color: #a5a1a1;
+        }
+
+        .error_submit_button
+        {
+            border-radius: 5px;
+            margin: 0 auto;
+            display:block;
+            padding-bottom: 1px;
+            text-transform: capitalize;
+        }
+    }
+
+  .order-list .item 
+  {
+    border-bottom: none !important;
+  }
+}

@@ -1,0 +1,52 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>viewReview</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher> -->
+  	
+	<b>View Review</b>
+	<ion-list>
+		<ion-item *ngFor="let review_data of review_data_array">
+			{{ review_data.review_title }}
+		</ion-item>
+	</ion-list>
+
+	<b>Add Review</b>
+	<form [formGroup]="moduleForm" style="margin-top:20vh;">
+	    <ion-list class="clear-list">
+	    	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="review_title" type="text" [class.invalid]="!moduleForm.controls.review_title.valid && (moduleForm.controls.review_title.dirty || submitAttempt)" placeholder="Review Title"></ion-input>
+	      	</ion-item>
+
+	  
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="pin" item-left></ion-icon>
+	        	<ion-textarea formControlName="review_comment" type="text" [class.invalid]="!moduleForm.controls.review_comment.valid && (moduleForm.controls.review_comment.dirty || submitAttempt)" placeholder="Review Comment" rows="1"></ion-textarea>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.review_comment.valid  && (moduleForm.controls.review_comment.dirty || submitAttempt)">
+	        	<p>Please enter valid review comment</p>
+	      	</ion-item>
+
+	    	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="rating" type="text" [class.invalid]="!moduleForm.controls.rating.valid && (moduleForm.controls.rating.dirty || submitAttempt)" placeholder="Review Rating"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.rating.valid  && (moduleForm.controls.rating.dirty || submitAttempt)">
+	        	<p>Please enter rating</p>
+	      	</ion-item>
+
+	      	<button ion-button color="dark" outline round block (click)="addReview()" style="margin: 0 auto;margin-top: 25px;">
+	      		Save
+	      	</button>
+	    </ion-list>
+  	</form>
+</ion-content>

@@ -1,0 +1,462 @@
+<!--
+import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { IonicPage, NavController, NavParams,LoadingController,ToastController, ModalController } from 'ionic-angular';
+import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import { Http }  from '@angular/http';
+import { ModuleProvider } from '../../providers/module-service';
+
+@IonicPage()
+@Component
+({
+  selector: 'page-add-address',
+  templateUrl: 'add-address.html',
+})
+
+export class AddAddressPage 
+{
+	loadingModal: any;
+  	db_result: any;
+  	
+	moduleForm: FormGroup;
+  	submitAttempt: boolean = false;
+  
+  	first_name : string = '';
+  	last_name : string = '';
+  	email : string = '';
+  	mobile : string = '';
+
+  	state_data_array : any;
+  	city_data_array : any;
+  	country_id : string = '101';
+  	state_id : string = '';
+  	city_id : string = '';
+  	is_city_show : number = 0;
+
+  	constructor(public navCtrl: NavController, public navParams: NavParams,public http:Http,public moduleService: ModuleProvider,public formBuilder: FormBuilder,public loadingCtrl: LoadingController,public toastCtrl: ToastController,public modalCtrl: ModalController) 
+	{
+	    this.navCtrl= navCtrl;
+	    this.http = http;
+	    this.moduleForm = formBuilder.group
+	    ({
+	      	first_name: ['', Validators.compose([Validators.minLength(1),Validators.maxLength(30),  Validators.required])],
+	      	last_name: ['', Validators.compose([Validators.minLength(1),Validators.maxLength(30),  Validators.required])],
+	      	company: ['', Validators.compose([Validators.minLength(1),Validators.maxLength(50)])],
+	      	mobile: ['', Validators.compose([Validators.minLength(10),Validators.maxLength(10),  Validators.required])],
+	      	address1: ['', Validators.compose([Validators.minLength(1),Validators.maxLength(200),  Validators.required])],
+	      	address2: ['', Validators.compose([Validators.minLength(1),Validators.maxLength(200),  Validators.required])],
+	      	pincode: ['', Validators.compose([Validators.minLength(6),Validators.maxLength(6),  Validators.required])]
+	    });
+	}
+
+  	ionViewWillEnter() 
+  	{
+    	console.log('ionViewWillEnter EditProfilePage');
+    	this.getState();
+  	}
+
+  	getState()
+  	{
+  		var mobile_access_token = JSON.parse(localStorage.getItem('mobile_access_token'));
+  		/*this.loadingModal = this.loadingCtrl.create(
+	    {
+	      	spinner:'hide',
+      		content: '<img src="assets/icon/loader.gif">',
+      		//dismissOnPageChange: true,
+                enableBackdropDismiss: true
+	    });
+	    this.loadingModal.present();*/
+	    this.moduleService.view_state_data(this.country_id,mobile_access_token).then((db_result: any) => 
+	    {
+	      	this.db_result = db_result;
+	      	if(db_result.status_code == 200)
+	      	{
+	        	this.state_data_array = db_result.data.state;
+	      	}
+	      	else
+	      	{
+	        	this.state_data_array = '';
+	      	}
+	      	//this.loadingModal.dismiss();
+	    },(reson) => 
+    	{
+      		//this.loadingModal.dismiss();
+    	});
+  	}
+
+  	getCity($event)
+  	{
+  		this.state_id = $event;
+  		var mobile_access_token = JSON.parse(localStorage.getItem('mobile_access_token'));
+  		this.loadingModal = this.loadingCtrl.create(
+	    {
+	      	spinner:'hide',
+      		content: '<img src="assets/icon/loader.gif">',
+      		//dismissOnPageChange: true,
+                enableBackdropDismiss: true
+	    });
+	    this.loadingModal.present();
+	    this.moduleService.view_city_data(this.country_id,this.state_id,mobile_access_token).then((db_result: any) => 
+	    {
+	      	this.db_result = db_result;
+	      	if(db_result.status_code == 200)
+	      	{
+	      		this.is_city_show = 1;
+	      		this.city_id = '';
+	        	this.city_data_array = db_result.data.city;
+	      	}
+	      	else
+	      	{
+	      		this.is_city_show = 0;
+	        	this.city_data_array = '';
+	      	}
+	      	this.loadingModal.dismiss();
+	    },(reson) => 
+    	{
+      		this.loadingModal.dismiss();
+    	});
+  	}
+
+  	getCityId($event)
+  	{
+  		this.city_id = $event;
+  	}
+
+    eventHandler(keyCode,data)
+  	{
+	    if(keyCode == 13)
+	    {
+	      this.addAddress();
+	    }
+  	}
+
+  	addAddress() 
+  	{
+    	this.submitAttempt = true;
+
+    	if(!this.moduleForm.valid)
+    	{ 
+      		
+    	} 
+    	else 
+    	{
+    		if(this.country_id != '' && this.state_id != '' && this.city_id != '')
+    		{
+    			var mobile_access_token = JSON.parse(localStorage.getItem('mobile_access_token'));
+				this.loadingModal = this.loadingCtrl.create
+	      		({ 
+	        		spinner:'hide',
+	        		content: '<img src="assets/icon/loader.gif">',
+      				//dismissOnPageChange: true,
+                enableBackdropDismiss: true
+	      		});
+	      		this.loadingModal.present();
+
+	      		let form_data = 
+	      		{
+	        		'first_name': this.moduleForm.value.first_name,'last_name': this.moduleForm.value.last_name,'company': this.moduleForm.value.company,'mobile': this.moduleForm.value.mobile,'address1': this.moduleForm.value.address1, 'address2': this.moduleForm.value.address2,'country_id': this.country_id,'state_id': this.state_id,'city_id': this.city_id,'pincode': this.moduleForm.value.pincode,'is_billing_default': '0','is_shipping_default': '0','mobile_access_token': mobile_access_token
+	      		};
+	      		this.moduleService.add_address('', { form_data }).then((data: any) => 
+	      		{
+			        if(data) 
+			        {
+			            this.loadingModal.dismiss();
+			            if(data.status_code == 200)
+			            {
+			              	let toast = this.toastCtrl.create
+			              	({
+			                  	message: data.message,
+			                  	duration: 1500,
+			                  	position: 'bottom',
+			              	});
+			              	toast.present();
+			              	this.navCtrl.pop();
+			            }
+			            else
+			            {
+			              	let toast = this.toastCtrl.create
+			              	({
+			                  	message: data.message,
+			                  	duration: 1500,
+			                  	position: 'top'
+			              	});
+			              	toast.present();  
+			            }     
+			        }
+	      		}, 
+	      		(reson) => 
+	      		{
+	          		this.loadingModal.dismiss();
+	      		});
+    		}
+    		else
+    		{
+    			if(this.country_id == '')
+    			{
+    				let toast = this.toastCtrl.create
+	              	({
+	                  	message: 'Please Select Country',
+	                  	duration: 1500,
+	                  	position: 'top'
+	              	});
+	              	toast.present();
+    			}
+    			else if(this.state_id == '')
+    			{
+    				let toast = this.toastCtrl.create
+	              	({
+	                  	message: 'Please Select State',
+	                  	duration: 1500,
+	                  	position: 'top'
+	              	});
+	              	toast.present();
+    			}
+    			else
+    			{
+    				let toast = this.toastCtrl.create
+	              	({
+	                  	message: 'Please Select City',
+	                  	duration: 1500,
+	                  	position: 'top'
+	              	});
+	              	toast.present();
+    			}
+    		}
+    	}
+  	}
+}
+
+-->
+
+<!-- <ion-header>
+  	<ion-navbar>
+    	<ion-title>Add Address</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<form [formGroup]="moduleForm">
+	    <ion-list class="clear-list">
+	    	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="first_name" type="text" [class.invalid]="!moduleForm.controls.first_name.valid && (moduleForm.controls.first_name.dirty || submitAttempt)" placeholder="First Name"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.first_name.valid  && (moduleForm.controls.first_name.dirty || submitAttempt)">
+	        	<p>Please enter first name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="last_name" type="text" [class.invalid]="!moduleForm.controls.last_name.valid && (moduleForm.controls.last_name.dirty || submitAttempt)" placeholder="Last Name"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.last_name.valid  && (moduleForm.controls.last_name.dirty || submitAttempt)">
+	        	<p>Please enter last name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="company" type="text" [class.invalid]="!moduleForm.controls.company.valid && (moduleForm.controls.company.dirty || submitAttempt)" placeholder="Enter Company Name"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.company.valid  && (moduleForm.controls.company.dirty || submitAttempt)">
+	        	<p>Please enter company name</p>
+	      	</ion-item>
+	      	
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+	        	<ion-input formControlName="mobile" type="number" [class.invalid]="!moduleForm.controls.mobile.valid && (moduleForm.controls.mobile.dirty || submitAttempt)" placeholder="Mobile"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.mobile.valid  && (moduleForm.controls.mobile.dirty || submitAttempt)">
+	        	<p>Please enter valid mobile</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+	        	<ion-textarea formControlName="address1" type="text" [class.invalid]="!moduleForm.controls.address1.valid && (moduleForm.controls.address1.dirty || submitAttempt)" placeholder="Enter Address 1" rows="1"></ion-textarea>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.address1.valid  && (moduleForm.controls.address1.dirty || submitAttempt)">
+	        	<p>Please enter valid address 1</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+	        	<ion-textarea formControlName="address2" type="text" [class.invalid]="!moduleForm.controls.address2.valid && (moduleForm.controls.address2.dirty || submitAttempt)" placeholder="Enter Address 2" rows="1"></ion-textarea>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.address2.valid  && (moduleForm.controls.address2.dirty || submitAttempt)">
+	        	<p>Please enter valid address 2</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	      		<ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+		      	<ion-label style="font-size: 14px;">
+		  				Country
+		  		</ion-label>
+		      	<ion-label style="font-size: 14px;float:right;">
+		  				India
+		  		</ion-label>
+			</ion-item>
+
+	      	<ion-item>
+	      		<ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+		      	<ion-label style="font-size: 14px;">
+		  			Select State
+		  		</ion-label>
+		      	<ion-select>
+			    	<ion-option value="{{ state_data.id }}" *ngFor="let state_data of state_data_array" (ionSelect)="getCity($event)">{{ state_data.state_name }}</ion-option>
+			  	</ion-select>
+			</ion-item>
+
+			<ion-item *ngIf="is_city_show == 1">
+				<ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+		      	<ion-label style="font-size: 14px;">
+		  			Select City
+		  		</ion-label>
+		      	<ion-select>
+			    	<ion-option value="{{ city_data.id }}" *ngFor="let city_data of city_data_array" (ionSelect)="getCityId($event)">{{ city_data.city_name }}</ion-option>
+			  	</ion-select>
+			</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon"  name="mobile_icon" item-left></ion-icon>
+	        	<ion-input formControlName="pincode" type="number" [class.invalid]="!moduleForm.controls.pincode.valid && (moduleForm.controls.pincode.dirty || submitAttempt)" placeholder="Enter Pincode" (keyup)="eventHandler($event.keyCode,$event.target.value)"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.pincode.valid  && (moduleForm.controls.pincode.dirty || submitAttempt)">
+	        	<p>Please enter pincode</p>
+	      	</ion-item>
+
+	      	<button ion-button color="dark" outline round block (click)="addAddress()" style="margin: 0 auto;margin-top: 25px;">
+	      		Save
+	      	</button>
+	    </ion-list>
+  	</form>
+</ion-content> -->
+
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>Add Address</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<form [formGroup]="moduleForm">
+	    <ion-list class="clear-list">
+	    	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="first_name" type="text" [class.invalid]="!moduleForm.controls.first_name.valid && (moduleForm.controls.first_name.dirty || submitAttempt)" placeholder="Enter First Name"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.first_name.valid  && (moduleForm.controls.first_name.dirty || submitAttempt)">
+	        	<p>Please enter first name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+	        	<ion-input formControlName="last_name" type="text" [class.invalid]="!moduleForm.controls.last_name.valid && (moduleForm.controls.last_name.dirty || submitAttempt)" placeholder="Enter Last Name"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.last_name.valid  && (moduleForm.controls.last_name.dirty || submitAttempt)">
+	        	<p>Please enter last name</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="company_icon" item-left></ion-icon>
+	        	<ion-input formControlName="company" type="text" [class.invalid]="!moduleForm.controls.company.valid && (moduleForm.controls.company.dirty || submitAttempt)" placeholder="Enter Company Name"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.company.valid  && (moduleForm.controls.company.dirty || submitAttempt)">
+	        	<p>Please enter company name</p>
+	      	</ion-item>
+	      	
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+	        	<ion-input formControlName="mobile" type="number" [class.invalid]="!moduleForm.controls.mobile.valid && (moduleForm.controls.mobile.dirty || submitAttempt)" placeholder="Enter Mobile Number"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.mobile.valid  && (moduleForm.controls.mobile.dirty || submitAttempt)">
+	        	<p>Please enter valid mobile</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="home_icon" item-left></ion-icon>
+	        	<ion-input formControlName="address1" type="text" [class.invalid]="!moduleForm.controls.address1.valid && (moduleForm.controls.address1.dirty || submitAttempt)" placeholder="Enter Address 1" rows="1"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.address1.valid  && (moduleForm.controls.address1.dirty || submitAttempt)">
+	        	<p>Please enter valid address 1</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon" name="home_icon" item-left></ion-icon>
+	        	<ion-input formControlName="address2" type="text" [class.invalid]="!moduleForm.controls.address2.valid && (moduleForm.controls.address2.dirty || submitAttempt)" placeholder="Enter Address 2" rows="1"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.address2.valid  && (moduleForm.controls.address2.dirty || submitAttempt)">
+	        	<p>Please enter valid address 2</p>
+	      	</ion-item>
+
+	      	<ion-item>
+	      		<ion-icon class="input-icon" name="pin_icon" item-left></ion-icon>
+	        	<ion-label (click)="viewCountry()" style="margin-left: 6px !important;">{{ country_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+	      	</ion-item>
+
+	      	<ion-item *ngIf="is_state_show == 1">
+	      		<ion-icon class="input-icon" name="pin_icon" item-left></ion-icon>
+	        	<ion-label (click)="viewState()" style="margin-left: 6px !important;">{{ state_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+	      	</ion-item>
+
+	      	<ion-item *ngIf="is_city_show == 1">
+	      		<ion-icon class="input-icon" name="pin_icon" item-left></ion-icon>
+	        	<ion-label (click)="viewCity()" style="margin-left: 6px !important;">{{ city_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+	      	</ion-item>
+
+	      	<ion-item>
+	        	<ion-icon class="input-icon"  name="pin_icon" item-left></ion-icon>
+	        	<ion-input formControlName="pincode" type="number" [class.invalid]="!moduleForm.controls.pincode.valid && (moduleForm.controls.pincode.dirty || submitAttempt)" placeholder="Enter Pincode"></ion-input>
+	      	</ion-item>
+
+	      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.pincode.valid  && (moduleForm.controls.pincode.dirty || submitAttempt)">
+	        	<p>Please enter pincode</p>
+	      	</ion-item>
+
+	      	<!-- <ion-item *ngIf="is_billing_default == 0">
+	          	<ion-label>Billing Address</ion-label>
+	          	<ion-checkbox color="dark" checked="false" (ionChange)="getBillingData(1)"></ion-checkbox>
+	        </ion-item>
+
+	        <ion-item *ngIf="is_billing_default == 1">
+	          	<ion-label>Billing Address</ion-label>
+	          	<ion-checkbox color="dark" checked="true" (ionChange)="getBillingData(0)"></ion-checkbox>
+	        </ion-item>
+
+	        <ion-item *ngIf="is_shipping_default == 0">
+	          	<ion-label>Shipping Address</ion-label>
+	          	<ion-checkbox color="dark" checked="false" (ionChange)="getShippingData(1)"></ion-checkbox>
+	        </ion-item>
+
+	        <ion-item *ngIf="is_shipping_default == 1">
+	          	<ion-label>Shipping Address</ion-label>
+	          	<ion-checkbox color="dark" checked="true" (ionChange)="getShippingData(0)"></ion-checkbox>
+	        </ion-item> -->
+
+	      	<!-- <button ion-button color="dark" outline round block (click)="addAddress()" style="margin: 0 auto;margin-top: 25px;">
+	      		Save
+	      	</button> -->
+	    </ion-list>
+  	</form>
+</ion-content>
+<ion-footer style="bottom:0px !important;">
+  	<div class="footer">
+    	<div class="button-left">
+      		<button ion-button full clear (click)="addAddress()"><span class="text_gradient" style="font-weight: 600;">Save</span><ion-icon name="arrow_forward_icon" style="padding: 0px 10px;"></ion-icon></button>
+    	</div>
+  	</div>
+</ion-footer>

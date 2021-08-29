@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg enable-background="new -2561.972 2518.276 24 24" version="1.1" viewBox="-2562 2518.3 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+	<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+		<linearGradient id="b" x1="-2558" x2="-2541.9" y1="2534.4" y2="2534.4" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+		<path d="m-2542.4 2528.8v11.228h-4.638v-6.037c0-1.598-1.299-2.898-2.898-2.898-1.598 0-2.9 1.3-2.9 2.898v6.037h-4.637v-11.228" stroke="url(#b)"/>
+		<linearGradient id="a" x1="-2560.7" x2="-2539.2" y1="2524.3" y2="2524.3" gradientUnits="userSpaceOnUse">
+			<stop stop-color="#80d34c" offset="0"/>
+			<stop stop-color="#80d34c" offset="1"/>
+		</linearGradient>
+		<path d="m-2560.2 2528.1 10.235-7.495 10.234 7.495" stroke="url(#a)"/>
+	</g>
+			<rect x="-2562" y="2518.3" width="24" height="24" fill="none"/>
+</svg>

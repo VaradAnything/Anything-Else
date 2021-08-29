@@ -1,0 +1,71 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+        Sub Categories
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+    </ion-refresher> -->
+
+    <div *ngIf="item_count == 0" class="error_handling_div">
+        <img src="assets/icon/error.svg" class="error_handling_image">
+        <div>
+            <p class="error_p1">Some Error Occurred</p>
+            <p class="error_p2">Click below to try again</p>
+
+            <button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+                  <span class="text_gradient">Try Again</span>
+            </button>
+        </div>
+    </div>
+    <div *ngIf="item_count == 1 && category_data_array == ''" class="error_handling_div">
+        <img src="assets/icon/error.svg" class="error_handling_image">
+        <div>
+            <p class="error_p1">Some Error Occurred</p>
+            <p class="error_p2">Click below to try again</p>
+
+            <button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+                  <span class="text_gradient">Try Again</span>
+            </button>
+        </div>
+    </div>
+
+    <div *ngIf="item_count == 1 && category_data_array != ''">
+        <div *ngFor="let category_data of category_data_array;let i = index">
+            <button detail-none ion-item class="parent" (click)="toggleItems(category_data.category_title,category_data.id,category_data.is_sub_category,category_data.expand,i)" style="padding-left: 0px;">
+                <!-- <ion-avatar item-left>
+                    <img [src]="category_data.category_mobile_banner_image">
+                </ion-avatar> -->
+                <span style="margin-left: 2vh;text-transform: uppercase;font-size:14px;font-weight:500;color:#484848;">{{ category_data.category_title }}</span>
+                <ion-icon style="margin-right: 2vh;min-height: 2rem;font-size: 18px;" *ngIf="category_data.expand == 0 && category_data.is_sub_category == 1" item-right name="add"></ion-icon>
+                <ion-icon style="margin-right: 2vh;min-height: 2rem;font-size: 18px;" *ngIf="category_data.expand == 1 && category_data.is_sub_category == 1" item-right name="remove"></ion-icon>
+            </button>
+            <hr style="margin-top:0vh;margin-bottom:0vh;">
+            <ion-list *ngIf="category_data.expand == 1 && category_data.is_sub_category == 1" class="menu-child-list menu-child" style="margin-bottom: 0px;">
+                    <button detail-none ion-item *ngFor="let sub_category_data of category_data.sub_category" class="child" (click)="openCategories(category_data.category_title,category_data.id,sub_category_data.id)" style="background-color: #bde8a4;">
+                        <!-- <ion-avatar item-left style="margin-left: 6vh;">
+                            <img [src]="category_data.category_mobile_banner_image">
+                        </ion-avatar> -->
+                         <span style="margin-left: 1.5vh;text-transform: uppercase;font-size:13px;font-weight:400;color:#484848;">{{ sub_category_data.category_title }}</span>
+                    </button>
+            </ion-list>
+        </div>
+    </div>
+    <!-- <div *ngFor="let side_menu_data of side_menu_data_array;let i = index">
+        <button detail-none ion-item class="parent" (click)="toggleItems(side_menu_data.expand,i)" style="margin-top: -10px;margin-bottom: -8px;">
+            {{ side_menu_data.catName }}
+            <ion-icon *ngIf="side_menu_data.expand == 0" item-right name="add"></ion-icon>
+            <ion-icon *ngIf="side_menu_data.expand == 1" item-right name="remove"></ion-icon>
+        </button>
+        <ion-list *ngIf="side_menu_data.expand == 1" class="menu-child-list menu-child">
+            <button detail-none ion-item *ngFor="let side_menu of side_menu_data.catSubs" class="child"  (click)="openCategories(side_menu_data.catName,side_menu.subcatName,side_menu.parentcatId,side_menu.subcatId)" style="margin-top: -1px;margin-bottom: -8px;">
+                {{ side_menu.subcatName }}
+            </button>
+        </ion-list>
+    </div> -->
+
+</ion-content>

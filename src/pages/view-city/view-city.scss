@@ -1,0 +1,112 @@
+page-view-city 
+{
+    .scroll-content 
+    {
+        padding: 12px !important;
+        margin-bottom : 0px !important;
+    }
+
+	#error_msg_list
+    {
+        margin-top: 30px;
+    }
+    #error_msg_item
+    {
+        color:#000;
+        text-align: center;
+    }
+    #error_msg_icon
+    {
+        font-size : 22px;
+    }
+
+    .searchbar-ios .searchbar-input, .searchbar-md .searchbar-input, .searchbar-wp .searchbar-input
+    {
+        border: 1px solid #f4f4f4;
+        border-radius: 15px;
+        box-shadow: 2px 2px 40px -12px #999;
+    }
+
+    .searchbar-ios
+    {
+        //border: 1px solid #f4f4f4;
+        //border-radius: 15px;
+        //box-shadow: 2px 2px 40px -12px #999;
+    }   
+
+    .searchbar-wp .searchbar-input-container
+    {
+        border: 1px solid #f4f4f4;
+        border-radius: 15px;
+        box-shadow: 2px 2px 40px -12px #999; 
+    }
+
+    .searchbar-ios
+    {
+        background: rgba(0, 0, 0, 0) !important;
+    }
+
+    .searchbar-wp .searchbar-input-container
+    {
+        border : 0px solid rgba(0, 0, 0, 0.5) !important; 
+    }
+
+    .toolbar-title-ios, .toolbar-title-md, .toolbar-title-wp  
+    {
+        padding: 0 12px;
+        font-size: 2rem;
+        font-weight: 500;
+        color: #fff;
+        letter-spacing: 1px;
+        font-weight: 400;
+        font-size: 16px;
+    }
+
+    ion-footer
+    {
+        bottom : 0px !important;
+    }
+
+    .error_handling_div
+    {
+        .error_handling_image
+        {
+            margin-top:6vh;
+            max-width: 65%;
+            margin: 8vh auto;
+            display: block; 
+            margin-bottom: 0vh;
+        }
+
+        div
+        {
+            margin-top: 8vh;
+        }
+
+        .error_p1
+        {
+            font-size:18px;
+            font-weight:500;
+            text-align:center;
+            margin-bottom: -10px;
+        }
+
+        .error_p2
+        {
+            font-size: 15px;
+            font-weight: 400;
+            text-align: center;
+            color: #a5a1a1;
+        }
+
+        .error_submit_button
+        {
+            border-radius: 5px;
+            margin: 0 auto;
+            display:block;
+            padding-bottom: 1px;
+            text-transform: capitalize;
+        }
+    }
+}
+

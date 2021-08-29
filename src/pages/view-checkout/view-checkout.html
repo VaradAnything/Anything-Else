@@ -1,0 +1,356 @@
+<ion-header>
+  	<ion-navbar>
+    	<ion-title>View Checkout</ion-title>
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<!-- <ion-refresher (ionRefresh)="doRefresh($event)">
+    	<ion-refresher-content></ion-refresher-content>
+  	</ion-refresher> -->
+  	
+  	<div *ngIf="item_count == 0" class="error_handling_div">
+		<img src="assets/icon/error.svg" class="error_handling_image">
+
+	  	<div>
+		    <p class="error_p1">Some Error Occurred</p>
+		    <p class="error_p2">Click below to try again</p>
+
+		    <button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+		          <span class="text_gradient">Try Again</span>
+	        </button>
+	  	</div>
+  	</div>
+
+  	<div *ngIf="item_count == 1 && cart_data_array == ''" class="error_handling_div">
+	  	<img src="assets/icon/error.svg" class="error_handling_image">
+
+	  	<div>
+		    <p class="error_p1">Some Error Occurred</p>
+		    <p class="error_p2">Click below to try again</p>
+
+		    <button ion-button color="dark" round medium (click)="reloadPage()" class="text_gradient four_side_border_gradient error_submit_button">
+		          <span class="text_gradient">Try Again</span>
+	        </button>
+	  	</div>
+  	</div>
+	<div *ngIf="item_count == 1 && cart_data_array != ''">
+
+		<div style="background-color: #83b765;padding:5px;border-radius:5px;" (click)="addNewAddress()">
+		  	<div style="float:left;margin-top: 5px;margin-bottom: 5px;margin-left: 5px;font-size:15px;font-weight:500;">Add Address</div>
+		  	<div style="float:right;margin-top: 5px;margin-bottom: 5px;margin-right: 5px;font-size:15px;"><ion-icon class="input-icon" name="add"></ion-icon></div>
+		  	<div style="clear:both;"></div>
+		</div>
+		
+		<!-- <form [formGroup]="moduleForm" style="margin-top: 2vh;" *ngIf="address_count == 0">
+		    <ion-list class="clear-list">
+		    	<ion-item>
+		        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+		        	<ion-input formControlName="first_name" type="text" [class.invalid]="!moduleForm.controls.first_name.valid && (moduleForm.controls.first_name.dirty || submitAttempt)" placeholder="Enter First Name"></ion-input>
+		      	</ion-item>
+
+		      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.first_name.valid  && (moduleForm.controls.first_name.dirty || submitAttempt)">
+		        	<p>Please enter first name</p>
+		      	</ion-item>
+
+		      	<ion-item>
+		        	<ion-icon class="input-icon" name="username_icon" item-left></ion-icon>
+		        	<ion-input formControlName="last_name" type="text" [class.invalid]="!moduleForm.controls.last_name.valid && (moduleForm.controls.last_name.dirty || submitAttempt)" placeholder="Enter Last Name"></ion-input>
+		      	</ion-item>
+
+		      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.last_name.valid  && (moduleForm.controls.last_name.dirty || submitAttempt)">
+		        	<p>Please enter last name</p>
+		      	</ion-item>
+
+		      	<ion-item>
+		        	<ion-icon class="input-icon" name="company_icon" item-left></ion-icon>
+		        	<ion-input formControlName="company" type="text" [class.invalid]="!moduleForm.controls.company.valid && (moduleForm.controls.company.dirty || submitAttempt)" placeholder="Enter Company Name"></ion-input>
+		      	</ion-item>
+
+		      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.company.valid  && (moduleForm.controls.company.dirty || submitAttempt)">
+		        	<p>Please enter company name</p>
+		      	</ion-item>
+
+		      	<ion-item>
+		        	<ion-icon class="input-icon" name="mobile_icon" item-left></ion-icon>
+		        	<ion-input formControlName="mobile" type="number" [class.invalid]="!moduleForm.controls.mobile.valid && (moduleForm.controls.mobile.dirty || submitAttempt)" placeholder="Enter Mobile Number"></ion-input>
+		      	</ion-item>
+
+		      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.mobile.valid  && (moduleForm.controls.mobile.dirty || submitAttempt)">
+		        	<p>Please enter valid mobile</p>
+		      	</ion-item>
+
+		      	<ion-item>
+		        	<ion-icon class="input-icon" name="home_icon" item-left></ion-icon>
+		        	<ion-input formControlName="address1" type="text" [class.invalid]="!moduleForm.controls.address1.valid && (moduleForm.controls.address1.dirty || submitAttempt)" placeholder="Enter Address 1" rows="1"></ion-input>
+		      	</ion-item>
+
+		      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.address1.valid  && (moduleForm.controls.address1.dirty || submitAttempt)">
+		        	<p>Please enter valid address 1</p>
+		      	</ion-item>
+
+		      	<ion-item>
+		        	<ion-icon class="input-icon" name="home_icon" item-left></ion-icon>
+		        	<ion-input formControlName="address2" type="text" [class.invalid]="!moduleForm.controls.address2.valid && (moduleForm.controls.address2.dirty || submitAttempt)" placeholder="Enter Address 2" rows="1"></ion-input>
+		      	</ion-item>
+
+		      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.address2.valid  && (moduleForm.controls.address2.dirty || submitAttempt)">
+		        	<p>Please enter valid address 2</p>
+		      	</ion-item>
+
+				<ion-item>
+		      		<ion-icon class="input-icon" name="pin_icon" item-left></ion-icon>
+		        	<ion-label (click)="viewCountry()" style="margin-left: 6px !important;">{{ country_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+		      	</ion-item>
+
+		      	<ion-item *ngIf="is_state_show == 1">
+		      		<ion-icon class="input-icon" name="pin_icon" item-left></ion-icon>
+		        	<ion-label (click)="viewState()" style="margin-left: 6px !important;">{{ state_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+		      	</ion-item>
+
+		      	<ion-item *ngIf="is_city_show == 1">
+		      		<ion-icon class="input-icon" name="pin_icon" item-left></ion-icon>
+		        	<ion-label (click)="viewCity()" style="margin-left: 6px !important;">{{ city_name }}<ion-icon name="arrow-forward" style="float: right;"></ion-icon></ion-label>
+	      		</ion-item>
+
+		      	<ion-item>
+		        	<ion-icon class="input-icon" name="pin_icon" item-left></ion-icon>
+		        	<ion-input formControlName="pincode" type="number" [class.invalid]="!moduleForm.controls.pincode.valid && (moduleForm.controls.pincode.dirty || submitAttempt)" placeholder="Enter Pincode"></ion-input>
+		      	</ion-item>
+
+		      	<ion-item class="invalid_item" *ngIf="!moduleForm.controls.pincode.valid  && (moduleForm.controls.pincode.dirty || submitAttempt)">
+		        	<p>Please enter pincode</p>
+		      	</ion-item>
+		    </ion-list>
+	  	</form> -->
+
+		<h6 style="padding-top: 0vh !important;margin-top: 20px !important;padding-bottom: 0vh !important;margin-bottom: 0vh !important;" *ngIf="address_data_array != ''">Select Address</h6>
+		<ion-list radio-group style="margin-top:10px;" *ngIf="address_data_array != ''">
+	      	<ion-item *ngFor="let address_data of address_data_array;let i = index" text-wrap class="address-list-item label_bold">
+				<ion-label><p class="text_gradient label_bold" style="font-weight:500;font-size: 16px;">{{ address_data.first_name }} {{ address_data.last_name }}</p>
+	            <div class="detail label_normal" style="font-weight:500;font-size:12px !important;" *ngIf="address_data.address1 != ''">{{ address_data.address1 }},</div>
+	            <div class="detail label_normal" style="font-weight:500;font-size:12px !important;" *ngIf="address_data.address2 != ''">{{ address_data.address2 }},</div>
+	            <div class="detail label_normal" style="font-weight:500;font-size:12px !important;">{{ address_data.city_name }}, {{ address_data.state_name }}, {{ address_data.country_name }} {{ address_data.pincode }}</div>     
+	            <div class="detail label_normal" style="font-weight:500;font-size:12px !important;" *ngIf="address_data.mobile != ''">{{ address_data.mobile }}</div></ion-label>
+	    	   	<ion-radio *ngIf="i == 0" checked (ionSelect)="getAddressId(address_data.id)"></ion-radio>
+	        	<ion-radio *ngIf="i != 0" (ionSelect)="getAddressId(address_data.id)"></ion-radio>
+		  	</ion-item>
+	  	</ion-list>
+
+		<h6 *ngIf="item_count == 1 && cart_data_array != ''">My Order Details</h6>
+
+		<ion-list class="cart-list" *ngIf="item_count == 1 && cart_data_array != ''" no-lines>
+		        <ion-item class="cart-list-item" [class.odd]="i%2!==0" *ngFor="let cart_data of cart_data_array; let i = index;">
+		          	<ion-thumbnail item-left>
+		            	<img [src]="cart_data.product_image">
+		          	</ion-thumbnail>
+		          	<h2 class="label_bold" style="font-weight:500;margin-top:0px !important;">{{cart_data.product_name}}</h2>
+		          	<!-- <p class="label_normal">SKU : {{cart_data.sku}}</p> -->
+		          	<!-- <div class="price-wrapper">
+		            	<div class="price label_bold" style="font-weight: 300;"><span id="product_price"  class="label_bold" style="font-weight: 500;">{{ cart_data.product_variant_price  | currency:'INR':true:'1.1-1' }}</span></div>
+		          	</div> -->
+		          	<div class=""><span class="font_size_12">Qty:</span> <span class="font_size_15 font_weight_400">{{ cart_data.product_variant_quantity }}</span>  <span class="font_size_12">Total:</span> <span class="font_size_15 font_weight_400">{{ cart_data.product_variant_price  | currency:'INR':true:'1.1-1' }}</span></div>
+		        </ion-item>
+	    </ion-list>
+
+	    <ion-list class="cart-list" *ngIf="item_count == 1 && days_array != ''" no-lines>
+		        <ion-item class="cart-list-item" *ngFor="let days_data of days_array; let i = index;">
+		        	<p>{{ days_data }}</p>
+		        </ion-item>
+	    </ion-list>
+	    <!-- <ion-grid *ngIf="item_count == 1 && days_array != ''" style="padding: 0px !important;margin-top: -15px !important;">
+			<ion-row style="margin-left: -10px;margin-right: -7px;">
+				<ion-col style="max-width: 100%;padding: 0px !important;">
+					<ion-list class="clear-list" style="margin-top:-10px;margin: -1px 0 6px !important;">
+					    <ion-item style="color: #000;background-color: transparent;padding-left: 11px !important;">
+					      	<ion-select interface="popover">
+					      		<ion-option></ion-option>
+					      		<ion-option style="font-size: 1.2rem !important; font-weight: 500 !important;" value="{{ days_data }}" (ionSelect)="onChangeDays()" *ngFor="let days_data of days_array; let i = index;" [selected]="i == 0"><span>{{ days_data }}</span></ion-option>
+						  	</ion-select>
+					    </ion-item>
+					</ion-list>
+				</ion-col>
+			</ion-row>
+		</ion-grid> -->
+		<ion-grid *ngIf="item_count == 1 && days_data_array != ''" style="margin-left:10px !important;margin-right:10px !important;padding: 0px !important;margin-top: -15px !important;">
+			<ion-row style="margin-left: -10px;margin-right: -7px;">
+				<ion-col style="max-width: 40%;padding: 0px !important;margin-top: 11px !important;">
+					<span>Order Delivery Day</span>
+				</ion-col>
+				<ion-col style="max-width: 60%;padding: 0px !important;margin-right: 10px !important;">
+					<ion-list>
+						<ion-item>
+					      	<ion-select interface="popover">
+					      		<ion-option style="font-size: 1.2rem !important; font-weight: 500 !important;" value="" (ionSelect)="onChangeDays('')" [selected]="true"><span>Select Order Delivery Day</span></ion-option>
+						    	<ion-option style="font-size: 1.2rem !important; font-weight: 500 !important;" value="{{ days_data }}" (ionSelect)="onChangeDays(days_data)" *ngFor="let days_data of days_data_array; let i = index;"><span>{{ days_data }}</span></ion-option>
+						  	</ion-select>
+						</ion-item>
+					</ion-list>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+
+		<!-- <ion-grid *ngIf="item_count == 1 && cart_data_array != ''" style="margin-left:10px !important;margin-right:10px !important;padding: 0px !important;margin-top: -15px !important;">
+			<ion-row style="margin-left: -10px;margin-right: -7px;">
+				<ion-col style="max-width: 40%;padding: 0px !important;margin-top: 20px !important;">
+					<span>Date</span>
+				</ion-col>
+				<ion-col style="max-width: 60%;padding: 0px !important;margin-right: 10px !important;">
+					<ion-list>
+						<ion-item style="border-bottom: 1px solid #808080;">
+					      	<ion-datetime displayFormat="DD MMM YYYY" [(ngModel)]="slot_date" style="font-family: 'roboto';color:#000;" (ionChange)="onChangeDate()"></ion-datetime>
+						</ion-item>
+					</ion-list>
+				</ion-col>
+			</ion-row>
+		</ion-grid> -->
+
+		<ion-grid *ngIf="item_count == 1 && slot_data_array != ''" style="margin-left:10px !important;margin-right:10px !important;padding: 0px !important;margin-top: -15px !important;margin-bottom: -10px;">
+			<ion-row style="margin-left: -10px;margin-right: -7px;">
+				<ion-col style="max-width: 40%;padding: 0px !important;margin-top: 11px !important;">
+					<span>Order Delivery Timing</span>
+				</ion-col>
+				<ion-col style="max-width: 60%;padding: 0px !important;margin-right: 10px !important;">
+					<ion-list *ngIf="slot_data_array != ''">
+						<ion-item>
+					      	<ion-select interface="popover">
+					      		<ion-option style="font-size: 1.2rem !important; font-weight: 500 !important;" value="" (ionSelect)="onChangeSlot('')" [selected]="true"><span>Select Order Delivery Timing</span></ion-option>
+						    	<ion-option style="font-size: 1.2rem !important; font-weight: 500 !important;" value="{{ slot_data.id }}" (ionSelect)="onChangeSlot(slot_data.id)" *ngFor="let slot_data of slot_data_array; let i = index;"><span>{{ slot_data.slot }}</span></ion-option>
+						  	</ion-select>
+						</ion-item>
+					</ion-list>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+		<hr>
+
+		<!-- <p>Select Slot</p>
+	    <ion-grid *ngIf="item_count == 1 && slot_array != ''" style="padding: 0px !important;margin-top: -15px !important;">
+			<ion-row style="margin-left: -10px;margin-right: -7px;">
+				<ion-col style="max-width: 100%;padding: 0px !important;">
+					<ion-list class="clear-list" style="margin-top:-10px;margin: -1px 0 6px !important;">
+					    <ion-item style="color: #000;background-color: transparent;padding-left: 11px !important;">
+					      	<ion-select interface="popover">
+					      		<ion-option style="font-size: 1.2rem !important; font-weight: 500 !important;" value="{{ slot_data }}" *ngFor="let slot_data of slot_array; let i = index;" [selected]="i == 0"><span>{{ slot_data }}</span></ion-option>
+						  	</ion-select>
+					    </ion-item>
+					</ion-list>
+				</ion-col>
+			</ion-row>
+		</ion-grid> -->
+
+		<h6>Coupon Code</h6>
+		<ion-grid style="margin-bottom: 15px;">
+			<ion-row>
+				<ion-col style="text-align:center;max-width: 65%;" *ngIf="is_coupon_apply == 0">
+		        	<ion-input type="text" class="input_box" placeholder="Enter Coupon Code" (keyup)='getApplyCode($event.keyCode,$event.target.value)' style="border: 1px solid #ddd;border-bottom-left-radius: 5px; border-top-left-radius: 5px;background-color: #f4f4f4;" [disabled]="disable_applied_coupon_code"></ion-input>
+		      	</ion-col>
+		      	<ion-col style="text-align:center;max-width: 65%;" *ngIf="is_coupon_apply == 1">
+					<ion-input type="text" class="input_box" style="border: 1px solid #ddd;border-bottom-left-radius: 5px; border-top-left-radius: 5px;background-color: #f4f4f4;" [disabled]="disable_applied_coupon_code" value="{{ coupon_code }}"></ion-input>
+				</ion-col>
+				<!-- <ion-col style="text-align:center;max-width: 5%;">
+				</ion-col> -->
+				<ion-col style="text-align:center;max-width: 30%;" *ngIf="is_coupon_apply == 0">
+			  			<button ion-button outline round block class="four_side_border_gradient" style="margin: 0rem 0rem !important;height: 4.4rem !important;border-top-right-radius: 10px !important;border-bottom-right-radius: 10px;border-top-left-radius: 0px !important;border-bottom-left-radius: 0px !important;" (click)="applyCouponCode()"><span class="" style="color:#88be4c;font-size:12px;">Apply</span></button>
+			  	</ion-col>
+			  	<ion-col style="text-align:center;max-width: 30%;" *ngIf="is_coupon_apply == 1">
+			  			<button ion-button outline round block class="four_side_border_gradient" style="margin: 0rem 0rem !important;height: 4.4rem !important;border-top-right-radius: 10px !important;border-bottom-right-radius: 10px;border-top-left-radius: 0px !important;border-bottom-left-radius: 0px !important;" (click)="removeCouponCode()"><span class="" style="color:#88be4c;font-size:12px;">Remove</span></button>
+			  	</ion-col>
+			</ion-row>
+		</ion-grid>
+
+		<h6>Payment Method</h6>
+		<!-- <ion-list radio-group id="radio_list_id" no-lines style="margin-top: -2vh;">
+      		<ion-grid>
+      			<ion-row>
+      				<ion-col style="max-width:28%;padding-left: 10px;">
+  						<ion-item>
+  							<ion-radio (ionSelect)="getPayment('COD','2')" checked="true"></ion-radio>
+					    	<ion-label style="font-size: 14px;">COD</ion-label>
+					  	</ion-item>
+      				</ion-col>
+      				<ion-col style="max-width:10%;padding-left: 10px;"></ion-col>
+      				<ion-col style="max-width:36%;">
+      					<ion-item>
+      						<ion-radio (ionSelect)="getPayment('PREPAID','1')"></ion-radio>
+						    <ion-label style="font-size: 14px;">PREPAID</ion-label>
+						</ion-item>
+      				</ion-col>
+      			</ion-row>
+      		</ion-grid>
+		</ion-list> -->
+
+		<ion-grid style="margin-top: -2vh;">
+         	 <ion-row>
+	            <ion-col style="max-width:30%;border: 1px solid #333333;border-radius: 4px;" *ngIf="payment_method_type == '2'">
+	                <p style="color: #333333;font-weight: 500;text-align: center;">COD</p>
+	            </ion-col>
+	            <ion-col style="max-width:30%;" (click)="getPayment('COD','2')" *ngIf="payment_method_type == '1'">
+	                <p style="color: #333333;font-weight: 500;text-align: center;">COD</p>
+	            </ion-col>
+	            <ion-col style="max-width:10%;">
+	            </ion-col>
+	            <ion-col style="max-width:30%;border: 1px solid #333333;border-radius: 4px;" *ngIf="payment_method_type == '1'">
+	                <p style="color: #333333;font-weight: 500;text-align: center;">PREPAID</p>
+	            </ion-col>
+	            <ion-col style="max-width:30%;" (click)="getPayment('PREPAID','1')" *ngIf="payment_method_type == '2'">
+	                <p style="color: #333333;font-weight: 500;text-align: center;">PREPAID</p>
+	            </ion-col>
+          	</ion-row>
+        </ion-grid>
+
+		<ion-list style="margin-top: 1vh;" no-lines>
+  			<ion-item>
+    			<ion-label style="font-size: 14px;">You want to apply wallet amount?</ion-label>
+    			<ion-checkbox *ngIf="is_wallet_apply == 0" (ionChange)="applyWallet(1)"></ion-checkbox>
+    			<ion-checkbox *ngIf="is_wallet_apply == 1" checked (ionChange)="applyWallet(0)"></ion-checkbox>
+  			</ion-item>
+  			<ion-item style="margin-top:-10px;">
+    			<ion-label style="font-size: 14px;" *ngIf="user_wallet_remaining_amount != 0">( Your Wallet Amount is <span style="color:#ed6663;">{{ user_wallet_remaining_amount | currency:'INR':true:'1.1-1' }} </span>)</ion-label>
+    			<ion-label style="font-size: 14px;" *ngIf="user_wallet_remaining_amount == 0">( Your Wallet Amount is <span style="color:#ed6663;">{{ user_wallet_remaining_amount | currency:'INR':true:'1.1-1' }} </span>)</ion-label>
+  			</ion-item>
+		</ion-list>
+
+
+		<hr style="margin-top: 2.5vh;margin-bottom:5px;">
+		<h6>Payment Summary</h6>
+		<div class="item_left">Order Amount</div>
+		<div class="item_right label_bold">{{ sub_total_amount | currency:'INR':true:'1.2-2' }}</div>
+		<div style="clear:both"></div>
+		<hr class="order_summary_hr" *ngIf="is_coupon_apply != 0">
+		<div class="item_left" *ngIf="is_coupon_apply != 0">Coupon Code Discount</div>
+		<div class="item_right label_bold" *ngIf="is_coupon_apply != 0"><span id="currency_price" style="color:#2754a2;">{{ coupon_code_discount | currency:'INR':true:'1.2-2' }}</span></div>
+		<div style="clear:both" *ngIf="is_coupon_apply != 0"></div>
+		<div class="item_left" *ngIf="is_coupon_apply != 0"><span *ngIf="is_coupon_apply != 0">(</span> <span class="label_bold">{{ coupon_code }}</span> <span *ngIf="is_coupon_apply != 0">)</span></div>
+		<div class="item_right label_bold"></div>
+		<div style="clear:both" *ngIf="is_wallet_apply == 1"></div>
+		<hr class="order_summary_hr" *ngIf="is_wallet_apply == 1">
+		<div class="item_left" *ngIf="is_wallet_apply == 1">Applied Wallet Amount</div>
+		<div class="item_right label_bold" *ngIf="is_wallet_apply == 1 && wallet_amount != 0"><span id="currency_price" style="color:#2754a2;">{{ wallet_amount | currency:'INR':true:'1.2-2' }}</span></div>
+		<div class="item_right label_bold" *ngIf="is_wallet_apply == 1 && wallet_amount == 0"><span id="currency_price" style="color:#2754a2;">{{ wallet_amount | currency:'INR':true:'1.2-2' }}</span></div>
+		<div style="clear:both"></div>
+		<hr class="order_summary_hr">
+		<div class="item_left">Shipping Charges</div>
+		<div class="item_right label_bold" *ngIf="shipping_amount != 0"><span id="currency_price" style="color:#ed6663;">{{ shipping_amount | currency:'INR':true:'1.2-2' }}</span></div>
+		<div class="item_right label_bold" *ngIf="shipping_amount == 0"><span id="currency_price" style="color:#ed6663;">Free</span></div>
+		<div style="clear:both"></div>
+		<hr class="order_summary_hr">
+		<div class="item_left">Payment Method</div>
+		<div class="item_right label_bold">{{ payment_method }}</div>
+		<div style="clear:both"></div>
+		<hr class="order_summary_hr">
+		<div class="item_left">Total Amount</div>
+		<div class="item_right label_bold"><span id="currency_price" style="color:#000;">{{ total_amount | currency:'INR':true:'1.2-2' }}</span></div>
+		<div style="clear:both;margin-bottom: 10px;"></div>
+	    <br>
+	    <br>
+	</div>
+</ion-content>
+<ion-footer style="bottom:0px !important;" *ngIf="item_count == 1 && cart_data_array != ''">
+  	<div class="footer">
+    	<div class="button-left">
+      		<button ion-button full clear (click)="orderNow(1)"><span class="text_gradient" style="font-weight: 600;">Order Now</span><ion-icon name="arrow_forward_icon" style="padding: 0px 10px;"></ion-icon></button>
+    	</div>
+  	</div>
+</ion-footer>

@@ -1,0 +1,150 @@
+<ion-header>
+	<ion-navbar>
+	    <button ion-button menuToggle>
+	      	<img src="assets/icon/menu.svg" class="menu-image animated_rIn rotateIn">
+	    </button>
+	    <ion-title>
+	      	Account
+	    </ion-title>
+	    <!-- <ion-buttons end>
+	       	<button ion-button icon-only id="notification_btn" (click)="openNotification()">
+	        	<ion-icon name="notification_icon" style="font-size:1.7em;"></ion-icon>
+	      	</button>
+	    </ion-buttons> -->
+  	</ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+	<h6 style="margin-top: 0rem !important;">My Orders</h6>
+	<ion-grid style="margin-top: -1vh;">
+		<ion-row style="margin-left: -1vh;margin-top: 2vh !important;">
+			<ion-col class="card_col">
+				<ion-card (click)="openPage(1)">
+					<ion-card-content>
+						<img src="assets/icon/account_1.svg">
+						<span>Orders</span>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+			<ion-col class="card_col">
+				<ion-card (click)="openPage(2)">
+					<ion-card-content>
+						<img src="assets/icon/account_2.svg">
+						<span>Returns</span>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+			<ion-col class="card_col">
+				<ion-card (click)="openPage(3)">
+					<ion-card-content>
+						<img src="assets/icon/account_3.svg">
+						<span>Wishlist</span>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	<h6 style="margin-top: 1vh;">My Information</h6>
+	<ion-grid>
+		<ion-row style="margin-left: -1vh;margin-top: 1vh !important;">
+			<ion-col class="card_col">
+				<ion-card (click)="openPage(4)">
+					<ion-card-content>
+						<img src="assets/icon/account_4.svg">
+						<span>Address</span>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+			<ion-col class="card_col">
+				<ion-card (click)="openPage(5)">
+					<ion-card-content>
+						<img src="assets/icon/account_5.svg">
+						<span>Profile</span>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+			<ion-col class="card_col">
+				<ion-card (click)="openPage(6)">
+					<ion-card-content>
+						<img src="assets/icon/password.svg">
+						<span>Password</span>
+					</ion-card-content>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	<ion-grid style="margin-top: 1vh;">
+		<ion-row class="row_class" (click)="openPage(7)">
+			<ion-col class="col_1">
+				<img src="assets/icon/account_7.svg">
+			</ion-col>
+			<ion-col class="col_2">
+				<span>Rate App</span>
+			</ion-col>
+		</ion-row>
+		<ion-row class="row_class" (click)="openPage(8)">
+			<ion-col class="col_1">
+				<img src="assets/icon/account_8.svg">
+			</ion-col>
+			<ion-col class="col_2">
+				<span>About Us</span>
+			</ion-col>
+		</ion-row>
+		<ion-row class="row_class" (click)="openPage(9)">
+			<ion-col class="col_1">
+				<img src="assets/icon/account_9.svg">
+			</ion-col>
+			<ion-col class="col_2">
+				<span>FAQ's</span>
+			</ion-col>
+		</ion-row>
+		<ion-row class="row_class" (click)="openPage(10)">
+			<ion-col class="col_1">
+				<img src="assets/icon/account_10.svg">
+			</ion-col>
+			<ion-col class="col_2">
+				<span>Contact Us</span>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>
+<ion-footer style="bottom:0px !important;">
+    <div class="footer">
+        <ion-grid>
+            <ion-row>
+                <ion-col (click)="openTabsPage(1)">
+                    <ion-icon name="tab_1_black"></ion-icon>
+                    <div>Home</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(2)">
+                    <ion-icon name="tab_2_black"></ion-icon>
+                    <div>Categories</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(3)">
+                	<div *ngIf="cart_items_count > 0" class="cart_badge">{{ cart_items_count }}</div>
+                    <ion-icon name="tab_3_black"></ion-icon>
+                    <div>My Cart</div>
+                </ion-col>
+                <ion-col (click)="openTabsPage(4)">
+                    <ion-icon name="tab_4"></ion-icon>
+                    <div class="text_gradient">Account</div>
+                </ion-col>
+            </ion-row>
+            <!-- <ion-row style="margin-top: -2vh;">
+                <ion-col (click)="openTabsPage(1)">
+                    <span>Home</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(2)">
+                    <span>Categories</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(3)">
+                    <span>My Cart</span>
+                </ion-col>
+                <ion-col (click)="openTabsPage(4)">
+                    <span class="text_gradient">Account</span>
+                </ion-col>
+            </ion-row> -->
+        </ion-grid>
+    </div>
+</ion-footer>

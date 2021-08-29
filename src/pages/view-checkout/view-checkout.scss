@@ -1,0 +1,652 @@
+page-view-checkout 
+{
+	.scroll-content 
+    {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+        padding-bottom: 0px !important;
+    }
+
+    .datetime-text 
+    {
+      margin-bottom: -17px;
+      font-size: 13px;
+      color: #333;
+      margin-left: -15px;
+    }
+
+    ion-select 
+  {
+    max-width: 100% !important;
+    font-size: 13px !important;
+    width: 100% !important;
+    border-bottom: 1px solid #808080 !important;
+  }
+
+  .item.item-ios .checkbox-ios,.item.item-md .checkbox-md,.item.item-wp .checkbox-wp 
+  {
+    position: static;
+    display: block;
+    margin: 9px 15px 9px 4px;
+  }
+
+  .select-ios,.select-md,.select-wp 
+  {
+    padding: 5px 5px 0px 0px !important;
+  }
+
+  .checkbox-ios .checkbox-checked,.checkbox-md .checkbox-checked,.checkbox-wp .checkbox-checked 
+  {
+    border-color: #88be4c !important;
+    background-color: #88be4c !important;
+  }
+    
+	.segment-ios .segment-button.activated, .segment-ios .segment-button.segment-activated, .segment-md .segment-button.activated, .segment-md .segment-button.segment-activated, .segment-wp .segment-button.activated, .segment-wp .segment-button.segment-activated 
+	{
+	    border-color: #e91e63 !important;
+	    opacity: 1 !important;
+	    background-color: #e91e63 !important;
+	    color: #fff !important;
+	    border-radius: 5% !important;
+	}
+
+	.segment-ios .segment-button, .segment-md .segment-button, .segment-wp .segment-button,  
+	{	
+		color: #e91e63 !important;
+		opacity: 0.7 !important;
+	    border: 1px solid #e91e63 !important;
+	    border-radius: 5% !important;
+	}
+
+	.button-outline-ios,.button-outline-md,.button-outline-wp 
+	{
+		//border-color: #ed6663 !important;
+	}
+
+	.button-ios,.button-md,.button-wp 
+	{
+    	height: 4rem !important;
+    }
+
+    .item-ios, .item-md, .item-wp 
+    {
+      padding-left: 16px;
+      padding-right: 0;
+      position: relative;
+      font-size: 1.6rem;
+      font-weight: normal;
+      text-transform: none;
+      color: #000;
+      background-color: transparent !important;
+    }
+
+    h6
+    {
+      padding-bottom: 2.5vh !important;
+      padding-top: 2vh !important;
+    }
+
+	.clear-list .item .text-input:focus,.clear-list .item .text-input,.clear-list .item:last-child .text-input
+  	{
+    	border-bottom: 1px solid #000 !important;
+  	}
+
+  	.clear-list .item ion-input
+  	{
+    	color: #000 !important;
+  	}
+
+  	.clear-list .item .input-icon 
+  	{
+    	padding-top: 0px !important;
+    }
+
+    .item-ios,.item-md,.item-wp 
+    {
+    	padding-left: 0px !important;
+    }
+
+    .item-ios.item-block .item-inner,.item-md.item-block .item-inner,.item-wp.item-block .item-inner
+    {
+        padding-right: 0px !important;
+    }
+
+    .item-ios ion-icon[item-left] + .item-inner, .item-ios ion-icon[item-left] + .item-input, .item-ios ion-icon[item-start] + .item-inner, .item-ios ion-icon[item-start] + .item-input,.item-md ion-icon[item-left] + .item-inner, .item-md ion-icon[item-left] + .item-input, .item-md ion-icon[item-start] + .item-inner, .item-md ion-icon[item-start] + .item-input,.item-wp ion-icon[item-left] + .item-inner, .item-wp ion-icon[item-left] + .item-input, .item-wp ion-icon[item-start] + .item-inner, .item-wp ion-icon[item-start] + .item-input 
+    {
+    	margin-left: 0px !important;
+    }
+
+    .invalid_item
+  	{
+    	margin-left: 7vh !important;
+  	}
+
+  	.invalid_item p
+  	{
+    	color : #F44336;
+    	white-space: initial !important;
+  	}
+
+  	.ion-ios-username_icon,.ion-md-username_icon,.ion-wp-username_icon 
+  	{
+    	content: url(../assets/icon/user.svg);
+    	padding: 2px 0px 3px;
+    	width: 30px;
+  	}
+
+  	.ion-ios-username_icon:before,.ion-md-username_icon:before,.ion-wp-username_icon:before 
+  	{
+    	content: url(../../assets/icon/user.svg);
+    	width: 30px;
+  	}
+
+  	.ion-ios-email_icon,.ion-md-email_icon,.ion-wp-email_icon 
+  	{
+    	content: url(../assets/icon/email.svg);
+    	padding: 2px 0px 3px;
+    	width: 30px;
+  	}
+
+  	.ion-ios-email_icon:before,.ion-md-email_icon:before,.ion-wp-email_icon:before 
+  	{
+    	content: url(../../assets/icon/email.svg);
+    	width: 30px;
+  	}
+
+  	.ion-ios-mobile_icon,.ion-md-mobile_icon,.ion-wp-mobile_icon 
+  	{
+    	content: url(../assets/icon/mobile.svg);
+    	padding: 2px 0px 3px;
+    	width: 30px;
+  	}
+
+  	.ion-ios-mobile_icon:before,.ion-md-mobile_icon:before,.ion-wp-mobile_icon:before 
+  	{
+    	content: url(../../assets/icon/mobile.svg);
+    	width: 30px;
+  	}
+
+  	.ion-ios-password_icon,.ion-md-password_icon,.ion-wp-password_icon 
+  	{
+    	content: url(../assets/icon/password.svg);
+    	padding: 2px 0px 3px;
+    	width: 30px;
+  	}
+
+  	.ion-ios-password_icon:before,.ion-md-password_icon:before,.ion-wp-password_icon:before 
+  	{
+    	content: url(../../assets/icon/password.svg);
+    	width: 30px;
+  	}
+
+    .cart-list 
+    {
+        border: none;
+        .cart-list-item 
+        {
+            ion-thumbnail 
+            {
+                border: 1px solid color($colors, light);
+                width: 86px;
+                height: 86px;
+                img 
+                {
+                    object-fit: cover;
+                    width: 86px;
+                    height: 86px;
+                }
+            }
+            h2 
+            {
+                font-size: 1.36rem;
+                font-weight: 300;
+                white-space: initial;
+            }
+            .size 
+            {
+                font-size: 1.16rem;
+                font-weight: 300;
+                .color 
+                {
+                    margin-left: 5vw;
+                }
+            }
+            .price-wrapper 
+            {
+                padding-top: 1vh;
+                .price 
+                {
+                    font-size: 1.68rem;
+                    font-weight: 500;
+                    color: #000;
+                    display: inline-block;
+                }
+                .old-price 
+                {
+                    margin-left: 3vw;
+                    margin-top: 3px;
+                    font-size: 1.26rem;
+                    font-weight: 400;
+                    color: color($colors, lightdark);
+                    text-decoration: line-through;
+                    position: absolute;
+                    display: inline-block;
+                }
+            }
+            .right-bag 
+            {
+                width: 10vw;
+                text-align: center;
+
+                .right-button 
+                {
+            
+                    button 
+                    {
+                        font-size: 1.5rem;
+                        .add 
+                        {
+                            font-size: 2.5rem;
+                        }
+                    }
+                }
+                .right-quantity 
+                {
+                    border: 1px solid color($colors, lightdark);
+                    border-radius: 36%;
+                    padding: 5px 1px 5px 1px;
+                    font-size: 1.68rem;
+                    font-weight: 500;
+                    color: color($colors, primary);
+                    color: #ed6663 !important;
+                }
+            }
+        }
+
+        .button-clear-ios,.button-clear-wp,.button-clear-md
+        {
+          color: #ed6663 !important;
+        }
+
+        .actiion-button 
+        {
+            button 
+            {
+                width: 18vw;
+            }
+        }
+    }
+
+    .cart-list .item 
+    {
+        border: none;
+        //border-bottom: 1px solid color($colors, lightdark) !important;
+    }
+
+    .cart-list .odd 
+    {
+        background-color: color($colors, light) !important;
+    }
+
+    .cart-list .item:first-child 
+    {
+        border: none !important;
+        //border-bottom: 1px solid color($colors, lightdark) !important;
+    }
+
+    .cart-list .item:last-child 
+    {
+        border: none !important;
+        //border-bottom: 1px solid color($colors, lightdark) !important;
+    }
+
+    .cart-list .item .item-inner 
+    {
+        border: none;
+    }
+
+    .address-list 
+    {
+        .address-list-item 
+        {
+            h2 
+            {
+                font-size: 1.36rem;
+                font-weight: 400;
+            }
+            .detail 
+            {
+                width: 80vw;
+                font-size: 1.1rem;
+                font-weight: 300;
+            }
+            .right-bag 
+            {
+                width: 18vw;
+                top: 0;
+                right: 5px;
+                position: absolute;
+                display: inline-block;
+                text-align: right;
+                button 
+                {
+                    margin: -10px 0 0 0;
+                    padding: 0 0 0 0;
+                    font-size: 0.86rem;
+                }
+            }
+        }
+    }
+
+    .item_left
+    {
+        float:left;
+        letter-spacing: 1px;
+        font-weight: 100;
+        font-size: 14px;
+    }
+
+    .item_right
+    {
+        float:right;
+        letter-spacing: 1px;
+        font-weight: 400;
+        font-size: 15px;
+    }
+
+    .order_summary_hr
+    {
+      margin-top:15px;
+      margin-bottom:15px;
+    }
+
+    .label_bold
+    {
+        letter-spacing: 1px;
+        font-weight: 500;
+        font-size: 14px;
+    }
+    .label_normal
+    {
+        letter-spacing: 1px;
+        font-weight: 100;
+        font-size: 14px;
+    }
+
+    .card-ios,.card-md,.card-wp
+    {
+      border: 1px solid #f4f4f4;
+      border-radius: 10px;
+      box-shadow: 2px 2px 40px -12px #999;
+    }
+
+    .card-content-ios,.card-content-md,.card-content-wp 
+    {
+      padding: 10px 10px !important;
+      display: block;
+    }
+
+    .card-ios,.card-md,.card-wp 
+    {
+      margin: 0px !important;
+      width: 100% !important;
+    }
+
+    ion-avatar ion-img
+    {
+        border-radius: 50%;
+        border-bottom: 0.55px solid #c8c7cc;
+    }
+
+    h6
+    {
+        margin-bottom: 2.5vh !important;
+        margin-top: 2vh !important;
+    }
+
+    .grid,.col
+    {
+        padding: 0px !important;
+    }
+
+    .font_size_12
+  	{
+  		font-size: 12px;
+  	}
+
+  	.margin_top_3
+  	{
+  		margin-top: 3px;
+  	}
+
+  	.font_weight_300
+  	{
+  		font-weight: 300;
+  	}
+
+  	.font_size_15
+  	{
+  		font-size: 15px;
+  	}
+
+  	.font_weight_400
+  	{
+  		font-weight: 400;
+  	}
+
+    .radio-ios .radio-checked,.radio-md .radio-checked,.radio-wp .radio-checked 
+    {
+        border-color: #88be4c !important;
+    }
+
+    .radio-ios .radio-inner,.radio-md .radio-inner,.radio-wp .radio-inner 
+    {
+        background-color: #88be4c !important;
+    }
+
+    .item-radio-checked.item-ios ion-label,.item-radio-checked.item-md ion-label,.item-radio-checked.item-wp ion-label 
+    {
+        color: #000 !important;
+    }
+
+	.ion-ios-username_icon,.ion-md-username_icon,.ion-wp-username_icon 
+	{
+	  	content: url(../assets/icon/user.svg);
+	  	padding: 2px 0px 3px;
+	  	width: 30px;
+	}
+
+	.ion-ios-username_icon:before,.ion-md-username_icon:before,.ion-wp-username_icon:before 
+	{
+	  	content: url(../../assets/icon/user.svg);
+	  	width: 30px;
+	}
+
+	.ion-ios-email_icon,.ion-md-email_icon,.ion-wp-email_icon 
+	{
+	  	content: url(../assets/icon/email.svg);
+	  	padding: 2px 0px 3px;
+	  	width: 30px;
+	}
+
+	.ion-ios-email_icon:before,.ion-md-email_icon:before,.ion-wp-email_icon:before 
+	{
+	  	content: url(../../assets/icon/email.svg);
+	  	width: 30px;
+	}
+
+	.ion-ios-mobile_icon,.ion-md-mobile_icon,.ion-wp-mobile_icon 
+	{
+	  	content: url(../assets/icon/mobile.svg);
+	  	padding: 2px 0px 3px;
+	  	width: 30px;
+	}
+
+	.ion-ios-mobile_icon:before,.ion-md-mobile_icon:before,.ion-wp-mobile_icon:before 
+	{
+	  	content: url(../../assets/icon/mobile.svg);
+	  	width: 30px;
+	}
+
+	.ion-ios-password_icon,.ion-md-password_icon,.ion-wp-password_icon 
+	{
+	  	content: url(../assets/icon/password.svg);
+	  	padding: 2px 0px 3px;
+	  	width: 30px;
+	}
+
+	.ion-ios-password_icon:before,.ion-md-password_icon:before,.ion-wp-password_icon:before 
+	{
+	  	content: url(../../assets/icon/password.svg);
+	  	width: 30px;
+	}
+
+	.ion-ios-company_icon,.ion-md-company_icon,.ion-wp-company_icon 
+	{
+	  	content: url(../assets/icon/company.svg);
+	  	padding: 2px 0px 3px;
+	  	width: 30px;
+	}
+
+	.ion-ios-company_icon:before,.ion-md-company_icon:before,.ion-wp-company_icon:before 
+	{
+	  	content: url(../../assets/icon/company.svg);
+	  	width: 30px;
+	}
+
+	.ion-ios-pin_icon,.ion-md-pin_icon,.ion-wp-pin_icon 
+	{
+	  	content: url(../assets/icon/pin.svg);
+	  	padding: 2px 0px 3px;
+	  	width: 30px;
+	}
+
+	.ion-ios-pin_icon:before,.ion-md-pin_icon:before,.ion-wp-pin_icon:before 
+	{
+	  	content: url(../../assets/icon/pin.svg);
+	  	width: 30px;
+	}
+
+	.ion-ios-home_icon,.ion-md-home_icon,.ion-wp-home_icon 
+	{
+	  	content: url(../assets/icon/home.svg);
+	  	padding: 2px 0px 3px;
+	  	width: 30px;
+	}
+
+	.ion-ios-home_icon:before,.ion-md-home_icon:before,.ion-wp-home_icon:before 
+	{
+	  	content: url(../../assets/icon/home.svg);
+	  	width: 30px;
+	}
+
+	.select-ios,.select-md,.select-wp 
+  	{
+  		padding-top: 7px !important;
+	    padding: 0px 10px 0px 0px !important;
+	    //border-bottom: 1px solid #fff !important;
+	    font-size: 11px !important;
+  	}
+
+  	ion-select
+  	{
+    	max-width: 100% !important;
+  	}
+
+  	.footer 
+  	{
+	    width: 100vw;
+	    bottom: 0;
+	    height: 42px;
+	    .button-left 
+	    {
+	      	display: inline-block;
+	      	background-color: #fff;
+	      	button 
+	      	{
+	        	height: 42px !important;
+	        	//color: color($colors, pearl);
+	        	color:#ed6663;
+	        	font-size: 1.5rem;
+	        	width: 100vw;
+	        	margin: 0 0 0 0;
+	        	padding: 0 0 0 0;
+	      	}
+	      	.quantity-select 
+	      	{
+	        	display: none;
+	      	}
+	    }
+	    .button-right 
+	    {
+	      	text-align: right;
+	      	width: 60vw;
+	      	display: inline-block;
+	      	position: fixed;
+	      	right: 0;
+	      	background-color: #2f2e2e;
+	      	button 
+	      	{
+	        	height: 42px;
+	        	color: color($colors, pearl);
+	        	font-size: 1.5rem;
+	        	font-weight: 600;
+	        	margin: 0 0 0 0;
+	      	}
+	    }
+  	}
+
+    .ion-ios-arrow_forward_icon,.ion-md-arrow_forward_icon,.ion-wp-arrow_forward_icon 
+    {
+      content: url(../assets/icon/arrow-forward.svg);
+      padding: 2px 0px 3px;
+      width: 40px;
+    }
+
+    .ion-ios-arrow_forward_icon:before,.ion-md-arrow_forward_icon:before,.ion-wp-arrow_forward_icon:before 
+    {
+      content: url(../../assets/icon/arrow-forward.svg);
+      width: 40px;
+    }
+    .error_handling_div
+    {
+        .error_handling_image
+        {
+            margin-top:6vh;
+            max-width: 65%;
+            margin: 8vh auto;
+            display: block; 
+            margin-bottom: 0vh;
+        }
+
+        div
+        {
+            margin-top: 8vh;
+        }
+
+        .error_p1
+        {
+            font-size:18px;
+            font-weight:500;
+            text-align:center;
+            margin-bottom: -10px;
+        }
+
+        .error_p2
+        {
+            font-size: 15px;
+            font-weight: 400;
+            text-align: center;
+            color: #a5a1a1;
+        }
+
+        .error_submit_button
+        {
+            border-radius: 5px;
+            margin: 0 auto;
+            display:block;
+            padding-bottom: 1px;
+            text-transform: capitalize;
+        }
+    }
+}

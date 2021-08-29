@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg enable-background="new -2537.347 2601.276 24 24" version="1.1" viewBox="-2537.3 2601.3 24 24" xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+<g fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10">
+		<linearGradient id="b" x1="-2535.6" x2="-2519.2" y1="2622.2" y2="2622.2" gradientTransform="matrix(6.1232e-17 -1 1 6.1232e-17 -5140.7 85.881)" gradientUnits="userSpaceOnUse">
+		<stop stop-color="#80d34c" offset="0"/>
+		<stop stop-color="#80d34c" offset="1"/>
+	</linearGradient>
+	<polyline points="-2522.3 2605.6 -2514.6 2613.3 -2522.3 2621" stroke="url(#b)"/>
+		<linearGradient id="a" x1="-2527.9" x2="-2526.9" y1="2615.3" y2="2615.3" gradientTransform="matrix(6.1232e-17 -1 1 6.1232e-17 -5140.7 85.881)" gradientUnits="userSpaceOnUse">
+		<stop stop-color="#80d34c" offset="0"/>
+		<stop stop-color="#80d34c" offset="1"/>
+	</linearGradient>
+		<line x1="-2514.6" x2="-2536.1" y1="2613.3" y2="2613.3" stroke="url(#a)"/>
+</g>
+</svg>
